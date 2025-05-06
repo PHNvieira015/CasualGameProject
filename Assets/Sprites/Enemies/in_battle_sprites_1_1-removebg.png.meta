@@ -1,0 +1,532 @@
+fileFormatVersion: 2
+guid: 61f7990e81321f747a95329e37f2ee69
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2987676182162509299
+    second: in_battle_sprites_1_1-removebg-preview_0
+  - first:
+      213: -8002240921906497542
+    second: in_battle_sprites_1_1-removebg-preview_1
+  - first:
+      213: -5613147409888947540
+    second: in_battle_sprites_1_1-removebg-preview_2
+  - first:
+      213: 2359109213186318684
+    second: in_battle_sprites_1_1-removebg-preview_3
+  - first:
+      213: 3488274422207201316
+    second: in_battle_sprites_1_1-removebg-preview_4
+  - first:
+      213: 1556522447536459062
+    second: in_battle_sprites_1_1-removebg-preview_5
+  - first:
+      213: -885821876079476638
+    second: in_battle_sprites_1_1-removebg-preview_6
+  - first:
+      213: -3643841248025793161
+    second: in_battle_sprites_1_1-removebg-preview_7
+  - first:
+      213: -4876101001893575075
+    second: in_battle_sprites_1_1-removebg-preview_8
+  - first:
+      213: 2502706933468801850
+    second: in_battle_sprites_1_1-removebg-preview_9
+  - first:
+      213: -4800951189544965179
+    second: in_battle_sprites_1_1-removebg-preview_10
+  - first:
+      213: -2827786605597004261
+    second: in_battle_sprites_1_1-removebg-preview_11
+  - first:
+      213: -4894626253197902005
+    second: in_battle_sprites_1_1-removebg-preview_12
+  - first:
+      213: 6421559274199598031
+    second: in_battle_sprites_1_1-removebg-preview_13
+  - first:
+      213: 2122019366842814729
+    second: in_battle_sprites_1_1-removebg-preview_14
+  - first:
+      213: 5202128254070852139
+    second: in_battle_sprites_1_1-removebg-preview_15
+  - first:
+      213: 5473643930346916256
+    second: in_battle_sprites_1_1-removebg-preview_16
+  - first:
+      213: 6452424836450747576
+    second: in_battle_sprites_1_1-removebg-preview_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: in_battle_sprites_1_1-removebg-preview_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 198
+        width: 36
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d02fe4a7754a986d0800000000000000
+      internalID: -2987676182162509299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: in_battle_sprites_1_1-removebg-preview_1
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 193
+        width: 28
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af73baa774452f090800000000000000
+      internalID: -8002240921906497542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: in_battle_sprites_1_1-removebg-preview_2
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 200
+        width: 29
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca25aa1ab281a12b0800000000000000
+      internalID: -5613147409888947540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: in_battle_sprites_1_1-removebg-preview_4
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 159
+        width: 29
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 420cdb6fa17d86030800000000000000
+      internalID: 3488274422207201316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: in_battle_sprites_1_1-removebg-preview_5
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 159
+        width: 16
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63d05525be0e99510800000000000000
+      internalID: 1556522447536459062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: in_battle_sprites_1_1-removebg-preview_6
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 160
+        width: 13
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 260430e62bde4b3f0800000000000000
+      internalID: -885821876079476638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: in_battle_sprites_1_1-removebg-preview_7
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 109
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77da189d0b97e6dc0800000000000000
+      internalID: -3643841248025793161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: in_battle_sprites_1_1-removebg-preview_8
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 109
+        width: 30
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d56053539fb945cb0800000000000000
+      internalID: -4876101001893575075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: in_battle_sprites_1_1-removebg-preview_9
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 108
+        width: 33
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3ba05232b66bb220800000000000000
+      internalID: 2502706933468801850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: in_battle_sprites_1_1-removebg-preview_11
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 63
+        width: 27
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1e68c0801fa1c8d0800000000000000
+      internalID: -2827786605597004261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: in_battle_sprites_1_1-removebg-preview_12
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 61
+        width: 44
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4f76d50b5bc21cb0800000000000000
+      internalID: -4894626253197902005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: in_battle_sprites_1_1-removebg-preview_13
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 60
+        width: 44
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc348c21326fd1950800000000000000
+      internalID: 6421559274199598031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: in_battle_sprites_1_1-removebg-preview_14
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 7
+        width: 37
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9015a270f5de27d10800000000000000
+      internalID: 2122019366842814729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: in_battle_sprites_1_1-removebg-preview_15
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 6
+        width: 28
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2a8ae3c51ca13840800000000000000
+      internalID: 5202128254070852139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: in_battle_sprites_1_1-removebg-preview_16
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 5
+        width: 22
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a90d4f672a46fb40800000000000000
+      internalID: 5473643930346916256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 143cf94fec7a4d44393441411c1c02a8
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      in_battle_sprites_1_1-removebg-preview_0: -2987676182162509299
+      in_battle_sprites_1_1-removebg-preview_1: -8002240921906497542
+      in_battle_sprites_1_1-removebg-preview_10: -4800951189544965179
+      in_battle_sprites_1_1-removebg-preview_11: -2827786605597004261
+      in_battle_sprites_1_1-removebg-preview_12: -4894626253197902005
+      in_battle_sprites_1_1-removebg-preview_13: 6421559274199598031
+      in_battle_sprites_1_1-removebg-preview_14: 2122019366842814729
+      in_battle_sprites_1_1-removebg-preview_15: 5202128254070852139
+      in_battle_sprites_1_1-removebg-preview_16: 5473643930346916256
+      in_battle_sprites_1_1-removebg-preview_17: 6452424836450747576
+      in_battle_sprites_1_1-removebg-preview_2: -5613147409888947540
+      in_battle_sprites_1_1-removebg-preview_3: 2359109213186318684
+      in_battle_sprites_1_1-removebg-preview_4: 3488274422207201316
+      in_battle_sprites_1_1-removebg-preview_5: 1556522447536459062
+      in_battle_sprites_1_1-removebg-preview_6: -885821876079476638
+      in_battle_sprites_1_1-removebg-preview_7: -3643841248025793161
+      in_battle_sprites_1_1-removebg-preview_8: -4876101001893575075
+      in_battle_sprites_1_1-removebg-preview_9: 2502706933468801850
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
