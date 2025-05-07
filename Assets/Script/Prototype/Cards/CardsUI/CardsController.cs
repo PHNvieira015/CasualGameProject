@@ -1,8 +1,8 @@
 using NUnit.Framework;
-using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CardsController : MonoBehaviour
 {
@@ -76,10 +76,16 @@ public class CardsController : MonoBehaviour
     public void PlayedEffects(Card card)
     {
         Transform effectsHolder = card.transform.Find("Effects/Played");
+        
+        //
+        List<object> targets = new List<object>();
 
+        targets.Add(CombatTester.Instance.Defender);
+
+        //
         foreach (ICardEffect effect in effectsHolder.GetComponentsInChildren<ICardEffect>())
         {
-            effect.Apply();
+            effect.Apply(targets);
         }
     }
 
@@ -87,12 +93,20 @@ public class CardsController : MonoBehaviour
     {
         Transform effectsHolder = card.transform.Find("Effects/AfterPlayed");
 
+        //Get all targets from ITarget components
+        List<object> targets = new List<object>();
+        foreach (ITarget target in effectsHolder.GetComponentsInChildren<ITarget>())
+        {
+            targets.AddRange(target.GetTargets());
+        }
+
+        // Apply all effects with the collected targets
         foreach (ICardEffect effect in effectsHolder.GetComponentsInChildren<ICardEffect>())
         {
-            effect.Apply();
+            effect.Apply(targets);
         }
     }
-    #endregion
 
+    #endregion
 
 }

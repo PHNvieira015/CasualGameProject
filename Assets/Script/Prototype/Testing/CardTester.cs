@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Tester : MonoBehaviour
+public class CardTester : MonoBehaviour
 {
     public Card Card;
 
