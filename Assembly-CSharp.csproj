@@ -65,20 +65,25 @@
     <Compile Include="Assets\LeanTween\Testing\TestingDescr.cs" />
     <Compile Include="Assets\Script\Prototype\CardDrag.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasics2d.cs" />
+    <Compile Include="Assets\Script\Prototype\StateMachine\States\EndTurnState.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingZLegacy.cs" />
+    <Compile Include="Assets\Script\Player\PlayerUnit.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingSceneSwitching.cs" />
     <Compile Include="Assets\Script\UI\Menu\MenuController.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralSequencer.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathBezier2d.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplinePerformance.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralEasingTypes.cs" />
+    <Compile Include="Assets\Script\Prototype\StateMachine\States\PlayCardsState.cs" />
     <Compile Include="Assets\LeanTween\Testing\FollowingTests.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingUnitTests.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingIssue2.cs" />
+    <Compile Include="Assets\Script\Prototype\StateMachine\State.cs" />
     <Compile Include="Assets\Script\Prototype\Cards\CardsUI\CardHolder.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplineEndless.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\Following.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingRotate.cs" />
+    <Compile Include="Assets\Script\Prototype\StateMachine\States\RecoveryState.cs" />
     <Compile Include="Assets\LeanTween\Testing\Testing240.cs" />
     <Compile Include="Assets\LeanTween\Testing\Scripts\LeanPool.cs" />
     <Compile Include="Assets\LeanTween\Testing\PerformanceTests.cs" />
@@ -88,8 +93,10 @@
     <Compile Include="Assets\LeanTween\Framework\LeanTween.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanSmooth.cs" />
     <Compile Include="Assets\Script\Prototype\Units\Unit.cs" />
+    <Compile Include="Assets\Script\Prototype\Cards\CardsList.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingMaxTweens.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralUISpace.cs" />
+    <Compile Include="Assets\Script\Prototype\Cards\Targeting\TargetAllEnemies.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplines.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralCameraShake.cs" />
     <Compile Include="Assets\Script\Prototype\Cards\Targeting\TargetPlayer.cs" />
@@ -119,11 +126,15 @@
     <Compile Include="Assets\LeanTween\Testing\Testing243.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathBezier.cs" />
     <Compile Include="Assets\Script\Prototype\Cards\CardsUI\Card.cs" />
+    <Compile Include="Assets\Script\Prototype\StateMachine\States\LoadState.cs" />
     <Compile Include="Assets\LeanTween\Testing\Testing246.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingZLegacyExt.cs" />
+    <Compile Include="Assets\Script\Prototype\StateMachine\States\TurnBeginState.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSpline2d.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTSeq.cs" />
+    <Compile Include="Assets\IO\BattleButtons.cs" />
     <Compile Include="Assets\Script\Prototype\Cards\CardsEffects\Discard.cs" />
+    <Compile Include="Assets\Script\Prototype\StateMachine\StateMachine.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasic.cs" />
   </ItemGroup>
   <ItemGroup>

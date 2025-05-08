@@ -11,22 +11,22 @@ PrefabInstance:
     - target: {fileID: 2864292285653478253, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 2572993850347155726, guid: 20e84e817e297b74f9b72f732f67165d, type: 3}
+      objectReference: {fileID: -4998600897433398834, guid: 05cc26c476be66c42b4fb4a309fd1454, type: 3}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
-      value: Deal 8 Damage Applies 2 Vulnerable
+      value: Deal 8 Damage to ALL enemies
       objectReference: {fileID: 0}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_fontSize
-      value: 24.65
+      value: 29.6
       objectReference: {fileID: 0}
     - target: {fileID: 7478358879296495923, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
-      value: Bash
+      value: Cleave
       objectReference: {fileID: 0}
     - target: {fileID: 8087918793295378423, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_Name
-      value: Bash_Card
+      value: Cleave_Card
       objectReference: {fileID: 0}
     - target: {fileID: 8373005034525413249, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_Pivot.x
@@ -114,29 +114,17 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6498539486386997359, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 804762776544035438}
+      addedObject: {fileID: 5709777480676137454}
     - targetCorrespondingSourceObject: {fileID: 6498539486386997359, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5732632795514379729}
+      addedObject: {fileID: 7042141484348708818}
   m_SourcePrefab: {fileID: 100100000, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
 --- !u!1 &6371277944363626555 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6498539486386997359, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
   m_PrefabInstance: {fileID: 163291442949748820}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &804762776544035438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6371277944363626555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39b7b7634c59d21458de15a9158d7dec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5732632795514379729
+--- !u!114 &5709777480676137454
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,3 +137,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Amount: 8
+--- !u!114 &7042141484348708818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6371277944363626555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c28db5608fa12f84588fa9edba304221, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

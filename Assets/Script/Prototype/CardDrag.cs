@@ -40,10 +40,11 @@ public class CardDrag : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
       EventSystem.current.SetSelectedGameObject(null);
 
 
-        if(Mouse.current.position.ReadValue().y>=heightforCardtoPlay)
+        if(Mouse.current.position.ReadValue().y>=heightforCardtoPlay
+            && StateMachine.Instance.Current.GetType() == typeof(PlayCardsState)
+            && StateMachine.Instance.CurrentUnit.GetType() ==typeof(PlayerUnit)) 
         {
-            CardsController.Instance.PlayedEffects(_card);
-            CardsController.Instance.AfterPlayedEffects(_card);
+            StateMachine.Instance.CardsdToPlay.Enqueue(_card);
         }
         else
         {

@@ -16,6 +16,8 @@ public class CardsController : MonoBehaviour
 
     public CardHolder DiscardPile;
 
+    public CardsList PlayerDeck;
+
     #endregion
 
     private void Awake()
@@ -42,6 +44,7 @@ public class CardsController : MonoBehaviour
             Card card = DrawPile.Cards[DrawPile.Cards.Count - 1];
             DrawPile.RemoveCard(card);
             Hand.AddCard(card);
+            amount--;
             yield return new WaitForSeconds(0.1f);
         }
     }
@@ -70,28 +73,4 @@ public class CardsController : MonoBehaviour
         }
     }
     #endregion
-
-    #region Card Events
-
-    public void PlayedEffects(Card card)
-    {
-        Transform effectsHolder = card.transform.Find("Effects/Played");
-        foreach (ICardEffect effect in effectsHolder.GetComponentsInChildren<ICardEffect>())
-        {
-            effect.Apply();
-        }
-    }
-
-    public void AfterPlayedEffects(Card card)
-    {
-        Transform effectsHolder = card.transform.Find("Effects/AfterPlayed");
-        
-        foreach(ICardEffect effect in effectsHolder.GetComponentsInChildren<ICardEffect>())
-        {
-            effect.Apply();
-        }
-    }
-
-    #endregion
-
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 
-public class TargetPlayer : MonoBehaviour
+public class TargetPlayer : MonoBehaviour, ITarget
 {
 public List<object> GetTargets()
     {

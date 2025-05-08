@@ -22,9 +22,8 @@ public class CardHolder : MonoBehaviour
 
     private void Awake()
     {
-        Cards = new List<Card>(GetComponentsInChildren<Card>());
+        Cards = new List<Card>();
         CardAmount.text = string.Format("{0}", Cards.Count);
-        SetInitialRotation();
     }
     public void AddCard(Card card)
     {
@@ -57,7 +56,7 @@ public class CardHolder : MonoBehaviour
         Cards.Remove(card);
         CardAmount.text = string.Format("{0}", Cards.Count);
     }
-    void SetInitialRotation()
+    public void SetInitialRotation()
     {
         foreach (Card card in Cards)
         {

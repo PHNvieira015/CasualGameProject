@@ -2,10 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Unit : MonoBehaviour
+public class Unit : MonoBehaviour, IPointerClickHandler
 {
     public List<Stat> Stats;
+    public virtual IEnumerator Recover()
+    {
+        yield return null;
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     [ContextMenu("Generate Stats")]
@@ -19,5 +24,9 @@ public class Unit : MonoBehaviour
             stat.Value = Random.Range(0, 100);
             Stats.Add(stat);
         }
+    }
+    public void OnPointerClick(PointerEventData EventData)
+    {
+        Debug.Log("aaaa"+EventData);
     }
 }
