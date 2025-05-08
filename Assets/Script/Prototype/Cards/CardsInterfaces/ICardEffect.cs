@@ -5,6 +5,6 @@ using System.Collections.Generic;
 
 public interface ICardEffect
 {
-    void Apply(List<object> targets);
+    void Apply();
 
 }

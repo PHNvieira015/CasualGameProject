@@ -1,16 +1,17 @@
+using NUnit.Framework;
 using UnityEngine;
+using System.Collections.Generic;
+using System.Collections;
 
 public class TargetPlayer : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+public List<object> GetTargets()
     {
-        
+        List<object> targets = new List<object>();
+        GameObject playerGameObject = GameObject.Find("Units/Player");
+        targets.Add(playerGameObject.GetComponentInChildren<Unit>());
+        return targets;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
+

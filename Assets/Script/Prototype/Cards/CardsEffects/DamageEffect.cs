@@ -6,9 +6,10 @@ using UnityEngine;
 public class DamageEffect : MonoBehaviour, ICardEffect
 {
     public int Amount;
-    public void Apply(List<object> targets)
+    public void Apply()
     {
-        foreach(Object o in targets)
+        List<object> targets = GetComponent<ITarget>().GetTargets();
+        foreach (Object o in targets)
         {
             Unit unit = o as Unit;
             

@@ -5,8 +5,9 @@ using System.Collections.Generic;
 
 public class Discard : MonoBehaviour, ICardEffect
 {
-    public void Apply(List<object> targets)
+    public void Apply()
     {
+        List<object> targets = GetComponent<ITarget>().GetTargets();
         foreach (object o in targets)
         {
             Card card = o as Card;
