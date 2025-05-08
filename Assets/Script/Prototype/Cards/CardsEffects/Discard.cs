@@ -5,14 +5,13 @@ using System.Collections.Generic;
 
 public class Discard : MonoBehaviour, ICardEffect
 {
-    public void Apply()
+    public IEnumerator Apply(List<object> targets)
     {
-        List<object> targets = GetComponent<ITarget>().GetTargets();
         foreach (object o in targets)
         {
             Card card = o as Card;
             CardsController.Instance.Discard(card);
-
+            yield return new WaitForSeconds(0.1f);
         }
         
     }

@@ -5,12 +5,10 @@ using System.Collections.Generic;
 
 public class TargetSelf : MonoBehaviour, ITarget
 {
-    public List<object> GetTargets()
+    public IEnumerator GetTargets(List<object> targets)
     {
-        List<object> targets = new List<object>();
-
         targets.Add(GetComponentInParent<Card>());
-        return targets;
+        yield return null;
 
     }
 

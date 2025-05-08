@@ -33,11 +33,30 @@ public class PlayCardsState : State
             {
                 Card card = machine.CardsdToPlay.Dequeue();
                 Debug.Log("Playing" + card);
-                yield return new WaitForSeconds(4);
+                yield return StartCoroutine(PlayCardEffect(card, card.transform.Find(PlayedGameObject)));
+                yield return StartCoroutine(PlayCardEffect(card, card.transform.Find(AfterPlayedGameObject)));
             }
             yield return null;
         }
     }
+    IEnumerator PlayCardEffect(Card card, Transform playTransform)
+    {
+        for (int i = 0; i <playTransform.childCount; i++)
+        {
+            ITarget targeter = playTransform.GetChild(i).GetComponent<ITarget>();
+            List<object> targets = new List<object>();
+            if(targeter==null)
+            {
+                yield break;
+            }
+            yield return StartCoroutine(targeter.GetTargets(targets));
+            ICardEffect effect = playTransform.GetChild(i).GetComponent<ICardEffect>();
+            if (effect==null)
+                yield break;
+        yield return StartCoroutine(effect.Apply(targets));
+        }
+    }
+
     void EndTurnButton(bool interactiability)
     { 
     if (endTurnButton == null)

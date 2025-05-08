@@ -5,12 +5,11 @@ using System.Collections;
 
 public class TargetPlayer : MonoBehaviour, ITarget
 {
-public List<object> GetTargets()
+public IEnumerator GetTargets(List<object> targets)
     {
-        List<object> targets = new List<object>();
         GameObject playerGameObject = GameObject.Find("Units/Player");
         targets.Add(playerGameObject.GetComponentInChildren<Unit>());
-        return targets;
+        yield return null;
     }
 
 }

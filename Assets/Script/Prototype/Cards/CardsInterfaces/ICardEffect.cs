@@ -5,6 +5,6 @@ using System.Collections.Generic;
 
 public interface ICardEffect
 {
-    void Apply();
+    IEnumerator Apply(List<object> targets);
 
 }
