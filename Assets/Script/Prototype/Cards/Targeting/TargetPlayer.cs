@@ -7,7 +7,7 @@ public class TargetPlayer : MonoBehaviour, ITarget
 {
 public IEnumerator GetTargets(List<object> targets)
     {
-        GameObject playerGameObject = GameObject.Find("Units/Player");
+        GameObject playerGameObject = GameObject.Find("Units/PlayerUnit");
         targets.Add(playerGameObject.GetComponentInChildren<Unit>());
         yield return null;
     }

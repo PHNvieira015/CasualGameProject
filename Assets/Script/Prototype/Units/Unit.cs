@@ -4,9 +4,14 @@ using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+public delegate void OnUnitClicked(Unit unit);
+
 public class Unit : MonoBehaviour, IPointerClickHandler
 {
     public List<Stat> Stats;
+    
+    public OnUnitClicked OnUnitClicked = delegate { };
+
     public virtual IEnumerator Recover()
     {
         yield return null;
@@ -27,6 +32,6 @@ public class Unit : MonoBehaviour, IPointerClickHandler
     }
     public void OnPointerClick(PointerEventData EventData)
     {
-        Debug.Log("aaaa"+EventData);
+        OnUnitClicked(this);
     }
 }

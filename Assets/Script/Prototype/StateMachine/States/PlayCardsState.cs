@@ -9,21 +9,32 @@ public class PlayCardsState : State
 
     public const string AfterPlayedGameObject = "Effects/AfterPlayed";
 
-    Button endTurnButton;
+    public Button endTurnButton;
 
-    Coroutine cardSequencer;
+    Coroutine _cardSequencer;
+
+    HorizontalLayoutGroup _handLayout;
+
+    private void Awake()
+    {
+        _handLayout = CardsController.Instance.Hand.Holder.GetComponent<HorizontalLayoutGroup>();
+    }
+
+
     public override IEnumerator Enter()
     {
-        yield return null;
+        yield return new WaitForSeconds(0.5f);
         EndTurnButton(true);
-        cardSequencer = StartCoroutine(CardSequencer());
+        _handLayout.enabled = false;
+        _cardSequencer = StartCoroutine(CardSequencer());
 
     }
      public override IEnumerator Exit()
     {
         yield return null;
         EndTurnButton(false);
-        StopCoroutine(cardSequencer);
+        _handLayout.enabled = true;
+        StopCoroutine(_cardSequencer);
     }
     IEnumerator CardSequencer()
     {
@@ -34,7 +45,9 @@ public class PlayCardsState : State
                 Card card = machine.CardsdToPlay.Dequeue();
                 Debug.Log("Playing" + card);
                 yield return StartCoroutine(PlayCardEffect(card, card.transform.Find(PlayedGameObject)));
+                yield return new WaitForSeconds(0.5f);
                 yield return StartCoroutine(PlayCardEffect(card, card.transform.Find(AfterPlayedGameObject)));
+                yield return new WaitForSeconds(0.5f);
             }
             yield return null;
         }
@@ -61,7 +74,7 @@ public class PlayCardsState : State
     { 
     if (endTurnButton == null)
         {
-            endTurnButton = GameObject.Find("Canvas/EndTurnButton").GetComponent<Button>();
+            endTurnButton = GameObject.Find("Canvas/EndTurnbutton").GetComponent<Button>();
         }
         endTurnButton.interactable = interactiability;
     }
