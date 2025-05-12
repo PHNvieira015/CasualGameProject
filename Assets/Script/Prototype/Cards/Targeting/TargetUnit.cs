@@ -11,7 +11,7 @@ public class TargetUnit : MonoBehaviour, ITarget
     public IEnumerator GetTargets(List<object> targets)
     {
         _clickedUnit = null;
-        foreach(Unit unit in StateMachine.Instance.units)
+        foreach(Unit unit in StateMachine.Instance.Units)
         {
             unit.OnUnitClicked += OnUnitClicked;
         }
@@ -22,7 +22,7 @@ public class TargetUnit : MonoBehaviour, ITarget
         }
         targets.Add(_clickedUnit);
 
-        foreach (Unit unit in StateMachine.Instance.units)
+        foreach (Unit unit in StateMachine.Instance.Units)
         {
             unit.OnUnitClicked -= OnUnitClicked;
         }

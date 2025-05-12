@@ -6,9 +6,9 @@ using System.Collections.Generic;
 public class StateMachine : MonoBehaviour
 {
     public static StateMachine Instance;
-    public Queue<Card> CardsdToPlay;
     public State Current { get { return _current; } }
-    public Queue<Unit> units;  // Made public property with proper casing
+    public Queue<Card> CardsdToPlay;
+    public Queue<Unit> Units;  // Made public property with proper casing
     public Unit CurrentUnit;
     State _current;
     bool _busy;
@@ -17,6 +17,7 @@ public class StateMachine : MonoBehaviour
     {
         Instance = this;
         CardsdToPlay = new Queue<Card>();
+        //Application.targetFrameRate = 60;
     }
     void Start()
     {

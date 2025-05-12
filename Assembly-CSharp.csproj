@@ -64,6 +64,7 @@
     <Compile Include="Assets\LeanTween\Framework\LeanTest.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingDescr.cs" />
     <Compile Include="Assets\Script\Prototype\CardDrag.cs" />
+    <Compile Include="Assets\Script\Prototype\Units\SelectableUnit.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasics2d.cs" />
     <Compile Include="Assets\Script\Prototype\StateMachine\States\EndTurnState.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingZLegacy.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Assets\Script\Prototype\Cards\CardsEffects\DamageEffect.cs" />
     <Compile Include="Assets\Script\Prototype\PlayerController.cs" />
     <Compile Include="Assets\Script\Prototype\Cards\Targeting\ITarget.cs" />
+    <Compile Include="Assets\Script\Prototype\Cards\CardsEffects\ChangeEnergyEffect.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTween.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanSmooth.cs" />
     <Compile Include="Assets\Script\Prototype\Units\Unit.cs" />
@@ -112,6 +114,7 @@
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralEventsListeners.cs" />
     <Compile Include="Assets\Script\Prototype\Testing\CardTester.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTweenExt.cs" />
+    <Compile Include="Assets\Script\Prototype\Cards\Playability\IPlayability.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanAudio.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTDescrOptional.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingIssue.cs" />
@@ -119,6 +122,7 @@
     <Compile Include="Assets\Script\Prototype\Units\Stat.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingOptionalCancel.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTDescr.cs" />
+    <Compile Include="Assets\Script\Prototype\Cards\Playability\EnergyRequirement.cs" />
     <Compile Include="Assets\LeanTween\Testing\Testing248.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingColorTweening.cs" />
     <Compile Include="Assets\Script\Prototype\Units\StatType.cs" />

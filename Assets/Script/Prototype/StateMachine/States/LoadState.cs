@@ -23,13 +23,13 @@ public class LoadState : State
     }
     IEnumerator InitializeUnits()
     {
-        machine.units = new Queue<Unit>();
+        machine.Units = new Queue<Unit>();
         foreach (Unit unit in GameObject.Find("Units").GetComponentsInChildren<Unit>())
         {
-            machine.units.Enqueue(unit);
+            machine.Units.Enqueue(unit);
         }
         yield return null;
-        Debug.Log(machine.units.Count);
+        Debug.Log(machine.Units.Count);
     }
 
 

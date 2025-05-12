@@ -57,6 +57,22 @@ public class Card : MonoBehaviour
 
     }
 
+    public bool CanPlay()
+    {
+       if(StateMachine.Instance.Current.GetType() != typeof(PlayCardsState)
+       && StateMachine.Instance.CurrentUnit.GetType() != typeof(PlayerUnit))
+        {
+            return false;
+        }
+       foreach(IPlayability playability in GetComponents<IPlayability>())
+        {
+            if (!playability.CanPlay())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 
     #endregion
 }

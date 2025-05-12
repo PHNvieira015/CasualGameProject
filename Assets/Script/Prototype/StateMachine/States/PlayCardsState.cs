@@ -67,6 +67,7 @@ public class PlayCardsState : State
             if (effect==null)
                 yield break;
         yield return StartCoroutine(effect.Apply(targets));
+            _handLayout.enabled = true;
         }
     }
 

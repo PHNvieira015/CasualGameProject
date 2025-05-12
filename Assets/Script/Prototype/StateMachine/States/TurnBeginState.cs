@@ -6,8 +6,8 @@ public class TurnBeginState : State
 {
     public override IEnumerator Enter()
     {
-        machine.CurrentUnit = machine.units.Dequeue();
-        machine.units.Enqueue(machine.CurrentUnit);
+        machine.CurrentUnit = machine.Units.Dequeue();
+        machine.Units.Enqueue(machine.CurrentUnit);
 
         yield return null;
         StartCoroutine(WaitThenChangeState<RecoveryState>());
