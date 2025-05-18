@@ -60,12 +60,13 @@ public class PlayCardsState : State
             List<object> targets = new List<object>();
             if(targeter==null)
             {
-                yield break;
+                continue;
             }
             yield return StartCoroutine(targeter.GetTargets(targets));
             ICardEffect effect = playTransform.GetChild(i).GetComponent<ICardEffect>();
             if (effect==null)
-                yield break;
+                continue;
+
         yield return StartCoroutine(effect.Apply(targets));
             _handLayout.enabled = true;
         }

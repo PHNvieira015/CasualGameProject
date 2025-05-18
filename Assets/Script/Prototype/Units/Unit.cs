@@ -4,34 +4,52 @@ using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public delegate void OnUnitClicked(Unit unit);
+public delegate void OnUnit(Unit unit);
 
 public class Unit : MonoBehaviour, IPointerClickHandler
 {
-    public List<Stat> Stats;
+    [SerializeField] List<Stat> _stats;
     
-    public OnUnitClicked OnUnitClicked = delegate { };
+    public OnUnit OnUnitClicked = delegate { };
+
+    public OnUnit OnUnitTakeTurn = delegate { };
+
+    public TagModifier[] Modify = new TagModifier[(int)ModifierTags.GainBlock + 1];
 
     public virtual IEnumerator Recover()
     {
         yield return null;
+        SetStatValue(StatType.Block, 0);
+        OnUnitTakeTurn(this);
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     [ContextMenu("Generate Stats")]
     void GenerateStats()
     {
-        Stats = new List<Stat>();
+        _stats = new List<Stat>();
         for (int i = 0; i < (int)StatType.Dexterity + 1; i++)
         {
             Stat stat = new Stat();
             stat.Type = (StatType)i;
             stat.Value = Random.Range(0, 100);
-            Stats.Add(stat);
+            _stats.Add(stat);
         }
     }
     public void OnPointerClick(PointerEventData EventData)
     {
         OnUnitClicked(this);
+    }
+    public int GetStatValue(StatType type)
+    {
+        int statValue = _stats[(int)type].Value;
+        //modify
+        return statValue;
+    }
+    public void SetStatValue(StatType type, int value)
+    {
+        //modify
+        _stats[(int)type].Value = value;
+
     }
 }

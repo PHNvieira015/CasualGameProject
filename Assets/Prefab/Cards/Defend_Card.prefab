@@ -26,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8087918793295378423, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_Name
-      value: Defensive_Card
+      value: Defend_Card
       objectReference: {fileID: 0}
     - target: {fileID: 8373005034525413249, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_Pivot.x
@@ -111,5 +111,41 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6498539486386997359, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5716576519783714212}
+    - targetCorrespondingSourceObject: {fileID: 6498539486386997359, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 140117490619599197}
   m_SourcePrefab: {fileID: 100100000, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+--- !u!1 &271596106327823607 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6498539486386997359, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+  m_PrefabInstance: {fileID: 6479435230263303320}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5716576519783714212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271596106327823607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b88410282550ca42a4f45d062bfc5d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Amount: 0
+--- !u!114 &140117490619599197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271596106327823607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b7b7634c59d21458de15a9158d7dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
