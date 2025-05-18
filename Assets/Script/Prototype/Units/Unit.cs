@@ -14,7 +14,7 @@ public class Unit : MonoBehaviour, IPointerClickHandler
 
     public OnUnit OnUnitTakeTurn = delegate { };
 
-    public TagModifier[] Modify = new TagModifier[(int)ModifierTags.GainBlock + 1];
+    public TagModifier[] Modify = new TagModifier[(int)ModifierTags.None];
 
     public virtual IEnumerator Recover()
     {
@@ -28,7 +28,7 @@ public class Unit : MonoBehaviour, IPointerClickHandler
     void GenerateStats()
     {
         _stats = new List<Stat>();
-        for (int i = 0; i < (int)StatType.Dexterity + 1; i++)
+        for (int i = 0; i < (int)StatType.None; i++)
         {
             Stat stat = new Stat();
             stat.Type = (StatType)i;

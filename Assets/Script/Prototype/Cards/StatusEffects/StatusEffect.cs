@@ -6,6 +6,8 @@ public abstract class StatusEffect : MonoBehaviour
 {
     public int Duration;
     public int Amount;
+    public bool StacksIntensity;
+    public bool StacksDuration;
     protected Unit _host;
     private int _currentDuration;
     public int _currentAmount;
@@ -18,7 +20,7 @@ public abstract class StatusEffect : MonoBehaviour
             _host.OnUnitTakeTurn += DurationCountdown;
 
         }
-     OnInflicted();
+     Invoke("OnInflicted", 1);
     }
     void OnDisable()
     {

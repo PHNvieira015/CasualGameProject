@@ -3,9 +3,9 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Discard : MonoBehaviour, ICardEffect
+public class Discard : CardEffect
 {
-    public IEnumerator Apply(List<object> targets)
+    public override IEnumerator Apply(List<object> targets)
     {
         foreach (object o in targets)
         {

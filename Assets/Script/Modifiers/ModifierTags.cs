@@ -8,9 +8,7 @@ public enum ModifierTags
 {
    DoAttackDamage,
    TakeAttackDamage,
-
-   GainBlock, //this one should always be last
-   
-    
-
+   WhenUnitDies,
+   GainBlock,
+   None
 }

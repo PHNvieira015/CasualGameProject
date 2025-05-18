@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockEffect : MonoBehaviour, ICardEffect
+public class BlockEffect : CardEffect
 {
     public int Amount;
-    public IEnumerator Apply(List<object> targets)
+    public override IEnumerator Apply(List<object> targets)
     {
         foreach (object o in targets)
         {

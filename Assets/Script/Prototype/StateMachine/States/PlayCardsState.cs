@@ -63,12 +63,13 @@ public class PlayCardsState : State
                 continue;
             }
             yield return StartCoroutine(targeter.GetTargets(targets));
-            ICardEffect effect = playTransform.GetChild(i).GetComponent<ICardEffect>();
-            if (effect==null)
-                continue;
 
-        yield return StartCoroutine(effect.Apply(targets));
-            _handLayout.enabled = true;
+            foreach (CardEffect effect in playTransform.GetChild(i).GetComponents<CardEffect>())
+            {
+                yield return StartCoroutine(effect.Apply(targets));
+                _handLayout.enabled = true;
+            }
+        
         }
     }
 

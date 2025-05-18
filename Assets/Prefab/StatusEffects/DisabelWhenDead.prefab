@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2878207596254410407}
-  - component: {fileID: 4370830352902678759}
+  - component: {fileID: -2969911060474223591}
   m_Layer: 0
-  m_Name: TestStatus
+  m_Name: DisabelWhenDead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4370830352902678759
+--- !u!114 &-2969911060474223591
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,12 +41,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3140245846605039686}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3bc27f79148d914f8735e4b68492b40, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b0d79b8412a6ed4a85dfd59a27b3653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Duration: 0
-  Amount: 1
-  _host: {fileID: 0}
-  _currentDuration: 0
+  Amount: 0
+  StacksIntensity: 0
+  StacksDuration: 0
   _currentAmount: 0
-  Type: 3

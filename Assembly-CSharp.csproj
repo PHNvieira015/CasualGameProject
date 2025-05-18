@@ -75,7 +75,6 @@
     <Compile Include="Assets\Script\Prototype\Cards\Targeting\TargetUnit.cs" />
     <Compile Include="Assets\Script\UI\Menu\MenuController.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralSequencer.cs" />
-    <Compile Include="Assets\Script\Prototype\Cards\StatusEffects\StatChangeEffect.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathBezier2d.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplinePerformance.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralEasingTypes.cs" />
@@ -94,6 +93,7 @@
     <Compile Include="Assets\Script\Prototype\Cards\CardsEffects\InflictEffect.cs" />
     <Compile Include="Assets\LeanTween\Testing\Testing240.cs" />
     <Compile Include="Assets\LeanTween\Testing\Scripts\LeanPool.cs" />
+    <Compile Include="Assets\Script\Prototype\Cards\StatusEffects\DisableUnit.cs" />
     <Compile Include="Assets\LeanTween\Testing\PerformanceTests.cs" />
     <Compile Include="Assets\Script\Prototype\Cards\CardsEffects\DamageEffect.cs" />
     <Compile Include="Assets\Script\Prototype\PlayerController.cs" />
@@ -107,6 +107,7 @@
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralUISpace.cs" />
     <Compile Include="Assets\Script\Prototype\Cards\Targeting\TargetAllEnemies.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplines.cs" />
+    <Compile Include="Assets\Script\Prototype\Cards\CardsEffects\CardEffect.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralCameraShake.cs" />
     <Compile Include="Assets\Script\Prototype\Cards\Targeting\TargetPlayer.cs" />
     <Compile Include="Assets\Script\Modifiers\ModifiedValues.cs" />
@@ -134,7 +135,6 @@
     <Compile Include="Assets\LeanTween\Testing\TestingColorTweening.cs" />
     <Compile Include="Assets\Script\Prototype\Units\StatType.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralSimpleUI.cs" />
-    <Compile Include="Assets\Script\Prototype\Cards\CardsInterfaces\ICardEffect.cs" />
     <Compile Include="Assets\LeanTween\Testing\Testing243.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathBezier.cs" />
     <Compile Include="Assets\Script\Prototype\Cards\CardsUI\Card.cs" />

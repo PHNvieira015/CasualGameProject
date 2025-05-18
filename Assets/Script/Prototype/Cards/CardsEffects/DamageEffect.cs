@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageEffect : MonoBehaviour, ICardEffect
+public class DamageEffect : CardEffect
 {
     public int Amount;
-    public IEnumerator Apply(List<object> targets)
+    public override IEnumerator Apply(List<object> targets)
     {
         foreach (Object o in targets) 
         {
@@ -28,6 +28,10 @@ public class DamageEffect : MonoBehaviour, ICardEffect
 
             Debug.LogFormat("Unit {0} HP went from {1} to {2}; block went from {3} to {4} ",unit.name, currentHP, unit.GetStatValue(StatType.HP), block, leftoverBlock);
             yield return null;
+            if(unit.GetStatValue(StatType.HP) <= 0)
+            {
+             unit .Modify[(int)ModifierTags.WhenUnitDies] = null;
+            }
         }
     }
     void ApplyModifier(ModifiedValues modifiedValues, ModifierTags tag, Unit unit)
