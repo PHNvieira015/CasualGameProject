@@ -1,72 +1,55 @@
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
-using TMPro; // Add this if using TextMeshPro
+using TMPro;
 
 public class PlayerUnit : Unit
 {
     public int MaxEnergy;
-    [SerializeField] int _currentEnergy;
-    public int DrawAmount;
-    public int MaxCards;
-
-    // Changed to TMP_Text if using TextMeshPro
-    [SerializeField] private Text _energyMeter;
-    // OR if using TextMeshPro:
-    // [SerializeField] private TMP_Text _energyMeter;
-
     public int CurrentEnergy
     {
-        get => _currentEnergy;
+        get
+        {
+            return _currentEnergy;
+        }
         set
         {
-            _currentEnergy = Mathf.Clamp(value, 0, MaxEnergy);
+            //modify/add/control 
+            _currentEnergy = value;
             UpdateEnergyMeter();
         }
     }
-
+    [SerializeField]
+    int _currentEnergy;
+    public int DrawAmount;
+    public int MaxCards;
+    TextMeshProUGUI _energyMeter;
     void Awake()
     {
-        // Better initialization methods:
-        // Option 1: Assign via inspector (recommended)
-        // Option 2: Find with more reliable path
-        if (_energyMeter == null)
+        GameObject energyMeterObj = GameObject.Find("Canvas/EnergyMeter");
+        if (energyMeterObj != null)
         {
-            var meterObj = GameObject.Find("EnergyMeter Text (TMP)");
-            if (meterObj != null)
+            _energyMeter = energyMeterObj.GetComponent<TextMeshProUGUI>();
+            if (_energyMeter == null)
             {
-                _energyMeter = meterObj.GetComponent<Text>();
-                // OR if using TextMeshPro:
-                // _energyMeter = meterObj.GetComponent<TMP_Text>();
+                Debug.LogError("TextMeshProUGUI component not found on EnergyMeter!");
             }
         }
-
-        // Initialize energy display
-        UpdateEnergyMeter();
+        else
+        {
+            Debug.LogError("EnergyMeter GameObject not found!");
+        }
     }
-
     public override IEnumerator Recover()
     {
         yield return StartCoroutine(base.Recover());
         CurrentEnergy = MaxEnergy;
-
         int cardsToDraw = Mathf.Min(MaxCards - CardsController.Instance.Hand.Cards.Count, DrawAmount);
-        if (cardsToDraw > 0)
-        {
-            yield return StartCoroutine(CardsController.Instance.Draw(cardsToDraw));
-        }
+        yield return StartCoroutine(CardsController.Instance.Draw(cardsToDraw));
     }
-
     void UpdateEnergyMeter()
     {
-        if (_energyMeter != null)
-        {
-            _energyMeter.text = $"{CurrentEnergy}/{MaxEnergy}";
-        }
-        else
-        {
-            Debug.LogWarning("Energy meter reference is missing!");
-        }
+        _energyMeter.text = string.Format("{0}/{1}", CurrentEnergy, MaxEnergy);
     }
 }

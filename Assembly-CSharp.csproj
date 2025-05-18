@@ -61,7 +61,6 @@
     <Analyzer Include="C:\Program Files\Unity 6000.0.28f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\Prototype\Cards\StatusEffects\PercentageStatusEffect.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTest.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingDescr.cs" />
     <Compile Include="Assets\Script\Prototype\CardDrag.cs" />
@@ -147,6 +146,7 @@
     <Compile Include="Assets\LeanTween\Framework\LTSeq.cs" />
     <Compile Include="Assets\IO\BattleButtons.cs" />
     <Compile Include="Assets\Script\Prototype\Cards\CardsEffects\Discard.cs" />
+    <Compile Include="Assets\Script\Prototype\Cards\StatusEffects\TagModifierStatusEffect.cs" />
     <Compile Include="Assets\Script\Prototype\StateMachine\StateMachine.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasic.cs" />
   </ItemGroup>
