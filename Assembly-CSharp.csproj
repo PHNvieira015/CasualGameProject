@@ -63,91 +63,94 @@
   <ItemGroup>
     <Compile Include="Assets\LeanTween\Framework\LeanTest.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingDescr.cs" />
-    <Compile Include="Assets\Script\Prototype\CardDrag.cs" />
+    <Compile Include="Assets\Script\StateMachine\States\TurnBeginState.cs" />
     <Compile Include="Assets\Script\Modifiers\ModifierTags.cs" />
-    <Compile Include="Assets\Script\Prototype\Units\SelectableUnit.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasics2d.cs" />
-    <Compile Include="Assets\Script\Prototype\StateMachine\States\EndTurnState.cs" />
+    <Compile Include="Assets\Script\StateMachine\States\LoadState.cs" />
+    <Compile Include="Assets\Script\Testing\CombatTester.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingZLegacy.cs" />
     <Compile Include="Assets\Script\Player\PlayerUnit.cs" />
-    <Compile Include="Assets\Script\Prototype\Cards\StatusEffects\StatusEffect.cs" />
+    <Compile Include="Assets\Script\Cards\CardsEffects\InflictEffect.cs" />
+    <Compile Include="Assets\Script\Cards\StatusEffects\TagModifierStatusEffect.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingSceneSwitching.cs" />
-    <Compile Include="Assets\Script\Prototype\Cards\Targeting\TargetUnit.cs" />
     <Compile Include="Assets\Script\UI\Menu\MenuController.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralSequencer.cs" />
+    <Compile Include="Assets\Script\Player\PlayerController.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathBezier2d.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplinePerformance.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralEasingTypes.cs" />
-    <Compile Include="Assets\Script\Prototype\StateMachine\States\PlayCardsState.cs" />
     <Compile Include="Assets\LeanTween\Testing\FollowingTests.cs" />
-    <Compile Include="Assets\Script\Prototype\StateMachine\States\EndBattleState.cs" />
-    <Compile Include="Assets\Script\Prototype\Cards\CardsEffects\BlockEffect.cs" />
+    <Compile Include="Assets\Script\StateMachine\States\PlayCardsState.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingUnitTests.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingIssue2.cs" />
-    <Compile Include="Assets\Script\Prototype\StateMachine\State.cs" />
-    <Compile Include="Assets\Script\Prototype\Cards\CardsUI\CardHolder.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplineEndless.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\Following.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingRotate.cs" />
-    <Compile Include="Assets\Script\Prototype\StateMachine\States\RecoveryState.cs" />
-    <Compile Include="Assets\Script\Prototype\Cards\CardsEffects\InflictEffect.cs" />
+    <Compile Include="Assets\Script\Units\SelectableUnit.cs" />
     <Compile Include="Assets\LeanTween\Testing\Testing240.cs" />
     <Compile Include="Assets\LeanTween\Testing\Scripts\LeanPool.cs" />
-    <Compile Include="Assets\Script\Prototype\Cards\StatusEffects\DisableUnit.cs" />
     <Compile Include="Assets\LeanTween\Testing\PerformanceTests.cs" />
-    <Compile Include="Assets\Script\Prototype\Cards\CardsEffects\DamageEffect.cs" />
-    <Compile Include="Assets\Script\Prototype\PlayerController.cs" />
-    <Compile Include="Assets\Script\Prototype\Cards\Targeting\ITarget.cs" />
-    <Compile Include="Assets\Script\Prototype\Cards\CardsEffects\ChangeEnergyEffect.cs" />
+    <Compile Include="Assets\Script\Cards\Playability\IPlayability.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTween.cs" />
+    <Compile Include="Assets\Script\Cards\CardsList.cs" />
+    <Compile Include="Assets\Script\Cards\CardsEffects\ChangeEnergyEffect.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanSmooth.cs" />
-    <Compile Include="Assets\Script\Prototype\Units\Unit.cs" />
-    <Compile Include="Assets\Script\Prototype\Cards\CardsList.cs" />
+    <Compile Include="Assets\Script\Cards\CardsEffects\BlockEffect.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingMaxTweens.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralUISpace.cs" />
-    <Compile Include="Assets\Script\Prototype\Cards\Targeting\TargetAllEnemies.cs" />
+    <Compile Include="Assets\Script\Cards\CardsUI\Card.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplines.cs" />
-    <Compile Include="Assets\Script\Prototype\Cards\CardsEffects\CardEffect.cs" />
+    <Compile Include="Assets\Script\StateMachine\StateMachine.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralCameraShake.cs" />
-    <Compile Include="Assets\Script\Prototype\Cards\Targeting\TargetPlayer.cs" />
+    <Compile Include="Assets\Script\UI\HealthBar.cs" />
+    <Compile Include="Assets\Script\Cards\CardsUI\CardsController.cs" />
     <Compile Include="Assets\Script\Modifiers\ModifiedValues.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplineTrack.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSpline.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingSequencer.cs" />
-    <Compile Include="Assets\Script\Prototype\Cards\CardsUI\CardsController.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Script\Cards\CardsEffects\Discard.cs" />
+    <Compile Include="Assets\Script\Cards\StatusEffects\DisableUnit.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\LogoCinematic.cs" />
-    <Compile Include="Assets\Script\Prototype\Cards\Targeting\TargetSelf.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralAdvancedTechniques.cs" />
+    <Compile Include="Assets\Script\Units\IHealthBar.cs" />
+    <Compile Include="Assets\Script\Units\StatType.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralEventsListeners.cs" />
-    <Compile Include="Assets\Script\Prototype\Testing\CardTester.cs" />
+    <Compile Include="Assets\Script\Testing\CardTester.cs" />
+    <Compile Include="Assets\Script\StateMachine\States\RecoveryState.cs" />
+    <Compile Include="Assets\Script\StateMachine\State.cs" />
+    <Compile Include="Assets\Script\Cards\Targeting\TargetSelf.cs" />
+    <Compile Include="Assets\Script\Cards\Targeting\TargetAllEnemies.cs" />
+    <Compile Include="Assets\Script\Cards\Targeting\TargetPlayer.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTweenExt.cs" />
-    <Compile Include="Assets\Script\Prototype\Cards\Playability\IPlayability.cs" />
+    <Compile Include="Assets\Script\Units\Unit.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanAudio.cs" />
+    <Compile Include="Assets\Script\Menu\MenuController.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTDescrOptional.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingIssue.cs" />
-    <Compile Include="Assets\Script\Prototype\Testing\CombatTester.cs" />
-    <Compile Include="Assets\Script\Prototype\Units\Stat.cs" />
+    <Compile Include="Assets\Script\Cards\CardsEffects\DamageEffect.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingOptionalCancel.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTDescr.cs" />
-    <Compile Include="Assets\Script\Prototype\Cards\Playability\EnergyRequirement.cs" />
     <Compile Include="Assets\LeanTween\Testing\Testing248.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingColorTweening.cs" />
-    <Compile Include="Assets\Script\Prototype\Units\StatType.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralSimpleUI.cs" />
     <Compile Include="Assets\LeanTween\Testing\Testing243.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathBezier.cs" />
-    <Compile Include="Assets\Script\Prototype\Cards\CardsUI\Card.cs" />
-    <Compile Include="Assets\Script\Prototype\StateMachine\States\LoadState.cs" />
+    <Compile Include="Assets\Script\Cards\Targeting\ITarget.cs" />
+    <Compile Include="Assets\Script\Cards\CardsEffects\CardEffect.cs" />
+    <Compile Include="Assets\Script\Cards\Playability\EnergyRequirement.cs" />
+    <Compile Include="Assets\Script\Cards\StatusEffects\StatusEffect.cs" />
     <Compile Include="Assets\LeanTween\Testing\Testing246.cs" />
+    <Compile Include="Assets\Script\Cards\Targeting\TargetUnit.cs" />
+    <Compile Include="Assets\Script\Units\Stat.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingZLegacyExt.cs" />
-    <Compile Include="Assets\Script\Prototype\StateMachine\States\TurnBeginState.cs" />
+    <Compile Include="Assets\Script\StateMachine\States\EndBattleState.cs" />
+    <Compile Include="Assets\Script\StateMachine\States\EndTurnState.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSpline2d.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTSeq.cs" />
     <Compile Include="Assets\IO\BattleButtons.cs" />
-    <Compile Include="Assets\Script\Prototype\Cards\CardsEffects\Discard.cs" />
-    <Compile Include="Assets\Script\Prototype\Cards\StatusEffects\TagModifierStatusEffect.cs" />
-    <Compile Include="Assets\Script\Prototype\StateMachine\StateMachine.cs" />
+    <Compile Include="Assets\Script\Cards\CardsUI\CardHolder.cs" />
+    <Compile Include="Assets\Script\Cards\CardDrag.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasic.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1206,6 +1209,10 @@
       <HintPath>Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.Cinemachine.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Cinemachine.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.2D.SpriteShape.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll</HintPath>
       <Private>False</Private>
@@ -1258,6 +1265,10 @@
       <HintPath>Library\ScriptAssemblies\Unity.Multiplayer.Center.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.Splines">
+      <HintPath>Library\ScriptAssemblies\Unity.Splines.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.AdaptivePerformance.Simulator.Extension">
       <HintPath>Library\ScriptAssemblies\Unity.AdaptivePerformance.Simulator.Extension.dll</HintPath>
       <Private>False</Private>
@@ -1268,6 +1279,10 @@
     </Reference>
     <Reference Include="Unity.RenderPipelines.GPUDriven.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.GPUDriven.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Cinemachine">
+      <HintPath>Library\ScriptAssemblies\Unity.Cinemachine.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.AdaptivePerformance.Profiler.Editor">
@@ -1322,12 +1337,16 @@
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Config.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.2D.Aseprite.Common">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Aseprite.Common.dll</HintPath>
+    <Reference Include="Unity.Splines.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Splines.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.Aseprite.Common">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Aseprite.Common.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.2D.Animation.Runtime">

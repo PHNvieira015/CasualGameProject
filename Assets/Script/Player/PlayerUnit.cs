@@ -25,7 +25,7 @@ public class PlayerUnit : Unit
     public int DrawAmount;
     public int MaxCards;
     TextMeshProUGUI _energyMeter;
-    void Awake()
+    private new void Awake()
     {
         GameObject energyMeterObj = GameObject.Find("Canvas/EnergyMeter");
         if (energyMeterObj != null)

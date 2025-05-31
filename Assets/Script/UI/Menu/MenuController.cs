@@ -91,4 +91,4 @@ public class MenuController : MonoBehaviour
         Application.Quit();
         Debug.Log("Game Closed");
     }
-}
+ }

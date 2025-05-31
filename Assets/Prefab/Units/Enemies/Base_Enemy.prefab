@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &8993207356110632665
+--- !u!1001 &970414071151944775
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,33 +8,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -1645859928396720761, guid: ab5ee21e553b5d24484da092a40f4956, type: 3}
-      propertyPath: m_Size.x
-      value: 0.36
-      objectReference: {fileID: 0}
-    - target: {fileID: -1645859928396720761, guid: ab5ee21e553b5d24484da092a40f4956, type: 3}
-      propertyPath: m_Size.y
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: -1645859928396720761, guid: ab5ee21e553b5d24484da092a40f4956, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -2987676182162509299, guid: 61f7990e81321f747a95329e37f2ee69, type: 3}
-    - target: {fileID: -1645859928396720761, guid: ab5ee21e553b5d24484da092a40f4956, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 268672192009718924, guid: ab5ee21e553b5d24484da092a40f4956, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1187.8981
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 268672192009718924, guid: ab5ee21e553b5d24484da092a40f4956, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 370.75385
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 268672192009718924, guid: ab5ee21e553b5d24484da092a40f4956, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.9284267
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 268672192009718924, guid: ab5ee21e553b5d24484da092a40f4956, type: 3}
       propertyPath: m_LocalRotation.w
@@ -66,11 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4174572759958713389, guid: ab5ee21e553b5d24484da092a40f4956, type: 3}
       propertyPath: m_Name
-      value: BaseEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 7076811732567564278, guid: ab5ee21e553b5d24484da092a40f4956, type: 3}
-      propertyPath: HighlightedColor.a
-      value: 1
+      value: Base_Unit
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

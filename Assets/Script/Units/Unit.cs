@@ -1,0 +1,187 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+
+public delegate void OnUnit(Unit unit);
+
+public class Unit : MonoBehaviour, IPointerClickHandler
+{
+    [SerializeField] private List<Stat> _stats;
+    private IHealthBar _healthBar;
+
+    public OnUnit OnUnitClicked = delegate { };
+    public OnUnit OnUnitTakeTurn = delegate { };
+    public TagModifier[] Modify = new TagModifier[(int)ModifierTags.None];
+
+    #region Initialization
+    protected virtual void Awake()
+    {
+        InitializeStats();
+        FindHealthBar();
+        InitializeHealthBarConnection();
+    }
+
+    private void InitializeStats()
+    {
+        if (_stats == null || _stats.Count == 0)
+        {
+            GenerateStats();
+        }
+        else
+        {
+            // Ensure current HP doesn't exceed MaxHP
+            SetStatValue(StatType.HP, GetStatValue(StatType.HP));
+        }
+    }
+
+    private void FindHealthBar()
+    {
+        _healthBar = GetComponentInChildren<IHealthBar>();
+        if (_healthBar == null)
+        {
+            _healthBar = GetComponentInParent<IHealthBar>();
+        }
+        UpdateHealthBar(); // Initial update
+    }
+    #endregion
+
+    #region Public Methods
+    public void RegisterHealthBar(IHealthBar healthBar)
+    {
+        _healthBar = healthBar;
+        UpdateHealthBar();
+    }
+
+    public void UnregisterHealthBar()
+    {
+        _healthBar = null;
+    }
+
+    [ContextMenu("Generate Stats")]
+    public void GenerateStats()
+    {
+        _stats = new List<Stat>();
+        for (int i = 0; i < (int)StatType.None; i++)
+        {
+            Stat stat = new Stat
+            {
+                Type = (StatType)i,
+                Value = GetDefaultStatValue((StatType)i)
+            };
+            _stats.Add(stat);
+        }
+
+        // Set current HP to max HP initially
+        SetStatValue(StatType.HP, GetStatValue(StatType.MaxHP));
+    }
+
+    public int GetStatValue(StatType type)
+    {
+        if (_stats == null || _stats.Count <= (int)type)
+            return 0;
+
+        return _stats[(int)type].Value;
+    }
+
+    public void SetStatValue(StatType type, int value)
+    {
+        if (_stats == null || _stats.Count <= (int)type)
+            return;
+
+        value = ProcessStatValue(type, value);
+        _stats[(int)type].Value = value;
+
+        if (IsHealthStat(type))
+        {
+            UpdateHealthBar();
+        }
+    }
+
+    public virtual IEnumerator Recover()
+    {
+        yield return null;
+        SetStatValue(StatType.Block, 0);
+        OnUnitTakeTurn(this);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        OnUnitClicked(this);
+    }
+    #endregion
+
+    #region Helper Methods
+    private int GetDefaultStatValue(StatType type)
+    {
+        switch (type)
+        {
+            case StatType.MaxHP: return 100;
+            case StatType.HP: return 100;
+            case StatType.Block: return 0;
+            default: return 0;
+        }
+    }
+
+    private int ProcessStatValue(StatType type, int value)
+    {
+        switch (type)
+        {
+            case StatType.HP:
+                return Mathf.Clamp(value, 0, GetStatValue(StatType.MaxHP));
+
+            case StatType.MaxHP:
+                // If lowering MaxHP, also lower current HP if needed
+                if (value < GetStatValue(StatType.HP))
+                {
+                    SetStatValue(StatType.HP, value);
+                }
+                return Mathf.Max(1, value); // Ensure at least 1 MaxHP
+
+            case StatType.Block:
+                return Mathf.Max(0, value);
+
+            default:
+                return value;
+        }
+    }
+
+    private bool IsHealthStat(StatType type)
+    {
+        return type == StatType.HP || type == StatType.MaxHP;
+    }
+
+    private void UpdateHealthBar()
+    {
+        _healthBar?.UpdateHealthDisplay(
+            GetStatValue(StatType.HP),
+            GetStatValue(StatType.MaxHP)
+        );
+    }
+
+    #endregion
+    private void InitializeHealthBarConnection()
+    {
+        // Try to find health bar in children
+        _healthBar = GetComponentInChildren<IHealthBar>(true);
+
+        if (_healthBar != null)
+        {
+            // If using the BindToUnit approach
+            if (_healthBar is HealthBar healthBarComponent)
+            {
+                healthBarComponent.BindToUnit(this);
+            }
+
+            // Initial update
+            _healthBar.UpdateHealthDisplay(
+                GetStatValue(StatType.HP),
+                GetStatValue(StatType.MaxHP)
+            );
+        }
+        else
+        {
+            Debug.LogWarning($"No IHealthBar found for {gameObject.name}", this);
+        }
+    }
+}
