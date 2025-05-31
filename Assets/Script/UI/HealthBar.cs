@@ -30,28 +30,28 @@ public class HealthBar : MonoBehaviour, IHealthBar
             _boundUnit.GetStatValue(StatType.MaxHP)
         );
 
-        if (_debugMode) Debug.Log($"Bound to unit: {unit.name}");
+        //if (_debugMode) Debug.Log($"Bound to unit: {unit.name}");
     }
 
     private void InitializeHealthBar()
     {
         if (_barRect == null || _mask == null || _hpIndicator == null)
         {
-            Debug.LogError("HealthBar references not set!", this);
+            //Debug.LogError("HealthBar references not set!", this);
             return;
         }
 
         _maxRightMask = _barRect.rect.width - _mask.padding.x - _mask.padding.z;
         _initialRightMask = _mask.padding.z;
 
-        if (_debugMode) Debug.Log("HealthBar initialized");
+        //if (_debugMode) Debug.Log("HealthBar initialized");
     }
 
     public void UpdateHealthDisplay(int currentHP, int maxHP)
     {
         if (_mask == null || _barRect == null || _hpIndicator == null)
         {
-            Debug.LogWarning("HealthBar references missing during update!", this);
+            //Debug.LogWarning("HealthBar references missing during update!", this);
             return;
         }
 
@@ -72,6 +72,6 @@ public class HealthBar : MonoBehaviour, IHealthBar
         // Update text
         _hpIndicator.SetText($"{currentHP}/{maxHP}");
 
-        if (_debugMode) Debug.Log($"Health updated: {currentHP}/{maxHP} ({healthPercentage:P0})");
+        //if (_debugMode) Debug.Log($"Health updated: {currentHP}/{maxHP} ({healthPercentage:P0})");
     }
 }

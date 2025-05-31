@@ -29,7 +29,7 @@ public class LoadState : State
             machine.Units.Enqueue(unit);
         }
         yield return null;
-        Debug.Log(machine.Units.Count);
+        //Debug.Log(machine.Units.Count);
     }
 
 

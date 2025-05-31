@@ -25,20 +25,21 @@ public class PlayerUnit : Unit
     public int DrawAmount;
     public int MaxCards;
     TextMeshProUGUI _energyMeter;
-    private new void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         GameObject energyMeterObj = GameObject.Find("Canvas/EnergyMeter");
         if (energyMeterObj != null)
         {
             _energyMeter = energyMeterObj.GetComponent<TextMeshProUGUI>();
             if (_energyMeter == null)
             {
-                Debug.LogError("TextMeshProUGUI component not found on EnergyMeter!");
+                //Debug.LogError("TextMeshProUGUI component not found on EnergyMeter!");
             }
         }
         else
         {
-            Debug.LogError("EnergyMeter GameObject not found!");
+            //Debug.LogError("EnergyMeter GameObject not found!");
         }
     }
     public override IEnumerator Recover()

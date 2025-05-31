@@ -181,7 +181,7 @@ public class Unit : MonoBehaviour, IPointerClickHandler
         }
         else
         {
-            Debug.LogWarning($"No IHealthBar found for {gameObject.name}", this);
+            //Debug.LogWarning($"No IHealthBar found for {gameObject.name}", this);
         }
     }
 }
