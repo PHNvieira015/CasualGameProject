@@ -8,3 +8,4 @@ public abstract class CardEffect: MonoBehaviour
     public abstract IEnumerator Apply(List<object> targets);
 
 }
+

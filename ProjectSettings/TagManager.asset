@@ -20,7 +20,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Top
   - 
   - 
   - 
@@ -43,6 +43,9 @@ TagManager:
     locked: 0
   - name: Unit
     uniqueID: 4251030627
+    locked: 0
+  - name: Top
+    uniqueID: 1443445857
     locked: 0
   m_RenderingLayers:
   - Default

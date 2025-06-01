@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8087918793295378423, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_Name
-      value: Base_Card Variant Variant
+      value: Attack_Card
       objectReference: {fileID: 0}
     - target: {fileID: 8373005034525413249, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_Pivot.x
@@ -95,5 +95,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6498539486386997359, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7896967215061458161}
   m_SourcePrefab: {fileID: 100100000, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+--- !u!1 &6371277944363626555 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6498539486386997359, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+  m_PrefabInstance: {fileID: 163291442949748820}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7896967215061458161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6371277944363626555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4568c070b76042849ae61e62bbd7c095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Amount: 0
+  floatingMessagePrefab: {fileID: 1050741645641439718, guid: 7286ac06077f9694c970bb2877ea6cbd, type: 3}
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
+  blockedColor: {r: 0, g: 0, b: 1, a: 1}
+  messageOffset: {x: 0, y: 1, z: 0}

@@ -90,6 +90,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2285122512304054204}
   m_SourcePrefab: {fileID: 100100000, guid: ab5ee21e553b5d24484da092a40f4956, type: 3}
+--- !u!114 &538960271197801171 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3678660722853357410, guid: ab5ee21e553b5d24484da092a40f4956, type: 3}
+  m_PrefabInstance: {fileID: 3780771806547291569}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979796954555636124}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e56feefe20d1b24997ebf4579bc21b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &979796954555636124 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4174572759958713389, guid: ab5ee21e553b5d24484da092a40f4956, type: 3}
@@ -107,6 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a163572ffbe2fb443a8f239ecd8bee94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damageSpawner: {fileID: 6568353558207553721}
+  _buffDebuffSpawner: {fileID: 538960271197801171}
   _stats:
   - Type: 0
     Value: 100
@@ -118,3 +131,14 @@ MonoBehaviour:
   _currentEnergy: 3
   DrawAmount: 5
   MaxCards: 5
+--- !u!114 &6568353558207553721 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8021057375642471688, guid: ab5ee21e553b5d24484da092a40f4956, type: 3}
+  m_PrefabInstance: {fileID: 3780771806547291569}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979796954555636124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f21edbbf0624567418380b4c1f96d89d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

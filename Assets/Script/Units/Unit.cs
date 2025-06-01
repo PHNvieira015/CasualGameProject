@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,9 +8,19 @@ public delegate void OnUnit(Unit unit);
 
 public class Unit : MonoBehaviour, IPointerClickHandler
 {
-    [SerializeField] private List<Stat> _stats;
-    private IHealthBar _healthBar;
+    [SerializeField] private DamageIndicatorSpawner _damageSpawner;
+    [SerializeField] private BuffDebuffMessageSpawner _buffDebuffSpawner;
+    public event Action<Unit, StatType, int, int> OnStatChanged;  // (unit, statType, oldValue, newValue)
+    public event Action<Unit, string, int, bool> OnStatusEffectApplied; // (unit, effectName, stacks, isDebuff)
 
+
+    private bool _isHealthChanging;
+    private bool _isBlockAbsorbingDamage;
+
+    [Header("Stats")]
+    [SerializeField] private List<Stat> _stats;
+
+    private IHealthBar _healthBar;
     public OnUnit OnUnitClicked = delegate { };
     public OnUnit OnUnitTakeTurn = delegate { };
     public TagModifier[] Modify = new TagModifier[(int)ModifierTags.None];
@@ -86,12 +97,17 @@ public class Unit : MonoBehaviour, IPointerClickHandler
 
     public void SetStatValue(StatType type, int value)
     {
-        if (_stats == null || _stats.Count <= (int)type)
-            return;
+        if (_stats == null || _stats.Count <= (int)type) return;
 
+        int oldValue = _stats[(int)type].Value;
         value = ProcessStatValue(type, value);
         _stats[(int)type].Value = value;
 
+        // Handle messages and health bar updates
+        if (IsHealthStat(type) || type == StatType.Block)
+        {
+            SpawnStatChangeMessage(type, oldValue, value);
+        }
         if (IsHealthStat(type))
         {
             UpdateHealthBar();
@@ -182,6 +198,32 @@ public class Unit : MonoBehaviour, IPointerClickHandler
         else
         {
             //Debug.LogWarning($"No IHealthBar found for {gameObject.name}", this);
+        }
+    }
+    private void SpawnStatChangeMessage(StatType type, int oldValue, int newValue)
+    {
+        if (newValue == oldValue || _damageSpawner == null) return;
+
+        int change = newValue - oldValue;
+
+        // 1. ALWAYS show health changes
+        if (type == StatType.HP)
+        {
+            bool wasBlocked = (change < 0) && (GetStatValue(StatType.Block) > 0);
+            _damageSpawner.SpawnMessage(new HealthChangeArgs(
+                oldValue, newValue, change,
+                StatType.HP, wasBlocked
+            ));
+        }
+        // 2. Only show block changes if:
+        //    - It's a gain OR
+        //    - We still have block remaining
+        else if (type == StatType.Block && (change > 0 || newValue > 0))
+        {
+            _damageSpawner.SpawnMessage(new HealthChangeArgs(
+                oldValue, newValue, change,
+                StatType.Block, false
+            ));
         }
     }
 }

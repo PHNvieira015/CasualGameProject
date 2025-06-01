@@ -55,7 +55,6 @@ MonoBehaviour:
   _barRect: {fileID: 403501334909410575}
   _mask: {fileID: 8025353474264713622}
   _hpIndicator: {fileID: 5512222068714682740}
-  _debugMode: 1
 --- !u!1 &982625145419260127
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,6 +467,8 @@ GameObject:
   - component: {fileID: 268672192009718924}
   - component: {fileID: 1303797903493928545}
   - component: {fileID: 74123850085424568}
+  - component: {fileID: 8021057375642471688}
+  - component: {fileID: 3678660722853357410}
   m_Layer: 10
   m_Name: Base_Unit
   m_TagString: Untagged
@@ -504,11 +505,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65e76e61cc36bba4682e46aaadc6b2e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damageSpawner: {fileID: 8021057375642471688}
+  _buffDebuffSpawner: {fileID: 3678660722853357410}
   _stats:
   - Type: 0
-    Value: 10
+    Value: 100
   - Type: 1
-    Value: 10
+    Value: 100
   - Type: 2
     Value: 0
 --- !u!61 &74123850085424568
@@ -557,6 +560,34 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.6040864, y: 3.4914536}
   m_EdgeRadius: 0
+--- !u!114 &8021057375642471688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4174572759958713389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f21edbbf0624567418380b4c1f96d89d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _initialPosition: {x: 0, y: 0}
+  _messagePrefab: {fileID: 4398109790188060278, guid: d46e5f05aecd0e64ab605d9b00ee11d0, type: 3}
+--- !u!114 &3678660722853357410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4174572759958713389}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e56feefe20d1b24997ebf4579bc21b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _initialPosition: {x: 0, y: 0}
+  _messagePrefab: {fileID: 4398109790188060278, guid: d46e5f05aecd0e64ab605d9b00ee11d0, type: 3}
 --- !u!1 &4762494722873442191
 GameObject:
   m_ObjectHideFlags: 0

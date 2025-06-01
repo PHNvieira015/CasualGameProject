@@ -10,7 +10,7 @@ public class HealthBar : MonoBehaviour, IHealthBar
     [SerializeField] private TMP_Text _hpIndicator;
 
     [Header("Settings")]
-    [SerializeField] private bool _debugMode = true;
+    //[SerializeField] private bool _debugMode = true;
 
     private float _maxRightMask;
     private float _initialRightMask;

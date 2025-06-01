@@ -65,6 +65,7 @@
     <Compile Include="Assets\LeanTween\Testing\TestingDescr.cs" />
     <Compile Include="Assets\Script\StateMachine\States\TurnBeginState.cs" />
     <Compile Include="Assets\Script\Modifiers\ModifierTags.cs" />
+    <Compile Include="Assets\Script\UI\FloatingMessage\MessageSpawner.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasics2d.cs" />
     <Compile Include="Assets\Script\StateMachine\States\LoadState.cs" />
     <Compile Include="Assets\Script\Testing\CombatTester.cs" />
@@ -91,7 +92,9 @@
     <Compile Include="Assets\LeanTween\Testing\Scripts\LeanPool.cs" />
     <Compile Include="Assets\LeanTween\Testing\PerformanceTests.cs" />
     <Compile Include="Assets\Script\Cards\Playability\IPlayability.cs" />
+    <Compile Include="Assets\Script\UI\FloatingMessage\IInGameMessage.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTween.cs" />
+    <Compile Include="Assets\Script\UI\FloatingMessage\DamageIndicatorSpawner.cs" />
     <Compile Include="Assets\Script\Cards\CardsList.cs" />
     <Compile Include="Assets\Script\Cards\CardsEffects\ChangeEnergyEffect.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanSmooth.cs" />
@@ -116,6 +119,7 @@
     <Compile Include="Assets\Script\Units\IHealthBar.cs" />
     <Compile Include="Assets\Script\Units\StatType.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralEventsListeners.cs" />
+    <Compile Include="Assets\Script\UI\HealthChangeArgs.cs" />
     <Compile Include="Assets\Script\Testing\CardTester.cs" />
     <Compile Include="Assets\Script\StateMachine\States\RecoveryState.cs" />
     <Compile Include="Assets\Script\StateMachine\State.cs" />
@@ -123,6 +127,7 @@
     <Compile Include="Assets\Script\Cards\Targeting\TargetAllEnemies.cs" />
     <Compile Include="Assets\Script\Cards\Targeting\TargetPlayer.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTweenExt.cs" />
+    <Compile Include="Assets\Script\UI\FloatingMessage\BuffDebuffMessageSpawner.cs" />
     <Compile Include="Assets\Script\Units\Unit.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanAudio.cs" />
     <Compile Include="Assets\Script\Menu\MenuController.cs" />
@@ -148,6 +153,7 @@
     <Compile Include="Assets\Script\StateMachine\States\EndTurnState.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSpline2d.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTSeq.cs" />
+    <Compile Include="Assets\Script\UI\FloatingMessage\FloatingMessage.cs" />
     <Compile Include="Assets\IO\BattleButtons.cs" />
     <Compile Include="Assets\Script\Cards\CardsUI\CardHolder.cs" />
     <Compile Include="Assets\Script\Cards\CardDrag.cs" />
