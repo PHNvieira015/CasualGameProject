@@ -1,60 +1,99 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyAI2 : MonoBehaviour
 {
-    private EnemyActionHolder actionHolder;
-    private bool isPerformingAction = false;
+    [Header("References")]
+    [SerializeField] private EnemyActionHolder _actionHolder;
 
-    void Awake()
+    [Header("Timing Settings")]
+    [SerializeField] private float _turnStartDelay = 0.2f; // Delay before starting turn
+    [SerializeField] private float _postActionDelay = 0.3f; // Delay after action completes
+
+    [Header("Debug")]
+    [SerializeField] private string _currentUnitDebug;
+    [SerializeField] private bool _isMyTurnDebug;
+    [SerializeField] private bool _actionCompletedDebug;
+
+    private bool _isActionInProgress = false;
+    private bool _turnProcessed = false;
+
+    private void Update()
     {
-        actionHolder = GetComponentInChildren<EnemyActionHolder>(true);
-        if (actionHolder == null)
+        UpdateDebugInfo();
+
+        if (IsMyTurn() && !_isActionInProgress && !_turnProcessed)
         {
-            Debug.LogError($"EnemyAI: Could not find EnemyActionHolder in children of {gameObject.name}");
-            enabled = false;
+            StartCoroutine(HandleEnemyTurn());
+        }
+        else if (!IsMyTurn())
+        {
+            _turnProcessed = false; // Reset for next turn
         }
     }
 
-    public void PerformEnemyTurn()
+    private IEnumerator HandleEnemyTurn()
     {
-        if (isPerformingAction) return;
+        _isActionInProgress = true;
+        _turnProcessed = true;
 
-        if (actionHolder == null)
+        // Wait before starting turn (helps with turn sequencing)
+        yield return new WaitForSeconds(_turnStartDelay);
+
+        yield return StartCoroutine(ExecuteEnemyAction());
+
+        _isActionInProgress = false;
+    }
+
+    private IEnumerator ExecuteEnemyAction()
+    {
+        Debug.Log($"<color=cyan>[Enemy] Starting turn: {name}</color>");
+
+        Card card = _actionHolder.GetCurrentAction();
+        if (card == null)
         {
-            Debug.LogWarning("EnemyAI: Cannot perform turn - no action holder available");
-            return;
+            Debug.LogWarning("[Enemy] No card available");
+            yield break;
         }
 
-        if (actionHolder.Actions.Count == 0)
+        // Play card
+        StateMachine.Instance.CardsdToPlay.Enqueue(card);
+        Debug.Log($"[Enemy] Playing card: {card.name}");
+
+        // Wait for completion
+        yield return new WaitUntil(() => !StateMachine.Instance.CardsdToPlay.Contains(card));
+
+        // Post-action sequence
+        yield return new WaitForSeconds(_postActionDelay);
+        _actionHolder.RotateCurrentAction();
+
+        // End turn
+        if (IsMyTurn())
         {
-            Debug.LogWarning("EnemyAI: No actions available to perform");
-            return;
-        }
-
-        isPerformingAction = true;
-
-        // Get and rotate the action
-        Card currentActionCard = actionHolder.GetCurrentActionAndRotate();
-
-        if (currentActionCard != null)
-        {
-            Debug.Log($"Enemy performing action: {currentActionCard.name}");
-            // Execute the action here
-
-            // You might want to start a coroutine for the action animation/effects
-            StartCoroutine(ExecuteAction(currentActionCard));
+            StateMachine.Instance.ChangeState<EndTurnState>();
+            Debug.Log("<color=green>[Enemy] Turn completed</color>");
         }
     }
 
-    private IEnumerator ExecuteAction(Card action)
+    private bool IsMyTurn()
     {
-        // Implement your action logic here
-        Debug.Log($"Executing action: {action.name}");
-
-        // Example: Wait for animation to complete
-        yield return new WaitForSeconds(0.5f);
-
-        // Action complete
-        isPerformingAction = false;
+        return StateMachine.Instance != null &&
+               StateMachine.Instance.CurrentUnit != null &&
+               StateMachine.Instance.CurrentUnit.gameObject == this.gameObject;
     }
+
+    private void UpdateDebugInfo()
+    {
+        _currentUnitDebug = StateMachine.Instance?.CurrentUnit?.name ?? "null";
+        _isMyTurnDebug = IsMyTurn();
+        _actionCompletedDebug = !_isActionInProgress;
+    }
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        if (_actionHolder == null)
+            _actionHolder = GetComponentInChildren<EnemyActionHolder>();
+    }
+#endif
 }

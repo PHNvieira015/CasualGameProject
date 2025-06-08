@@ -5,8 +5,7 @@ public enum EffectType
     Damage,
     Block,
     Debuff,
-    ReduceCardBuy,
-    CreateSpecialDebuffCard
+    CreateCard
     // Add other effect types as needed
 }
 

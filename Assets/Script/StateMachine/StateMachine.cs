@@ -13,6 +13,17 @@ public class StateMachine : MonoBehaviour
     State _current;
     bool _busy;
 
+    public event System.Action<Unit> OnUnitChanged;
+    private Unit _currentUnit
+     {
+        get => _currentUnit;
+        set
+        {
+            _currentUnit = value;
+            OnUnitChanged?.Invoke(_currentUnit);
+        }
+    }
+
     void Awake()
     {
         Instance = this;

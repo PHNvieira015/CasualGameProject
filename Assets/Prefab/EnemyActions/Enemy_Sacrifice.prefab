@@ -8,14 +8,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1965534836882181043, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2544878826338724817, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: Energy
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2544878826338724817, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2864292285653478253, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 8616030446479630718, guid: d0c19185e406f1f42b501ba1c1497aab, type: 3}
+    - target: {fileID: 5730760866812958986, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
       value: Take 6 Damage
@@ -30,7 +42,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8087918793295378423, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_Name
-      value: DamagePlayer_Card
+      value: Enemy_Sacrifice
       objectReference: {fileID: 0}
     - target: {fileID: 8373005034525413249, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_Pivot.x
