@@ -62,7 +62,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\LeanTween\Framework\LeanTest.cs" />
+    <Compile Include="Assets\Script\(WIP) ScritapbleObjects\StatusEffect\Debuff\Debuff.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingDescr.cs" />
+    <Compile Include="Assets\Script\Enemy\Actions\EnemyAttackEffect.cs" />
     <Compile Include="Assets\Script\StateMachine\States\TurnBeginState.cs" />
     <Compile Include="Assets\Script\Modifiers\ModifierTags.cs" />
     <Compile Include="Assets\Script\UI\FloatingMessage\MessageSpawner.cs" />
@@ -82,6 +84,7 @@
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralEasingTypes.cs" />
     <Compile Include="Assets\LeanTween\Testing\FollowingTests.cs" />
     <Compile Include="Assets\Script\StateMachine\States\PlayCardsState.cs" />
+    <Compile Include="Assets\Script\Enemy\AI\EnemyAI.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingUnitTests.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingIssue2.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplineEndless.cs" />
@@ -90,6 +93,7 @@
     <Compile Include="Assets\Script\Units\SelectableUnit.cs" />
     <Compile Include="Assets\LeanTween\Testing\Testing240.cs" />
     <Compile Include="Assets\LeanTween\Testing\Scripts\LeanPool.cs" />
+    <Compile Include="Assets\Script\(WIP) ScritapbleObjects\StatusEffect\IEffectable.cs" />
     <Compile Include="Assets\LeanTween\Testing\PerformanceTests.cs" />
     <Compile Include="Assets\Script\Cards\Playability\IPlayability.cs" />
     <Compile Include="Assets\Script\UI\FloatingMessage\IInGameMessage.cs" />
@@ -136,10 +140,15 @@
     <Compile Include="Assets\Script\Cards\CardsEffects\DamageEffect.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingOptionalCancel.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTDescr.cs" />
+    <Compile Include="Assets\Script\Enemy\EnemyActionHolder.cs" />
     <Compile Include="Assets\LeanTween\Testing\Testing248.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingColorTweening.cs" />
+    <Compile Include="Assets\Script\(WIP) ScritapbleObjects\Cards_Actions\CardScriptableObject.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralSimpleUI.cs" />
+    <Compile Include="Assets\Script\(WIP) ScritapbleObjects\StatusEffect\StatusEffectData.cs" />
     <Compile Include="Assets\LeanTween\Testing\Testing243.cs" />
+    <Compile Include="Assets\Script\Enemy\EnemyAI2.cs" />
+    <Compile Include="Assets\Script\(WIP) ScritapbleObjects\EffectStructures.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathBezier.cs" />
     <Compile Include="Assets\Script\Cards\Targeting\ITarget.cs" />
     <Compile Include="Assets\Script\Cards\CardsEffects\CardEffect.cs" />
@@ -151,6 +160,7 @@
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingZLegacyExt.cs" />
     <Compile Include="Assets\Script\StateMachine\States\EndBattleState.cs" />
     <Compile Include="Assets\Script\StateMachine\States\EndTurnState.cs" />
+    <Compile Include="Assets\Script\Enemy\Display\EnemyCardDisplay.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSpline2d.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTSeq.cs" />
     <Compile Include="Assets\Script\UI\FloatingMessage\FloatingMessage.cs" />

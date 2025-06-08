@@ -50,10 +50,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3789943714178207850, guid: ee659814748b79043a949e85501c8a13, type: 3}
       propertyPath: m_Name
-      value: Base_Enemy
+      value: Enemy1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3990071240182768723, guid: ee659814748b79043a949e85501c8a13, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee659814748b79043a949e85501c8a13, type: 3}
