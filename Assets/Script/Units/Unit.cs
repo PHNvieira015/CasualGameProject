@@ -13,7 +13,6 @@ public class Unit : MonoBehaviour, IPointerClickHandler
     public event Action<Unit, StatType, int, int> OnStatChanged;  // (unit, statType, oldValue, newValue)
     public event Action<Unit, string, int, bool> OnStatusEffectApplied; // (unit, effectName, stacks, isDebuff)
 
-
     private bool _isHealthChanging;
     private bool _isBlockAbsorbingDamage;
 
@@ -21,6 +20,7 @@ public class Unit : MonoBehaviour, IPointerClickHandler
     [SerializeField] private List<Stat> _stats;
 
     private IHealthBar _healthBar;
+    private IBlockValueDisplay _blockDisplay;
     public OnUnit OnUnitClicked = delegate { };
     public OnUnit OnUnitTakeTurn = delegate { };
     public TagModifier[] Modify = new TagModifier[(int)ModifierTags.None];
@@ -31,6 +31,7 @@ public class Unit : MonoBehaviour, IPointerClickHandler
         InitializeStats();
         FindHealthBar();
         InitializeHealthBarConnection();
+        InitializeBlockDisplayConnection();
     }
 
     private void InitializeStats()
@@ -108,9 +109,14 @@ public class Unit : MonoBehaviour, IPointerClickHandler
         {
             SpawnStatChangeMessage(type, oldValue, value);
         }
+
         if (IsHealthStat(type))
         {
             UpdateHealthBar();
+        }
+        else if (type == StatType.Block)
+        {
+            UpdateBlockDisplay();
         }
     }
 
@@ -175,7 +181,12 @@ public class Unit : MonoBehaviour, IPointerClickHandler
         );
     }
 
+    private void UpdateBlockDisplay()
+    {
+        _blockDisplay?.UpdateBlockDisplay(GetStatValue(StatType.Block));
+    }
     #endregion
+
     private void InitializeHealthBarConnection()
     {
         // Try to find health bar in children
@@ -200,6 +211,36 @@ public class Unit : MonoBehaviour, IPointerClickHandler
             //Debug.LogWarning($"No IHealthBar found for {gameObject.name}", this);
         }
     }
+
+    private void InitializeBlockDisplayConnection()
+    {
+        // Try to find block display in children
+        _blockDisplay = GetComponentInChildren<IBlockValueDisplay>(true);
+
+        if (_blockDisplay != null)
+        {
+            // If using the BindToUnit approach
+            if (_blockDisplay is BlockValueDisplay blockDisplayComponent)
+            {
+                blockDisplayComponent.BindToUnit(this);
+            }
+
+            // Initial update
+            UpdateBlockDisplay();
+        }
+    }
+
+    public void RegisterBlockDisplay(IBlockValueDisplay blockDisplay)
+    {
+        _blockDisplay = blockDisplay;
+        UpdateBlockDisplay();
+    }
+
+    public void UnregisterBlockDisplay()
+    {
+        _blockDisplay = null;
+    }
+
     private void SpawnStatChangeMessage(StatType type, int oldValue, int newValue)
     {
         if (newValue == oldValue || _damageSpawner == null) return;

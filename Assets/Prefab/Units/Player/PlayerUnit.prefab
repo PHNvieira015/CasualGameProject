@@ -80,6 +80,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8363059422420093047, guid: ab5ee21e553b5d24484da092a40f4956, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 73.5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4637251327378845690, guid: ab5ee21e553b5d24484da092a40f4956, type: 3}
     - {fileID: 1303797903493928545, guid: ab5ee21e553b5d24484da092a40f4956, type: 3}
