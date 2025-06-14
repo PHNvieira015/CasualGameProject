@@ -9,6 +9,7 @@ public class CardRewardSlot : MonoBehaviour, IPointerClickHandler
     private CardRewardSystem rewardSystem;
     private GameObject currentCard;
 
+
     public void Initialize(CardRewardSystem system)
     {
         rewardSystem = system;
