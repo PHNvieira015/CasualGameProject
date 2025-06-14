@@ -1,5 +1,141 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &152502795648005871
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3498234744560987493}
+  - component: {fileID: 6228188540065386838}
+  m_Layer: 5
+  m_Name: Spline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &3498234744560987493
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152502795648005871}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4735776942175371623}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -923.79553, y: -200.78064}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6228188540065386838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152502795648005871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dab5c7d4c32e743048dfca98e2d5914f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Spline:
+    m_EditModeType: 1
+    m_Knots: []
+    m_MetaData: []
+    m_Closed: 0
+    m_IntData:
+      m_Data: []
+    m_FloatData:
+      m_Data: []
+    m_Float4Data:
+      m_Data: []
+    m_ObjectData:
+      m_Data: []
+  m_Splines:
+  - m_EditModeType: 1
+    m_Knots:
+    - Position:
+        x: -0.39754868
+        y: 0.030639648
+        z: 0
+      TangentIn:
+        x: -0
+        y: -0
+        z: -0.76367664
+      TangentOut:
+        x: 0
+        y: 0
+        z: 0.76367664
+      Rotation:
+        value:
+          x: 0.5677564
+          y: -0.42148852
+          z: 0.42148864
+          w: -0.5677564
+    - Position:
+        x: 6.9124513
+        y: 2.2406397
+        z: 0
+      TangentIn:
+        x: 0
+        y: 0
+        z: -5.6500807
+      TangentOut:
+        x: 0
+        y: 0
+        z: 5.6500807
+      Rotation:
+        value:
+          x: 0
+          y: 0.70710677
+          z: 0
+          w: 0.70710677
+    - Position:
+        x: 13.4824505
+        y: 0.1906395
+        z: 0
+      TangentIn:
+        x: -0
+        y: -0
+        z: -0.68823975
+      TangentOut:
+        x: 0
+        y: 0
+        z: 0.68823975
+      Rotation:
+        value:
+          x: 0.41896892
+          y: -0.56961834
+          z: 0.5696188
+          w: -0.41896823
+    m_MetaData:
+    - Mode: 0
+      Tension: 0.5
+    - Mode: 2
+      Tension: 0.5
+    - Mode: 0
+      Tension: 0.5
+    m_Closed: 0
+    m_IntData:
+      m_Data: []
+    m_FloatData:
+      m_Data: []
+    m_Float4Data:
+      m_Data: []
+    m_ObjectData:
+      m_Data: []
+  m_Knots:
+    m_KnotsLink: []
 --- !u!1 &347509439316362201
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,6 +146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4735776942175371623}
   - component: {fileID: 3878761788221189859}
+  - component: {fileID: 4207332479481749627}
   m_Layer: 5
   m_Name: Hand
   m_TagString: Untagged
@@ -31,6 +168,7 @@ RectTransform:
   m_Children:
   - {fileID: 5143309563791402421}
   - {fileID: 836879874407378446}
+  - {fileID: 3498234744560987493}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
@@ -50,11 +188,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4306330bb33c46342839af311f1c0de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CardRotation: 0
   Cards: []
   Holder: {fileID: 5143309563791402421}
   CardAmount: {fileID: 7301541258898522732}
+--- !u!114 &4207332479481749627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347509439316362201}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fd413513e7f5784bab34fcd6fd759ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   CardRotation: 0
-  CardMoveSpeed: 1
+  Cards: []
+  Holder: {fileID: 5143309563791402421}
+  CardAmount: {fileID: 7301541258898522732}
+  splineContainer: {fileID: 6228188540065386838}
 --- !u!1 &4330128680680032651
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,10 +240,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 4735776942175371623}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 612.5, y: -50}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.0080853, y: 0}
+  m_SizeDelta: {x: 1322.1, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4474696059720622146
 MonoBehaviour:
@@ -129,7 +283,7 @@ GameObject:
   - component: {fileID: 7590446093320913780}
   - component: {fileID: 7301541258898522732}
   m_Layer: 5
-  m_Name: CardNumberText (TMP)
+  m_Name: HandCardNumberText (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
