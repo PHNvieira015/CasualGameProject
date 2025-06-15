@@ -10,7 +10,7 @@ public class PlayCardsState : State
 
     [Header("UI References")]
     [SerializeField] private Button _endTurnButton;
-    private string _endTurnButtonPath = "Canvas/EndTurnButton";
+    private string _endTurnButtonPath = "Canvas/Menus/CombatScreen/EndTurnButton";
 
     Coroutine _cardSequencer;
     HorizontalLayoutGroup _handLayout;

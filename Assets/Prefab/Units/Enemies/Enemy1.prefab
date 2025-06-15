@@ -80,6 +80,10 @@ PrefabInstance:
       propertyPath: 'Actions.Array.data[1]'
       value: 
       objectReference: {fileID: 3997067217428925397, guid: bdd9ca7d94b7b4f42bfc4657c9f00150, type: 3}
+    - target: {fileID: 5274681267120678736, guid: ee659814748b79043a949e85501c8a13, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

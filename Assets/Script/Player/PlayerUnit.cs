@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -7,50 +6,73 @@ using TMPro;
 public class PlayerUnit : Unit
 {
     public int MaxEnergy;
+
+    private int _currentEnergy;
     public int CurrentEnergy
     {
-        get
-        {
-            return _currentEnergy;
-        }
+        get => _currentEnergy;
         set
         {
-            //modify/add/control 
-            _currentEnergy = value;
+            _currentEnergy = Mathf.Clamp(value, 0, MaxEnergy);
             UpdateEnergyMeter();
         }
     }
-    [SerializeField]
-    int _currentEnergy;
+
     public int DrawAmount;
     public int MaxCards;
-    TextMeshProUGUI _energyMeter;
+
+    private TextMeshProUGUI _energyMeter;
+    private bool _energyMeterInitialized = false;
+
     protected override void Awake()
     {
         base.Awake();
+        InitializeEnergyMeter();
+    }
+
+    private void InitializeEnergyMeter()
+    {
         GameObject energyMeterObj = GameObject.Find("Canvas/EnergyMeter");
         if (energyMeterObj != null)
         {
             _energyMeter = energyMeterObj.GetComponent<TextMeshProUGUI>();
-            if (_energyMeter == null)
-            {
-                //Debug.LogError("TextMeshProUGUI component not found on EnergyMeter!");
-            }
+            _energyMeterInitialized = (_energyMeter != null);
         }
-        else
+
+        if (!_energyMeterInitialized)
         {
-            //Debug.LogError("EnergyMeter GameObject not found!");
+            Debug.LogWarning("Energy meter not initialized - creating fallback");
+            CreateFallbackEnergyMeter();
         }
     }
+
+    private void CreateFallbackEnergyMeter()
+    {
+        GameObject meterObj = new GameObject("FallbackEnergyMeter");
+        meterObj.transform.SetParent(GameObject.Find("Canvas")?.transform);
+        _energyMeter = meterObj.AddComponent<TextMeshProUGUI>();
+        _energyMeterInitialized = true;
+    }
+
+    void UpdateEnergyMeter()
+    {
+        if (!_energyMeterInitialized) return;
+
+        _energyMeter.text = $"{CurrentEnergy}/{MaxEnergy}";
+    }
+
     public override IEnumerator Recover()
     {
         yield return StartCoroutine(base.Recover());
+
+        // Set energy after recovery completes
         CurrentEnergy = MaxEnergy;
+
+        // Draw cards
         int cardsToDraw = Mathf.Min(MaxCards - CardsController.Instance.Hand.Cards.Count, DrawAmount);
-        yield return StartCoroutine(CardsController.Instance.Draw(cardsToDraw));
-    }
-    void UpdateEnergyMeter()
-    {
-        _energyMeter.text = string.Format("{0}/{1}", CurrentEnergy, MaxEnergy);
+        if (cardsToDraw > 0)
+        {
+            yield return StartCoroutine(CardsController.Instance.Draw(cardsToDraw));
+        }
     }
 }
