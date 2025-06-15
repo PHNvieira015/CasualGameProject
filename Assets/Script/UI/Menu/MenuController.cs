@@ -1,9 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.Collections;
 
 public class MenuController : MonoBehaviour
 {
+    public static MenuController Instance { get; private set; }
+
     public enum Screens
     {
         None,
@@ -18,117 +21,122 @@ public class MenuController : MonoBehaviour
         CombatStart,
         DeckGallery,
         DiscardPile,
-        DrawPile
+        DrawPile,
+        CombatMenu
     }
-    public Screens currentScreen;
 
-    [SerializeField] private GameObject MainMenu;
+    [Header("Screen References")]
+    [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject loadingScreen;
     [SerializeField] private GameObject characterSelect;
     [SerializeField] private GameObject settings;
     [SerializeField] private GameObject quitConfirm;
     [SerializeField] private GameObject messageScreen;
-    [SerializeField] private GameObject RewardScreen;
-    [SerializeField] private GameObject CardSelection;
-    [SerializeField] private GameObject DefeatScreen;
-    [SerializeField] private GameObject CombatStartScreen;
-    [SerializeField] private GameObject DeckGalleryScreen;
-    [SerializeField] private GameObject DiscardPileGalleryScreen;
-    [SerializeField] private GameObject DrawPileGalleryScreen;
-    [SerializeField] private TMP_Text messageTXT;
+    [SerializeField] private GameObject rewardScreen;
+    [SerializeField] private GameObject cardSelection;
+    [SerializeField] private GameObject defeatScreen;
+    [SerializeField] private GameObject combatStartScreen;
+    [SerializeField] private GameObject deckGalleryScreen;
+    [SerializeField] private GameObject discardPileGalleryScreen;
+    [SerializeField] private GameObject drawPileGalleryScreen;
+    [SerializeField] private GameObject combatMenuScreen;
+    [SerializeField] private TMP_Text messageTXT; // Corrected to match your original name
 
-    [HideInInspector] public Screens TargetScreen;
+    [Header("Configuration")]
+    [SerializeField] private float screenTransitionDelay = 0.2f;
 
-    // Method to show or hide screens based on the current screen
-    public void ShowScreen(Screens _screen)
+    private Screens currentScreen;
+
+    private void Awake()
     {
-        Debug.Log("Showing screen: " + _screen.ToString());
-
-        // Deactivate all screens first
-        MainMenu.SetActive(false);
-        loadingScreen.SetActive(false);
-        characterSelect.SetActive(false);
-        settings.SetActive(false);
-        quitConfirm.SetActive(false);
-        messageScreen.SetActive(false);
-        RewardScreen.SetActive(false);
-        DefeatScreen.SetActive(false);
-        CombatStartScreen.SetActive(false);
-        DeckGalleryScreen.SetActive(false);
-        DiscardPileGalleryScreen.SetActive(false);
-        DrawPileGalleryScreen.SetActive(false);
-
-        // Activate the desired screen based on the passed screen
-        switch (_screen)
+        if (Instance == null)
         {
-            case Screens.None:
-                // No screens active
-                break;
-            case Screens.Main:
-                MainMenu.SetActive(true);
-                Debug.Log("Main screen activated");
-                break;
-            case Screens.Loading:
-                loadingScreen.SetActive(true);
-                break;
-            case Screens.CharacterSelect:
-                characterSelect.SetActive(true);
-                break;
-            case Screens.Settings:
-                settings.SetActive(true);
-                break;
-            case Screens.QuitConfirm:
-                quitConfirm.SetActive(true);
-                break;
-            case Screens.Reward:
-                RewardScreen.SetActive(true);
-                break;
-            case Screens.CardSelection:
-                CardSelection.SetActive(true);
-                break;
-            case Screens.Defeat:
-                DefeatScreen.SetActive(true);
-                break;
-            case Screens.CombatStart:
-                CombatStartScreen.SetActive(true);
-                break;
-            case Screens.DeckGallery:
-                DeckGalleryScreen.SetActive(true);
-                break;
-            case Screens.DiscardPile:
-                DiscardPileGalleryScreen.SetActive(true);
-                break;
-            case Screens.DrawPile:
-                DrawPileGalleryScreen.SetActive(true);
-                break;
+            Instance = this;
         }
-
-        currentScreen = _screen;
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
     }
 
-    // Overloaded method to handle screen index
-    public void ShowScreen(int screen)
+    public void ChangeScreen(Screens screen)
     {
-        ShowScreen((Screens)screen);
+        if (currentScreen == screen) return;
+        StartCoroutine(ChangeScreenWithDelay(screen));
     }
 
-    public void ShowMessage(string _message)
+    public void SetScreenActive(Screens screen, bool active)
     {
-        messageTXT.text = _message;
+        switch (screen)
+        {
+            case Screens.Main: mainMenu.SetActive(active); break;
+            case Screens.Loading: loadingScreen.SetActive(active); break;
+            case Screens.CharacterSelect: characterSelect.SetActive(active); break;
+            case Screens.Settings: settings.SetActive(active); break;
+            case Screens.QuitConfirm: quitConfirm.SetActive(active); break;
+            case Screens.Reward: rewardScreen.SetActive(active); break;
+            case Screens.CardSelection: cardSelection.SetActive(active); break;
+            case Screens.Defeat: defeatScreen.SetActive(active); break;
+            case Screens.CombatStart: combatStartScreen.SetActive(active); break;
+            case Screens.DeckGallery: deckGalleryScreen.SetActive(active); break;
+            case Screens.DiscardPile: discardPileGalleryScreen.SetActive(active); break;
+            case Screens.DrawPile: drawPileGalleryScreen.SetActive(active); break;
+            case Screens.CombatMenu: combatMenuScreen.SetActive(active); break;
+        }
+    }
+
+    private IEnumerator ChangeScreenWithDelay(Screens screen)
+    {
+        SetScreenActive(currentScreen, false);
+
+        if (screenTransitionDelay > 0)
+            yield return new WaitForSeconds(screenTransitionDelay);
+
+        currentScreen = screen;
+        SetScreenActive(screen, true);
+    }
+
+    public void ToggleCombatMenu()
+    {
+        bool shouldActivate = !combatMenuScreen.activeSelf;
+        combatMenuScreen.SetActive(shouldActivate);
+        currentScreen = shouldActivate ? Screens.CombatMenu : Screens.None;
+    }
+
+    public void EndTurn()
+    {
+        combatMenuScreen.SetActive(false);
+        Debug.Log("Turn ended");
+    }
+
+    public void ShowMessage(string message, float duration = 3f)
+    {
+        messageTXT.text = message; // Now using messageTXT instead of messageText
         messageScreen.SetActive(true);
+
+        if (duration > 0)
+            Invoke(nameof(HideMessage), duration);
+    }
+
+    private void HideMessage()
+    {
+        messageScreen.SetActive(false);
     }
 
     public void StartGame(int sceneId)
     {
-        // Load the scene (change sceneId to load the desired scene)
-        ShowScreen(Screens.Loading); // Show loading screen during scene load
+        ChangeScreen(Screens.Loading);
         SceneManager.LoadScene(sceneId);
-        Debug.Log("Game Started");
     }
 
-    public void ExitButton()
+    public void QuitGame()
     {
+        Debug.Log("Quitting application...");
         Application.Quit();
-        Debug.Log("Game Closed");
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 }
