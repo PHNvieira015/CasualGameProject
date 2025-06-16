@@ -1043,6 +1043,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 140157675}
   m_CullTransparentMesh: 1
+--- !u!1 &143761542
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 143761543}
+  m_Layer: 5
+  m_Name: (WIP) StoreScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &143761543
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143761542}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1990515707}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &153285305
 GameObject:
   m_ObjectHideFlags: 0
@@ -2012,6 +2047,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &411142866
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 411142867}
+  m_Layer: 5
+  m_Name: (WIP) DeckCardsScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &411142867
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411142866}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1990515707}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &411164149
 GameObject:
   m_ObjectHideFlags: 0
@@ -4708,6 +4778,41 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 250, y: 405.96}
   m_EdgeRadius: 0
+--- !u!1 &813752127
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 813752128}
+  m_Layer: 5
+  m_Name: (WIP) CombatStartScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &813752128
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813752127}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1990515707}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &864521600
 GameObject:
   m_ObjectHideFlags: 0
@@ -4744,6 +4849,41 @@ RectTransform:
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.000030517578, y: 424.98535}
   m_SizeDelta: {x: 788.5291, y: 114.05875}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &872195153
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 872195154}
+  m_Layer: 5
+  m_Name: (WIP) CharacterSelect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &872195154
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872195153}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1990515707}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &882914206
 GameObject:
@@ -5707,20 +5847,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b6a2ab14ea3b904c8f49542eee9977a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenu: {fileID: 0}
-  loadingScreen: {fileID: 0}
-  characterSelect: {fileID: 0}
-  settings: {fileID: 0}
+  mainMenu: {fileID: 653288707}
+  loadingScreen: {fileID: 153285305}
+  characterSelect: {fileID: 872195153}
+  settings: {fileID: 313339856}
+  combatMenuScreen: {fileID: 1763999563}
+  mapScreen: {fileID: 1973559781}
   quitConfirm: {fileID: 0}
   messageScreen: {fileID: 0}
-  rewardScreen: {fileID: 0}
-  cardSelection: {fileID: 0}
-  defeatScreen: {fileID: 0}
-  combatStartScreen: {fileID: 0}
-  deckGalleryScreen: {fileID: 0}
-  discardPileGalleryScreen: {fileID: 0}
-  drawPileGalleryScreen: {fileID: 0}
-  combatMenuScreen: {fileID: 0}
+  rewardScreen: {fileID: 1684221138}
+  defeatScreen: {fileID: 1373822556}
+  cardSelection: {fileID: 1245452149}
+  combatStartScreen: {fileID: 813752127}
+  deckGalleryScreen: {fileID: 411142866}
+  discardPileGalleryScreen: {fileID: 127500430}
+  drawPileGalleryScreen: {fileID: 571779399}
   messageTXT: {fileID: 0}
   screenTransitionDelay: 0.2
 --- !u!1 &1290077265
@@ -7344,7 +7485,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1079641116}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.35642514
+  m_Size: 0.7128503
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8704,7 +8845,7 @@ GameObject:
   - component: {fileID: 1973559784}
   - component: {fileID: 1973559783}
   m_Layer: 5
-  m_Name: (WIP) MapScreen
+  m_Name: MapScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8806,13 +8947,17 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1763999564}
+  - {fileID: 813752128}
   - {fileID: 1973559782}
   - {fileID: 1684221139}
   - {fileID: 1373822557}
   - {fileID: 1245452150}
   - {fileID: 571779400}
+  - {fileID: 411142867}
   - {fileID: 127500431}
   - {fileID: 153285306}
+  - {fileID: 143761543}
+  - {fileID: 872195154}
   m_Father: {fileID: 34247925}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

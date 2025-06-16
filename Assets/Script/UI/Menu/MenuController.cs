@@ -14,15 +14,16 @@ public class MenuController : MonoBehaviour
         Loading,
         CharacterSelect,
         Settings,
+        CombatMenu,
+        MapMenu,
         QuitConfirm,
         Reward,
         CardSelection,
         Defeat,
-        CombatStart,
         DeckGallery,
         DiscardPile,
         DrawPile,
-        CombatMenu
+        
     }
 
     [Header("Screen References")]
@@ -30,17 +31,18 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject loadingScreen;
     [SerializeField] private GameObject characterSelect;
     [SerializeField] private GameObject settings;
+    [SerializeField] private GameObject combatMenuScreen;
+    [SerializeField] private GameObject mapScreen;
     [SerializeField] private GameObject quitConfirm;
     [SerializeField] private GameObject messageScreen;
     [SerializeField] private GameObject rewardScreen;
-    [SerializeField] private GameObject cardSelection;
     [SerializeField] private GameObject defeatScreen;
+    [SerializeField] private GameObject cardSelection;
     [SerializeField] private GameObject combatStartScreen;
     [SerializeField] private GameObject deckGalleryScreen;
     [SerializeField] private GameObject discardPileGalleryScreen;
     [SerializeField] private GameObject drawPileGalleryScreen;
-    [SerializeField] private GameObject combatMenuScreen;
-    [SerializeField] private TMP_Text messageTXT; // Corrected to match your original name
+    [SerializeField] private TMP_Text messageTXT;
 
     [Header("Configuration")]
     [SerializeField] private float screenTransitionDelay = 0.2f;
@@ -75,14 +77,15 @@ public class MenuController : MonoBehaviour
             case Screens.CharacterSelect: characterSelect.SetActive(active); break;
             case Screens.Settings: settings.SetActive(active); break;
             case Screens.QuitConfirm: quitConfirm.SetActive(active); break;
+            case Screens.CombatMenu: combatMenuScreen.SetActive(active); break;
+            case Screens.MapMenu: mapScreen.SetActive(active); break;
             case Screens.Reward: rewardScreen.SetActive(active); break;
-            case Screens.CardSelection: cardSelection.SetActive(active); break;
             case Screens.Defeat: defeatScreen.SetActive(active); break;
-            case Screens.CombatStart: combatStartScreen.SetActive(active); break;
+            case Screens.CardSelection: cardSelection.SetActive(active); break;
             case Screens.DeckGallery: deckGalleryScreen.SetActive(active); break;
             case Screens.DiscardPile: discardPileGalleryScreen.SetActive(active); break;
             case Screens.DrawPile: drawPileGalleryScreen.SetActive(active); break;
-            case Screens.CombatMenu: combatMenuScreen.SetActive(active); break;
+            
         }
     }
 
@@ -104,6 +107,13 @@ public class MenuController : MonoBehaviour
         currentScreen = shouldActivate ? Screens.CombatMenu : Screens.None;
     }
 
+    public void ToggleMapScreen()
+    {
+        bool shouldActivate = !mapScreen.activeSelf;
+        mapScreen.SetActive(shouldActivate);
+        currentScreen = shouldActivate ? Screens.MapMenu : Screens.None;
+    }
+
     public void EndTurn()
     {
         combatMenuScreen.SetActive(false);
@@ -112,7 +122,7 @@ public class MenuController : MonoBehaviour
 
     public void ShowMessage(string message, float duration = 3f)
     {
-        messageTXT.text = message; // Now using messageTXT instead of messageText
+        messageTXT.text = message;
         messageScreen.SetActive(true);
 
         if (duration > 0)
