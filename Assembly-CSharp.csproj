@@ -77,9 +77,12 @@
     <Compile Include="Assets\Script\Cards\StatusEffects\TagModifierStatusEffect.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingSceneSwitching.cs" />
     <Compile Include="Assets\Script\UI\Menu\MenuController.cs" />
+    <Compile Include="Assets\Script\Map\MapGenerator.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralSequencer.cs" />
     <Compile Include="Assets\Script\Player\PlayerController.cs" />
+    <Compile Include="Assets\Script\(WIP) ScritapbleObjects\Map\Nodes\Blueprint\NodeBlueprint.cs" />
     <Compile Include="Assets\Script\CardReward\CardRewardSlot.cs" />
+    <Compile Include="Assets\Script\Map\MapVisualizer.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathBezier2d.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplinePerformance.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralEasingTypes.cs" />
@@ -88,6 +91,7 @@
     <Compile Include="Assets\LeanTween\Testing\FollowingTests.cs" />
     <Compile Include="Assets\Script\StateMachine\States\PlayCardsState.cs" />
     <Compile Include="Assets\Script\Enemy\AI\EnemyAI.cs" />
+    <Compile Include="Assets\Script\Map\NodeVisual.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingUnitTests.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingIssue2.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplineEndless.cs" />
@@ -114,9 +118,11 @@
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplines.cs" />
     <Compile Include="Assets\Script\StateMachine\StateMachine.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralCameraShake.cs" />
+    <Compile Include="Assets\Script\Map\MapNode.cs" />
     <Compile Include="Assets\Script\CardReward\CardRewardSystem.cs" />
     <Compile Include="Assets\Script\Cards\CardsUI\CardsController.cs" />
     <Compile Include="Assets\Script\Modifiers\ModifiedValues.cs" />
+    <Compile Include="Assets\Script\Map\GameMapManager.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplineTrack.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSpline.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingSequencer.cs" />
@@ -125,6 +131,7 @@
     <Compile Include="Assets\Script\Cards\StatusEffects\DisableUnit.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\LogoCinematic.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralAdvancedTechniques.cs" />
+    <Compile Include="Assets\Script\Map\NodeType.cs" />
     <Compile Include="Assets\Script\Units\StatType.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralEventsListeners.cs" />
     <Compile Include="Assets\Script\Testing\CardTester.cs" />
@@ -164,6 +171,7 @@
     <Compile Include="Assets\Script\Cards\Targeting\TargetUnit.cs" />
     <Compile Include="Assets\Script\Units\Stat.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingZLegacyExt.cs" />
+    <Compile Include="Assets\Script\Map\NodeConnection.cs" />
     <Compile Include="Assets\Script\StateMachine\States\EndBattleState.cs" />
     <Compile Include="Assets\Script\StateMachine\States\EndTurnState.cs" />
     <Compile Include="Assets\Script\Enemy\Display\EnemyCardDisplay.cs" />
@@ -171,6 +179,7 @@
     <Compile Include="Assets\LeanTween\Framework\LTSeq.cs" />
     <Compile Include="Assets\Script\UI\FloatingMessage\FloatingMessage.cs" />
     <Compile Include="Assets\IO\BattleButtons.cs" />
+    <Compile Include="Assets\Script\Map\MinMax.cs" />
     <Compile Include="Assets\Script\Cards\CardsUI\CardHolder.cs" />
     <Compile Include="Assets\Script\Cards\CardDrag.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasic.cs" />

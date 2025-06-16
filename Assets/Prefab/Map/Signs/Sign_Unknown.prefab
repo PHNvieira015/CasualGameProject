@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1601704831260708372}
   - component: {fileID: 730390420282116166}
   m_Layer: 5
-  m_Name: Unknown Image Icon
+  m_Name: Sign_Mystery Image Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -6128069836994205825, guid: dc8489567026a4a4b84c0c928b45d019, type: 3}
+  m_Sprite: {fileID: 150646388717667088, guid: a4ef287643fb5f545967ffb8896381f6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -109,7 +109,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 998315986614001848, guid: 3183f8c3c44b05143b8316d4eba84c43, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 365
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 998315986614001848, guid: 3183f8c3c44b05143b8316d4eba84c43, type: 3}
       propertyPath: m_SizeDelta.y
@@ -145,7 +145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 998315986614001848, guid: 3183f8c3c44b05143b8316d4eba84c43, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 193.02087
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 998315986614001848, guid: 3183f8c3c44b05143b8316d4eba84c43, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -165,7 +165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1139647782667280195, guid: 3183f8c3c44b05143b8316d4eba84c43, type: 3}
       propertyPath: m_Name
-      value: Sign_Unknown (TMP)
+      value: Sign_Mystery (TMP)
       objectReference: {fileID: 0}
     - target: {fileID: 1317014939795884301, guid: 3183f8c3c44b05143b8316d4eba84c43, type: 3}
       propertyPath: m_AnchorMax.y
@@ -194,6 +194,10 @@ PrefabInstance:
     - target: {fileID: 4182994352267054593, guid: 3183f8c3c44b05143b8316d4eba84c43, type: 3}
       propertyPath: m_Name
       value: Sign_Unknown
+      objectReference: {fileID: 0}
+    - target: {fileID: 5079936631736849488, guid: 3183f8c3c44b05143b8316d4eba84c43, type: 3}
+      propertyPath: m_text
+      value: Mistery
       objectReference: {fileID: 0}
     - target: {fileID: 5079936631736849488, guid: 3183f8c3c44b05143b8316d4eba84c43, type: 3}
       propertyPath: m_margin.y
@@ -229,7 +233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8620558811862229253, guid: 3183f8c3c44b05143b8316d4eba84c43, type: 3}
       propertyPath: m_Name
-      value: Sign_Unknown Image
+      value: Sign_Mystery Image
       objectReference: {fileID: 0}
     - target: {fileID: 8620558811862229253, guid: 3183f8c3c44b05143b8316d4eba84c43, type: 3}
       propertyPath: m_IsActive
