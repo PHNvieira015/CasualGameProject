@@ -11,78 +11,102 @@ public class MapGenerator : MonoBehaviour
     }
 
     [Header("Settings")]
-    [SerializeField] private int totalRows = 5; // Minimum 3 rows
-    [SerializeField] private int maxColumns = 3; // Maximum nodes per row
+    [SerializeField] private int totalRows = 5;
+    [SerializeField] private int maxColumns = 3;
     [SerializeField] private List<NodeBlueprintMapping> blueprintMappings = new List<NodeBlueprintMapping>();
 
     public List<MapNode> GenerateMap()
     {
         List<MapNode> nodes = new List<MapNode>();
-        List<MapNode> previousRowNodes = new List<MapNode>();
+        List<List<MapNode>> rows = new List<List<MapNode>>();
 
-        // 1. Start at bottom (row 0)
-        MapNode startNode = CreateNode(new Vector2Int(0, 0), NodeType.MinorEnemy);
-        nodes.Add(startNode);
-        previousRowNodes.Add(startNode);
-
-        // 2. Random middle rows
-        for (int y = 1; y < totalRows - 2; y++)
+        // 1. Create all nodes row by row (bottom to top)
+        for (int y = 0; y < totalRows; y++)
         {
-            int nodesInThisRow = Random.Range(1, maxColumns + 1);
-            List<MapNode> currentRowNodes = new List<MapNode>();
+            List<MapNode> currentRow = new List<MapNode>();
+            int nodeCount = GetNodeCountForRow(y);
 
-            // Create nodes for this row
-            for (int x = 0; x < nodesInThisRow; x++)
+            for (int x = 0; x < nodeCount; x++)
             {
-                // Center the nodes by offsetting based on count
-                int xOffset = x - nodesInThisRow / 2;
-                MapNode newNode = CreateNode(new Vector2Int(xOffset, y), GetRandomNodeType());
-                nodes.Add(newNode);
-                currentRowNodes.Add(newNode);
+                int xPos = GetXPosition(x, nodeCount);
+                NodeType type = GetNodeTypeForRow(y);
+                MapNode node = CreateNode(new Vector2Int(xPos, y), type);
+                nodes.Add(node);
+                currentRow.Add(node);
             }
-
-            // Connect to previous row
-            foreach (var previousNode in previousRowNodes)
-            {
-                // Connect each previous node to all nodes in current row (or implement smarter connection logic)
-                foreach (var currentNode in currentRowNodes)
-                {
-                    // Simple connection logic - connect if roughly above or nearby
-                    if (Mathf.Abs(currentNode.position.x - previousNode.position.x) <= 1)
-                    {
-                        previousNode.AddConnection(currentNode);
-                    }
-                }
-            }
-
-            previousRowNodes = currentRowNodes;
+            rows.Add(currentRow);
         }
 
-        // 3. Rest node (second from top)
-        int restRow = totalRows - 2;
-        MapNode restNode = CreateNode(new Vector2Int(0, restRow), NodeType.RestSite);
-        nodes.Add(restNode);
-
-        // Connect to previous row
-        foreach (var previousNode in previousRowNodes)
+        // 2. Connect each node to at least one node above
+        for (int y = 0; y < rows.Count - 1; y++) // Skip last row (boss)
         {
-            if (Mathf.Abs(restNode.position.x - previousNode.position.x) <= 1)
+            List<MapNode> currentRow = rows[y];
+            List<MapNode> rowAbove = rows[y + 1];
+
+            foreach (var node in currentRow)
             {
-                previousNode.AddConnection(restNode);
+                // Connect to closest node above
+                MapNode closestAbove = GetClosestNode(node, rowAbove);
+                node.AddConnection(closestAbove);
             }
         }
 
-        // 4. Boss node (top)
-        MapNode bossNode = CreateNode(new Vector2Int(0, totalRows - 1), NodeType.Boss);
-        restNode.AddConnection(bossNode);
-        nodes.Add(bossNode);
+        // 3. Connect each node to at least one node below (except start)
+        for (int y = 1; y < rows.Count; y++) // Skip first row
+        {
+            List<MapNode> currentRow = rows[y];
+            List<MapNode> rowBelow = rows[y - 1];
+
+            foreach (var node in currentRow)
+            {
+                // Connect to closest node below
+                MapNode closestBelow = GetClosestNode(node, rowBelow);
+                closestBelow.AddConnection(node); // Reverse connection
+            }
+        }
 
         return nodes;
     }
 
+    private MapNode GetClosestNode(MapNode source, List<MapNode> targets)
+    {
+        MapNode closest = targets[0];
+        float minDist = Mathf.Abs(source.position.x - closest.position.x);
+
+        foreach (var node in targets)
+        {
+            float dist = Mathf.Abs(source.position.x - node.position.x);
+            if (dist < minDist)
+            {
+                minDist = dist;
+                closest = node;
+            }
+        }
+        return closest;
+    }
+
+    private int GetNodeCountForRow(int row)
+    {
+        // First and last two rows always have 1 node
+        return (row == 0 || row >= totalRows - 2) ? 1 : Random.Range(1, maxColumns + 1);
+    }
+
+    private int GetXPosition(int index, int nodeCount)
+    {
+        // Center nodes in their row
+        return nodeCount > 1 ? index - (nodeCount - 1) / 2 : 0;
+    }
+
+    private NodeType GetNodeTypeForRow(int row)
+    {
+        if (row == 0) return NodeType.MinorEnemy;
+        if (row == totalRows - 2) return NodeType.RestSite;
+        if (row == totalRows - 1) return NodeType.Boss;
+        return GetRandomNodeType();
+    }
+
     private NodeType GetRandomNodeType()
     {
-        // Never returns boss type for middle nodes
         float roll = Random.value;
         if (roll < 0.7f) return NodeType.MinorEnemy;
         if (roll < 0.9f) return NodeType.EliteEnemy;

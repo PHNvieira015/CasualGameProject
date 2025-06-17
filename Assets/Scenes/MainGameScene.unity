@@ -1629,6 +1629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalRows: 6
+  maxColumns: 4
   blueprintMappings:
   - type: 0
     blueprint: {fileID: 11400000, guid: bc0ad83e41bfb424e9df62fe51319434, type: 2}
@@ -7260,7 +7261,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1079641116}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.7128503
+  m_Size: 0.35642514
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
