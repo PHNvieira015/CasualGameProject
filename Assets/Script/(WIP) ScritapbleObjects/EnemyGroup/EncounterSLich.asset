@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00e002dbe7dac9f4dacf8328b76378f0, type: 3}
-  m_Name: Enemy1
+  m_Name: EncounterSLich
   m_EditorClassIdentifier: 
   groupName: Default Group
-  groupIcon: {fileID: 0}
   enemyPrefabs:
-  - {fileID: 4298939588376936765, guid: 6c0622d6f39320b41a3b3dbdc2b8a94b, type: 3}
+  - {fileID: 4298939588376936765, guid: 8d3f8eed71b6e5f4dbc01c8f4f95ce2e, type: 3}
   useCustomFormation: 0
   customPositions: []
