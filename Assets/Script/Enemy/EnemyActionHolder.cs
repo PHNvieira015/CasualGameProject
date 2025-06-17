@@ -11,9 +11,6 @@ public class EnemyActionHolder : MonoBehaviour
     [SerializeField] private List<GameObject> _cardPrefabs = new List<GameObject>();
     [SerializeField] private Transform _holder;
 
-    [Header("Display Settings")]
-    [SerializeField] private bool _showPreview = true;
-
     private List<Card> _actionCards = new List<Card>();
     private GameObject _activeDisplay;
     private bool _isInitialized;
@@ -53,14 +50,12 @@ public class EnemyActionHolder : MonoBehaviour
     {
         if (_holder == null) return;
 
-        // First pass: collect valid children
         var children = new List<GameObject>();
         foreach (Transform child in _holder)
         {
             if (child == null) continue;
 
 #if UNITY_EDITOR
-            // Skip if this is an asset (not a scene object)
             if (PrefabUtility.IsPartOfPrefabAsset(child.gameObject))
                 continue;
 #endif
@@ -68,7 +63,6 @@ public class EnemyActionHolder : MonoBehaviour
             children.Add(child.gameObject);
         }
 
-        // Second pass: destroy collected children
         foreach (var child in children)
         {
             if (child == null) continue;
@@ -80,7 +74,6 @@ public class EnemyActionHolder : MonoBehaviour
             else
             {
 #if UNITY_EDITOR
-                // Extra safety check in editor
                 if (!EditorUtility.IsPersistent(child) && child != null)
                 {
                     DestroyImmediate(child);
@@ -133,8 +126,7 @@ public class EnemyActionHolder : MonoBehaviour
     {
         if (_actionCards.Count == 0)
         {
-            if (_showPreview)
-                Debug.LogWarning($"{name}: No actions available", this);
+            Debug.LogWarning($"{name}: No actions available", this);
             return null;
         }
         return _actionCards[0];
@@ -162,8 +154,7 @@ public class EnemyActionHolder : MonoBehaviour
     {
         if (_actionCards.Count == 0)
         {
-            if (_showPreview)
-                Debug.Log($"{name}: No cards to display");
+            Debug.Log($"{name}: No cards to display");
             return;
         }
 
@@ -203,63 +194,8 @@ public class EnemyActionHolder : MonoBehaviour
         }
     }
 
-#if UNITY_EDITOR
-    private void OnValidate()
-    {
-        if (Application.isPlaying) return;
-        if (!_showPreview) return;
-
-        // Delay the preview creation to avoid OnValidate issues
-        EditorApplication.delayCall += CreateEditorPreview;
-    }
-
-    private void CreateEditorPreview()
-    {
-        if (this == null) return; // In case the object was destroyed
-
-        InitializeHolder();
-        CleanupStrayObjects();
-
-        if (_cardPrefabs == null || _cardPrefabs.Count == 0 || _cardPrefabs[0] == null)
-            return;
-
-        // Check if we already have a preview
-        bool hasPreview = false;
-        foreach (Transform child in _holder)
-        {
-            if (child != null && child.name.Contains("EDITOR_PREVIEW"))
-            {
-                hasPreview = true;
-                break;
-            }
-        }
-
-        if (!hasPreview)
-        {
-            GameObject preview = PrefabUtility.InstantiatePrefab(_cardPrefabs[0]) as GameObject;
-            if (preview != null)
-            {
-                preview.name = $"EDITOR_PREVIEW_{_cardPrefabs[0].name}";
-                preview.hideFlags = HideFlags.DontSave;
-
-                if (_holder != null)
-                {
-                    preview.transform.SetParent(_holder, false);
-                    ResetTransform(preview.transform);
-                }
-
-                var card = preview.GetComponent<Card>();
-                if (card != null) card.enabled = false;
-            }
-        }
-    }
-#endif
-
     private void OnDestroy()
     {
-#if UNITY_EDITOR
-        EditorApplication.delayCall -= CreateEditorPreview;
-#endif
         CleanupStrayObjects();
     }
 }

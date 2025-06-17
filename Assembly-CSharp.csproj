@@ -103,6 +103,7 @@
     <Compile Include="Assets\Script\(WIP) ScritapbleObjects\StatusEffect\IEffectable.cs" />
     <Compile Include="Assets\LeanTween\Testing\PerformanceTests.cs" />
     <Compile Include="Assets\Script\Cards\Playability\IPlayability.cs" />
+    <Compile Include="Assets\Script\(WIP) ScritapbleObjects\EnemyGroup\EnemyGroup.cs" />
     <Compile Include="Assets\Script\UI\HealthBar\HealthBar.cs" />
     <Compile Include="Assets\Script\UI\FloatingMessage\IInGameMessage.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTween.cs" />
@@ -149,6 +150,7 @@
     <Compile Include="Assets\Script\Menu\MenuController.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTDescrOptional.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingIssue.cs" />
+    <Compile Include="Assets\Script\EncounterManager\EventManager.cs" />
     <Compile Include="Assets\Script\Cards\CardsEffects\DamageEffect.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingOptionalCancel.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTDescr.cs" />

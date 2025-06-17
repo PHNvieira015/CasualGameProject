@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Store
   m_EditorClassIdentifier: 
   sprite: {fileID: 3940817257054737295, guid: 737c4b9eea0789247b3d06824d5f8d46, type: 3}
-  nodeType: 4
+  nodeType: 5
   color: {r: 0.28235295, g: 0.12941177, b: 0.05882353, a: 1}

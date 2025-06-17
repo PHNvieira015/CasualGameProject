@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class MapGenerator : MonoBehaviour
 {
@@ -10,77 +10,83 @@ public class MapGenerator : MonoBehaviour
         public NodeBlueprint blueprint;
     }
 
-    [Header("Dimensions")]
-    [SerializeField] private int totalRows = 6;
-    [SerializeField] private int maxWidth = 5;
-
-    [Header("Node Blueprints")]
+    [Header("Settings")]
+    [SerializeField] private int totalRows = 5; // Minimum 3 rows
+    [SerializeField] private int maxColumns = 3; // Maximum nodes per row
     [SerializeField] private List<NodeBlueprintMapping> blueprintMappings = new List<NodeBlueprintMapping>();
-
-    [Header("Generation Settings")]
-    [SerializeField, Range(0.1f, 0.9f)] private float nodeSpawnChance = 0.6f;
 
     public List<MapNode> GenerateMap()
     {
         List<MapNode> nodes = new List<MapNode>();
-        MapNode startNode = CreateNode(Vector2Int.zero, NodeType.MinorEnemy);
-        nodes.Add(startNode);
+        List<MapNode> previousRowNodes = new List<MapNode>();
 
-        for (int y = 1; y < totalRows; y++)
+        // 1. Start at bottom (row 0)
+        MapNode startNode = CreateNode(new Vector2Int(0, 0), NodeType.MinorEnemy);
+        nodes.Add(startNode);
+        previousRowNodes.Add(startNode);
+
+        // 2. Random middle rows
+        for (int y = 1; y < totalRows - 2; y++)
         {
-            int nodesThisRow = GetNodesCountForRow(y);
-            List<MapNode> currentRow = CreateRow(y, nodesThisRow);
-            ConnectRows(nodes, currentRow, y);
-            nodes.AddRange(currentRow);
+            int nodesInThisRow = Random.Range(1, maxColumns + 1);
+            List<MapNode> currentRowNodes = new List<MapNode>();
+
+            // Create nodes for this row
+            for (int x = 0; x < nodesInThisRow; x++)
+            {
+                // Center the nodes by offsetting based on count
+                int xOffset = x - nodesInThisRow / 2;
+                MapNode newNode = CreateNode(new Vector2Int(xOffset, y), GetRandomNodeType());
+                nodes.Add(newNode);
+                currentRowNodes.Add(newNode);
+            }
+
+            // Connect to previous row
+            foreach (var previousNode in previousRowNodes)
+            {
+                // Connect each previous node to all nodes in current row (or implement smarter connection logic)
+                foreach (var currentNode in currentRowNodes)
+                {
+                    // Simple connection logic - connect if roughly above or nearby
+                    if (Mathf.Abs(currentNode.position.x - previousNode.position.x) <= 1)
+                    {
+                        previousNode.AddConnection(currentNode);
+                    }
+                }
+            }
+
+            previousRowNodes = currentRowNodes;
         }
+
+        // 3. Rest node (second from top)
+        int restRow = totalRows - 2;
+        MapNode restNode = CreateNode(new Vector2Int(0, restRow), NodeType.RestSite);
+        nodes.Add(restNode);
+
+        // Connect to previous row
+        foreach (var previousNode in previousRowNodes)
+        {
+            if (Mathf.Abs(restNode.position.x - previousNode.position.x) <= 1)
+            {
+                previousNode.AddConnection(restNode);
+            }
+        }
+
+        // 4. Boss node (top)
+        MapNode bossNode = CreateNode(new Vector2Int(0, totalRows - 1), NodeType.Boss);
+        restNode.AddConnection(bossNode);
+        nodes.Add(bossNode);
 
         return nodes;
     }
 
-    public int GetMapColumns() => maxWidth;
-
-    private int GetNodesCountForRow(int y)
+    private NodeType GetRandomNodeType()
     {
-        if (y == totalRows - 1) return 1; // Boss row
-        return Random.Range(1, maxWidth + 1);
-    }
-
-    private List<MapNode> CreateRow(int y, int count)
-    {
-        List<MapNode> row = new List<MapNode>();
-        for (int i = 0; i < count; i++)
-        {
-            Vector2Int pos = new Vector2Int(CalculateXOffset(i, count), y);
-            row.Add(CreateNode(pos, GetNodeTypeForPosition(y)));
-        }
-        return row;
-    }
-
-    private int CalculateXOffset(int index, int totalNodes)
-    {
-        if (totalNodes == 1) return 0;
-        return index - (totalNodes - 1) / 2;
-    }
-
-    private NodeType GetNodeTypeForPosition(int y)
-    {
-        if (y == totalRows - 1) return NodeType.Boss;
-        if (y == totalRows - 2) return NodeType.RestSite;
-
+        // Never returns boss type for middle nodes
         float roll = Random.value;
-        if (roll < 0.5f) return NodeType.MinorEnemy;
-        if (roll < 0.7f) return NodeType.Event;
-        if (roll < 0.8f) return NodeType.EliteEnemy;
-        if (roll < 0.9f) return NodeType.Store;
+        if (roll < 0.7f) return NodeType.MinorEnemy;
+        if (roll < 0.9f) return NodeType.EliteEnemy;
         return NodeType.Treasure;
-    }
-
-    private NodeBlueprint GetBlueprintForType(NodeType type)
-    {
-        foreach (var mapping in blueprintMappings)
-            if (mapping.type == type)
-                return mapping.blueprint;
-        return null;
     }
 
     private MapNode CreateNode(Vector2Int pos, NodeType type)
@@ -89,23 +95,15 @@ public class MapGenerator : MonoBehaviour
         {
             position = pos,
             nodeBlueprint = GetBlueprintForType(type),
-            isActive = true,
-            isBossNode = (type == NodeType.Boss),
-            isRestNode = (type == NodeType.RestSite)
+            isActive = true
         };
     }
 
-    private void ConnectRows(List<MapNode> allNodes, List<MapNode> currentRow, int currentY)
+    private NodeBlueprint GetBlueprintForType(NodeType type)
     {
-        foreach (var node in currentRow)
-        {
-            foreach (var prevNode in allNodes.FindAll(n => n.position.y == currentY - 1))
-            {
-                if (Mathf.Abs(prevNode.position.x - node.position.x) <= 1)
-                {
-                    prevNode.AddConnection(node);
-                }
-            }
-        }
+        foreach (var mapping in blueprintMappings)
+            if (mapping.type == type)
+                return mapping.blueprint;
+        return null;
     }
 }

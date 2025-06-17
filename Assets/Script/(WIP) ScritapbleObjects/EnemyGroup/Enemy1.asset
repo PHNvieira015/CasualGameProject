@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 380265d2191ee72458d832f7a0dde78c, type: 3}
-  m_Name: Treasure
+  m_Script: {fileID: 11500000, guid: 00e002dbe7dac9f4dacf8328b76378f0, type: 3}
+  m_Name: Enemy1
   m_EditorClassIdentifier: 
-  sprite: {fileID: 382351305677605029, guid: 52d4710e5d64da7439122625f858cdaf, type: 3}
-  nodeType: 4
-  color: {r: 1, g: 0.9831022, b: 0, a: 1}
+  groupName: Default Group
+  groupIcon: {fileID: 0}
+  enemyPrefabs:
+  - {fileID: 4298939588376936765, guid: 6c0622d6f39320b41a3b3dbdc2b8a94b, type: 3}
+  useCustomFormation: 0
+  customPositions: []

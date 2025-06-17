@@ -23,7 +23,8 @@ public class MenuController : MonoBehaviour
         DeckGallery,
         DiscardPile,
         DrawPile,
-        
+        RestSite,
+        Shop
     }
 
     [Header("Screen References")]

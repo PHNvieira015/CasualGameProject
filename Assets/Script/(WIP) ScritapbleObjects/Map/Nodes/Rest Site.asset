@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Rest Site
   m_EditorClassIdentifier: 
   sprite: {fileID: 2088554613971598097, guid: 7d0e5d2f14bdb9f48967659eb3dad7fe, type: 3}
-  nodeType: 2
+  nodeType: 3
   color: {r: 0.9811321, g: 0.55090684, b: 0, a: 1}

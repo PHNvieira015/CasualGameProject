@@ -11,49 +11,39 @@ public class GameMapManager : MonoBehaviour
     private List<MapNode> currentMap;
     private MapNode currentNode;
 
-    private void Start()
-    {
-        GenerateNewMap();
-    }
+    private void Start() => GenerateNewMap();
 
     public void GenerateNewMap()
     {
         currentMap = mapGenerator.GenerateMap();
         mapVisualizer.VisualizeMap(currentMap);
-
-        // Set starting node (bottom center)
-        int startX = 0;
-        currentNode = currentMap.Find(n => n.position == new Vector2Int(startX, 0));
-
-        UpdateNavigation();
+        currentNode = currentMap.Find(n => n.position == Vector2Int.zero);
+        UpdateNodeStates();
     }
 
     public void OnNodeClicked(MapNode node)
     {
-        if (currentNode != null && currentNode.ConnectedNodes.Contains(node))
+        if (IsValidNodeSelection(node))
         {
             currentNode = node;
-            UpdateNavigation();
-            HandleNodeType(node.NodeType);
+            UpdateNodeStates();
+            EventManager.Instance.HandleNodeEvent(node.nodeBlueprint.nodeType);  // Changed to nodeType
         }
     }
 
-    private void UpdateNavigation()
+    private bool IsValidNodeSelection(MapNode node)
+    {
+        return currentNode != null &&
+               currentNode.ConnectedNodes.Contains(node);
+    }
+
+    private void UpdateNodeStates()
     {
         foreach (var node in currentMap)
         {
-            bool isSelectable = currentNode != null && currentNode.ConnectedNodes.Contains(node);
+            bool isSelectable = IsValidNodeSelection(node);
             mapVisualizer.SetNodeSelectable(node, isSelectable);
         }
-
-        if (currentNode != null)
-        {
-            mapVisualizer.SetNodeSelected(currentNode, true);
-        }
-    }
-
-    private void HandleNodeType(NodeType nodeType)
-    {
-        Debug.Log($"Handling node type: {nodeType}");
+        mapVisualizer.SetNodeSelected(currentNode, true);
     }
 }

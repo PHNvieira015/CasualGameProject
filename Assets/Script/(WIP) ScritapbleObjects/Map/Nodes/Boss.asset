@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Boss
   m_EditorClassIdentifier: 
   sprite: {fileID: -5502413125999630345, guid: 3b72d56c95c16594f9cb2a7824f4d530, type: 3}
-  nodeType: 5
+  nodeType: 2
   color: {r: 0.03773582, g: 0.03773582, b: 0.03773582, a: 1}

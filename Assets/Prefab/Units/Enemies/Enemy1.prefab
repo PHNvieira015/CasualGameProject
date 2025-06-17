@@ -59,7 +59,7 @@ PrefabInstance:
     - target: {fileID: 3624331164698894270, guid: ee659814748b79043a949e85501c8a13, type: 3}
       propertyPath: '_cardPrefabs.Array.data[0]'
       value: 
-      objectReference: {fileID: 8248958417020047267, guid: cd6f69056366fdc41bd9f705570c7e6c, type: 3}
+      objectReference: {fileID: 8248958417020047267, guid: 7a6ac10cfee60cd49b28013f3dfa4a9f, type: 3}
     - target: {fileID: 3624331164698894270, guid: ee659814748b79043a949e85501c8a13, type: 3}
       propertyPath: '_cardPrefabs.Array.data[1]'
       value: 
