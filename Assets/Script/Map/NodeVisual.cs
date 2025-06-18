@@ -28,7 +28,7 @@ public class NodeVisual : MonoBehaviour, IPointerClickHandler
     {
         nodeImage = GetComponent<Image>();
         originalScale = transform.localScale;
-        originalColor = nodeImage.color;
+        originalColor = nodeImage != null ? nodeImage.color : Color.white;
 
         if (selectionCircle != null)
             selectionCircle.SetActive(false);
@@ -36,10 +36,16 @@ public class NodeVisual : MonoBehaviour, IPointerClickHandler
 
     public void Setup(MapNode node, bool isSelectable)
     {
+        if (!gameObject.activeSelf)
+            gameObject.SetActive(true);
+
         this.node = node;
         this.isSelectable = isSelectable;
 
-        if (node?.nodeBlueprint != null)
+        if (nodeImage == null)
+            nodeImage = GetComponent<Image>();
+
+        if (node?.nodeBlueprint != null && nodeImage != null)
         {
             nodeImage.sprite = node.nodeBlueprint.sprite;
             nodeImage.color = originalColor = node.nodeBlueprint.color;
@@ -51,9 +57,12 @@ public class NodeVisual : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (isSelectable)
+        if (isSelectable && node != null)
         {
-            FindObjectOfType<GameMapManager>()?.OnNodeClicked(node);
+            var manager = FindObjectOfType<GameMapManager>();
+            if (manager != null)
+                manager.OnNodeClicked(node);
+
             PlayClickAnimation();
         }
     }
@@ -62,12 +71,12 @@ public class NodeVisual : MonoBehaviour, IPointerClickHandler
     {
         isSelectable = selectable;
 
-        if (node != null)
-        {
-            nodeImage.color = originalColor * (selectable ?
-                selectableColorModifier :
-                unselectableColorModifier);
-        }
+        if (nodeImage == null)
+            return;
+
+        nodeImage.color = originalColor * (selectable ?
+            selectableColorModifier :
+            unselectableColorModifier);
 
         if (selectable)
         {
@@ -89,7 +98,10 @@ public class NodeVisual : MonoBehaviour, IPointerClickHandler
     {
         StopHighlightAnimation();
 
-        float duration = 1f / highlightPulseSpeed; // Convert speed to duration
+        if (!gameObject.activeInHierarchy)
+            return;
+
+        float duration = 1f / highlightPulseSpeed;
 
         highlightSequence = DOTween.Sequence()
             .Append(transform.DOScale(originalScale * highlightScaleAmount, duration / 2))
@@ -98,20 +110,35 @@ public class NodeVisual : MonoBehaviour, IPointerClickHandler
             .SetEase(Ease.InOutSine);
     }
 
-    private void StopHighlightAnimation()
+    // Changed from private to public
+    public void StopHighlightAnimation()
     {
-        highlightSequence?.Kill();
-        transform.localScale = originalScale;
+        if (highlightSequence != null)
+        {
+            highlightSequence.Kill();
+            highlightSequence = null;
+        }
+
+        if (this != null && transform != null)
+            transform.localScale = originalScale;
     }
 
     private void PlayClickAnimation()
     {
+        if (!gameObject.activeInHierarchy)
+            return;
+
         transform.DOPunchScale(
             Vector3.one * clickPunchStrength,
             clickAnimationDuration,
             vibrato: 1,
             elasticity: 0.5f
         );
+    }
+
+    private void OnDisable()
+    {
+        StopHighlightAnimation();
     }
 
     private void OnDestroy()

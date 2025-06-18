@@ -6,7 +6,7 @@ public class TargetAllEnemies : MonoBehaviour, ITarget
 {
     public IEnumerator GetTargets(List<object> targets)
     {
-        GameObject enemiesGameObject = GameObject.Find("Units/EnemyUnits");
+        GameObject enemiesGameObject = GameObject.Find("Units/Encounter");
         foreach (Unit unit in enemiesGameObject.GetComponentsInChildren<Unit>())
         {
             if (unit.GetStatValue(StatType.HP) > 0)
