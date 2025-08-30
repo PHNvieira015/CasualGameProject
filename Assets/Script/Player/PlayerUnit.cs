@@ -1,10 +1,10 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class PlayerUnit : Unit
 {
+    [Header("Energy Settings")]
     public int MaxEnergy;
 
     private int _currentEnergy;
@@ -18,57 +18,39 @@ public class PlayerUnit : Unit
         }
     }
 
+    [Header("Card Settings")]
     public int DrawAmount;
     public int MaxCards;
 
-    private TextMeshProUGUI _energyMeter;
-    private bool _energyMeterInitialized = false;
+    [Header("UI References")]
+    [SerializeField] private TextMeshProUGUI _energyMeter;
 
     protected override void Awake()
     {
         base.Awake();
-        InitializeEnergyMeter();
-    }
 
-    private void InitializeEnergyMeter()
-    {
-        GameObject energyMeterObj = GameObject.Find("Canvas/EnergyMeter");
-        if (energyMeterObj != null)
+        if (_energyMeter == null)
         {
-            _energyMeter = energyMeterObj.GetComponent<TextMeshProUGUI>();
-            _energyMeterInitialized = (_energyMeter != null);
-        }
-
-        if (!_energyMeterInitialized)
-        {
-            Debug.LogWarning("Energy meter not initialized - creating fallback");
-            CreateFallbackEnergyMeter();
+            Debug.LogError("Energy Meter is not assigned in the Inspector!", this);
         }
     }
 
-    private void CreateFallbackEnergyMeter()
+    private void UpdateEnergyMeter()
     {
-        GameObject meterObj = new GameObject("FallbackEnergyMeter");
-        meterObj.transform.SetParent(GameObject.Find("Canvas")?.transform);
-        _energyMeter = meterObj.AddComponent<TextMeshProUGUI>();
-        _energyMeterInitialized = true;
-    }
-
-    void UpdateEnergyMeter()
-    {
-        if (!_energyMeterInitialized) return;
-
-        _energyMeter.text = $"{CurrentEnergy}/{MaxEnergy}";
+        if (_energyMeter != null)
+        {
+            _energyMeter.text = $"{CurrentEnergy}/{MaxEnergy}";
+        }
     }
 
     public override IEnumerator Recover()
     {
         yield return StartCoroutine(base.Recover());
 
-        // Set energy after recovery completes
+        // Restore energy to full
         CurrentEnergy = MaxEnergy;
 
-        // Draw cards
+        // Draw cards (but don’t exceed hand limit)
         int cardsToDraw = Mathf.Min(MaxCards - CardsController.Instance.Hand.Cards.Count, DrawAmount);
         if (cardsToDraw > 0)
         {
