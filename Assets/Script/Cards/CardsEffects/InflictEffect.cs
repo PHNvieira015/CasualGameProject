@@ -6,11 +6,34 @@ public class InflictEffect : CardEffect
 {
     public StatusEffect StatusEffectPrefab;
     public int AppliesXTimes;
+
     public override IEnumerator Apply(List<object> targets)
     {
-        foreach (Object o in targets)
+        foreach (object target in targets)
         {
-            Unit unit = o as Unit;
+            // Check if the target is null or has been destroyed
+            if (target == null)
+            {
+                Debug.LogWarning("Attempted to apply effect to null target");
+                continue;
+            }
+
+            Unit unit = target as Unit;
+
+            // Check if the unit reference is valid and not destroyed
+            if (unit == null)
+            {
+                Debug.LogWarning("Target is not a Unit or is null");
+                continue;
+            }
+
+            // Additional check to see if the GameObject has been destroyed
+            if (unit.gameObject == null)
+            {
+                Debug.LogWarning("Attempted to apply effect to destroyed Unit");
+                continue;
+            }
+
             for (int i = 0; i < AppliesXTimes; i++)
             {
                 TryToApply(unit);
@@ -19,8 +42,16 @@ public class InflictEffect : CardEffect
             yield return null;
         }
     }
+
     void TryToApply(Unit unit)
     {
+        // Double-check unit is still valid before applying effect
+        if (unit == null || unit.gameObject == null)
+        {
+            Debug.LogWarning("Cannot apply effect - Unit is null or destroyed");
+            return;
+        }
+
         StatusEffect status = GetEffect(unit);
         if (status == null)
         {
@@ -38,10 +69,17 @@ public class InflictEffect : CardEffect
             }
         }
     }
+
     StatusEffect GetEffect(Unit unit)
     {
+        // Check if unit is still valid before accessing its components
+        if (unit == null || unit.gameObject == null)
+            return null;
+
         foreach (StatusEffect status in unit.GetComponentsInChildren<StatusEffect>())
         {
+            if (status == null) continue;
+
             if (status.name == StatusEffectPrefab.name)
             {
                 return status;
@@ -49,8 +87,13 @@ public class InflictEffect : CardEffect
         }
         return null;
     }
+
     StatusEffect CreateEffect(Unit unit)
     {
+        // Final safety check before instantiating
+        if (unit == null || unit.gameObject == null)
+            return null;
+
         StatusEffect instantiated = Instantiate(StatusEffectPrefab, Vector3.zero, Quaternion.identity, unit.transform);
         instantiated.name = StatusEffectPrefab.name;
         return instantiated;
