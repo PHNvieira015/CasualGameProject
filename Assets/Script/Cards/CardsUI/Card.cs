@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+
 public class Card : MonoBehaviour
 {
     #region Properties/Fields
@@ -24,7 +25,7 @@ public class Card : MonoBehaviour
     }
     private void Update()
     {
-        if (_rect.rotation.eulerAngles.y> 90 && _rect.rotation.eulerAngles.y < 270)
+        if (_rect.rotation.eulerAngles.y > 90 && _rect.rotation.eulerAngles.y < 270)
         {
             _back.SetAsLastSibling();
         }
@@ -59,18 +60,33 @@ public class Card : MonoBehaviour
 
     public bool CanPlay()
     {
-       if(StateMachine.Instance.Current.GetType() != typeof(PlayCardsState)
-       && StateMachine.Instance.CurrentUnit.GetType() != typeof(PlayerUnit))
-        {
+        // Add comprehensive null and state checks
+        if (StateMachine.Instance == null)
             return false;
-        }
-       foreach(IPlayability playability in GetComponents<IPlayability>())
+
+        if (StateMachine.Instance.Current == null)
+            return false;
+
+        if (StateMachine.Instance.CurrentUnit == null)
+            return false;
+
+        // Check if we're in the correct state for playing cards
+        if (StateMachine.Instance.Current.GetType() != typeof(PlayCardsState))
+            return false;
+
+        // Check if the current unit is a player unit
+        if (StateMachine.Instance.CurrentUnit.GetType() != typeof(PlayerUnit))
+            return false;
+
+        // Check playability conditions
+        foreach (IPlayability playability in GetComponents<IPlayability>())
         {
             if (!playability.CanPlay())
             {
                 return false;
             }
         }
+
         return true;
     }
 

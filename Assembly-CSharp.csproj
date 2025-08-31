@@ -122,6 +122,7 @@
     <Compile Include="Assets\Script\Map\MapNode.cs" />
     <Compile Include="Assets\Script\CardReward\CardRewardSystem.cs" />
     <Compile Include="Assets\Script\Cards\CardsUI\CardsController.cs" />
+    <Compile Include="Assets\Script\StateMachine\States\RewardState.cs" />
     <Compile Include="Assets\Script\Modifiers\ModifiedValues.cs" />
     <Compile Include="Assets\Script\Map\GameMapManager.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplineTrack.cs" />

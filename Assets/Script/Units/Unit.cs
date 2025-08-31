@@ -113,6 +113,11 @@ public class Unit : MonoBehaviour, IPointerClickHandler
         if (IsHealthStat(type))
         {
             UpdateHealthBar();
+
+            if (type == StatType.HP && value <= 0)
+            {
+                DestroyUnit();
+            }
         }
         else if (type == StatType.Block)
         {
@@ -265,6 +270,50 @@ public class Unit : MonoBehaviour, IPointerClickHandler
                 oldValue, newValue, change,
                 StatType.Block, false
             ));
+        }
+    }
+    private void DestroyUnit()
+    {
+        // Trigger any death events or animations first
+        StartCoroutine(DeathSequence());
+    }
+
+    private IEnumerator DeathSequence()
+    {
+        // Optional: Play death animation
+        // GetComponent<Animator>()?.SetTrigger("Die");
+
+        // Optional: Wait for animation to complete
+        // yield return new WaitForSeconds(1f);
+
+        // Optional: Fade out or other effects
+        // yield return StartCoroutine(FadeOut());
+
+        Debug.Log($"{gameObject.name} has died");
+
+        // Destroy the object
+        Destroy(gameObject);
+
+        yield return null;
+    }
+
+    private IEnumerator FadeOut()
+    {
+        // Example fade out effect
+        Renderer renderer = GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            float fadeTime = 0.5f;
+            float elapsed = 0f;
+            Color originalColor = renderer.material.color;
+
+            while (elapsed < fadeTime)
+            {
+                elapsed += Time.deltaTime;
+                float alpha = Mathf.Lerp(1f, 0f, elapsed / fadeTime);
+                renderer.material.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
+                yield return null;
+            }
         }
     }
 }
