@@ -69,7 +69,7 @@ public class EncounterManager : MonoBehaviour
         // Handle single enemy case
         if (total <= 1)
         {
-            return new Vector3(0, 0, spawnArea.y / 2);
+            return new Vector3(3, 0, spawnArea.y / 2);
         }
 
         // Prevent division by zero in Lerp
