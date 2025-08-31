@@ -54,17 +54,32 @@ public class GameMapManager : MonoBehaviour
                 case NodeType.MinorEnemy:
                 case NodeType.EliteEnemy:
                 case NodeType.Boss:
-                    // Use LoadState or whatever battle state you have
+                    // Hide map screen and change to battle state
+                    if (MenuController.Instance != null)
+                    {
+                        MenuController.Instance.SetScreenActive(MenuController.Screens.MapMenu, false);
+                    }
                     StateMachine.Instance.ChangeState<LoadState>();
                     break;
 
                 case NodeType.RestSite:
-                    // Change to appropriate state for rest sites
+                    // Hide map screen and handle rest site
+                    if (MenuController.Instance != null)
+                    {
+                        MenuController.Instance.SetScreenActive(MenuController.Screens.MapMenu, false);
+                        MenuController.Instance.SetScreenActive(MenuController.Screens.RestSite, true);
+                    }
                     Debug.Log("Rest site clicked - implement rest state logic");
                     break;
 
                 case NodeType.Treasure:
-                    // Change to appropriate state for treasure
+                    // Hide map screen and handle treasure
+                    if (MenuController.Instance != null)
+                    {
+                        MenuController.Instance.SetScreenActive(MenuController.Screens.MapMenu, false);
+                        // You might want to show a treasure screen or go directly to reward
+                        StateMachine.Instance.ShowRewardScreen();
+                    }
                     Debug.Log("Treasure clicked - implement treasure state logic");
                     break;
 
