@@ -47,6 +47,31 @@ public class GameMapManager : MonoBehaviour
         if (node.nodeBlueprint != null)
         {
             EventManager.Instance?.HandleNodeEvent(node.nodeBlueprint.nodeType);
+
+            // Change state based on node type using your existing states
+            switch (node.nodeBlueprint.nodeType)
+            {
+                case NodeType.MinorEnemy:
+                case NodeType.EliteEnemy:
+                case NodeType.Boss:
+                    // Use LoadState or whatever battle state you have
+                    StateMachine.Instance.ChangeState<LoadState>();
+                    break;
+
+                case NodeType.RestSite:
+                    // Change to appropriate state for rest sites
+                    Debug.Log("Rest site clicked - implement rest state logic");
+                    break;
+
+                case NodeType.Treasure:
+                    // Change to appropriate state for treasure
+                    Debug.Log("Treasure clicked - implement treasure state logic");
+                    break;
+
+                default:
+                    Debug.LogWarning($"Unhandled node type: {node.nodeBlueprint.nodeType}");
+                    break;
+            }
         }
     }
 

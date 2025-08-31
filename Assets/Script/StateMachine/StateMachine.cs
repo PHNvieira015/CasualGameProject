@@ -44,7 +44,7 @@ public class StateMachine : MonoBehaviour
 
     void Start()
     {
-        ChangeState<LoadState>();
+    //    ChangeState<LoadState>();
     }
 
     private void InitializeUI()
