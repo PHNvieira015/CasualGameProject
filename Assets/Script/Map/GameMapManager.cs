@@ -40,7 +40,6 @@ public class GameMapManager : MonoBehaviour
     public void OnNodeClicked(MapNode node)
     {
         if (node == null || !IsValidNodeSelection(node)) return;
-
         currentNode = node;
         UpdateNodeStates();
 
@@ -54,10 +53,11 @@ public class GameMapManager : MonoBehaviour
                 case NodeType.MinorEnemy:
                 case NodeType.EliteEnemy:
                 case NodeType.Boss:
-                    // Hide map screen and change to battle state
+                    // Hide map screen and show combat screen
                     if (MenuController.Instance != null)
                     {
                         MenuController.Instance.SetScreenActive(MenuController.Screens.MapMenu, false);
+                        MenuController.Instance.SetScreenActive(MenuController.Screens.CombatMenu, true); // Add this line
                     }
                     StateMachine.Instance.ChangeState<LoadState>();
                     break;

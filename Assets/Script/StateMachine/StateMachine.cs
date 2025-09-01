@@ -44,7 +44,7 @@ public class StateMachine : MonoBehaviour
 
     void Start()
     {
-    //    ChangeState<LoadState>();
+        //    ChangeState<LoadState>();
     }
 
     private void InitializeUI()
@@ -130,5 +130,40 @@ public class StateMachine : MonoBehaviour
         if (_rewardScreenUI != null)
             _rewardScreenUI.SetActive(!showBattleUI);
     }
+    #endregion
+
+    #region Cleanup Methods
+    public void ClearAllStates()
+    {
+        // Clear the current state reference
+        _current = null;
+
+        // Remove all State components from this GameObject
+        State[] states = GetComponents<State>();
+        foreach (State state in states)
+        {
+            Destroy(state);
+        }
+
+        Debug.Log("All state components cleared from StateMachine");
+    }
+
+    public void ResetStateMachine()
+    {
+        // Clear all states
+        ClearAllStates();
+
+        // Clear queues
+        CardsdToPlay.Clear();
+        Units.Clear();
+        CurrentUnit = null;
+        CurrentUnitProperty = null;
+
+        // Reset UI to initial state
+        InitializeUI();
+
+        Debug.Log("StateMachine fully reset");
+    }
+
     #endregion
 }
