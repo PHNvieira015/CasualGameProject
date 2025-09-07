@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq; // Added this using directive
+using System.Linq;
 
 public class GameMapManager : MonoBehaviour
 {
@@ -53,11 +53,14 @@ public class GameMapManager : MonoBehaviour
                 case NodeType.MinorEnemy:
                 case NodeType.EliteEnemy:
                 case NodeType.Boss:
+                    // Clear all card holders before starting new battle
+                    ClearAllCardHolders();
+
                     // Hide map screen and show combat screen
                     if (MenuController.Instance != null)
                     {
                         MenuController.Instance.SetScreenActive(MenuController.Screens.MapMenu, false);
-                        MenuController.Instance.SetScreenActive(MenuController.Screens.CombatMenu, true); // Add this line
+                        MenuController.Instance.SetScreenActive(MenuController.Screens.CombatMenu, true);
                     }
                     StateMachine.Instance.ChangeState<LoadState>();
                     break;
@@ -88,6 +91,12 @@ public class GameMapManager : MonoBehaviour
                     break;
             }
         }
+    }
+
+    private void ClearAllCardHolders()
+    {
+        // Use the static method to clear all card holders
+        CardHolder.ClearAllHolders();
     }
 
     private bool IsValidNodeSelection(MapNode node)
