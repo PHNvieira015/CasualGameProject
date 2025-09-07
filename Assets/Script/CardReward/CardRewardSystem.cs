@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class CardRewardSystem : MonoBehaviour
 {
@@ -20,11 +23,10 @@ public class CardRewardSystem : MonoBehaviour
         rewardSlots = slotsParent.GetComponentsInChildren<CardRewardSlot>(true).ToList();
         rewardUI.SetActive(false);
 
-        // Validate that we're using prefab assets, not scene instances
+        // Validate that we're using proper prefab assets, not scene instances
         ValidatePrefabReferences();
     }
 
-    // This method checks if we're using proper prefab assets
     private void ValidatePrefabReferences()
     {
         List<Card> validPrefabs = new List<Card>();
@@ -33,7 +35,6 @@ public class CardRewardSystem : MonoBehaviour
         {
             if (card != null)
             {
-                // Check if this is a prefab asset (not a scene instance)
                 if (IsPrefabAsset(card))
                 {
                     validPrefabs.Add(card);
@@ -53,10 +54,8 @@ public class CardRewardSystem : MonoBehaviour
         }
     }
 
-    // Helper method to check if an object is a prefab asset
     private bool IsPrefabAsset(Card card)
     {
-        // Prefab assets won't have a scene (they exist outside scenes)
         return card.gameObject.scene.name == null;
     }
 
@@ -81,19 +80,26 @@ public class CardRewardSystem : MonoBehaviour
     {
         if (cardPrefab == null)
         {
-            Debug.LogError("Cannot instantiate null card prefab!");
+            Debug.LogError("Cannot add null card prefab!");
             HideRewards();
             return;
         }
 
-        // Instantiate from the prefab asset
-        Card newCard = Instantiate(cardPrefab);
+        // CREATE A NEW INSTANCE OF THE CARD (but don't activate it yet)
+        Card newCardInstance = Instantiate(cardPrefab);
 
-        if (newCard != null)
+        if (newCardInstance != null)
         {
-            playerDeck.Cards.Add(newCard);
-            newCard.gameObject.SetActive(false);
-            Debug.Log($"Added {newCard.name} to player deck");
+            // Set the card to inactive - it will be activated when drawn from the deck
+            newCardInstance.gameObject.SetActive(false);
+
+            // Add the INSTANCE to the deck, not the prefab
+            playerDeck.Cards.Add(newCardInstance);
+            Debug.Log($"Added new instance of {cardPrefab.name} to player deck");
+        }
+        else
+        {
+            Debug.LogError("Failed to instantiate card!");
         }
 
         HideRewards();
@@ -140,13 +146,11 @@ public class CardRewardSystem : MonoBehaviour
         cardPrefabs.RemoveAll(prefab => prefab == null);
     }
 
-    // Editor method to help with setup (call this from editor scripts if needed)
 #if UNITY_EDITOR
     public void FindAllCardPrefabsInProject()
     {
         RemoveNullPrefabs();
 
-        // Find all Card prefabs in the project
         string[] guids = UnityEditor.AssetDatabase.FindAssets("t:Prefab");
         foreach (string guid in guids)
         {

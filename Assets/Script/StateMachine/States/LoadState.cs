@@ -13,12 +13,33 @@ public class LoadState : State
     }
     IEnumerator InitializeDeck()
     {
-        foreach (Card card in CardsController.Instance.PlayerDeck.Cards)
+        // Clear the draw pile first
+        if (CardsController.Instance != null)
         {
-            Card newCard = Instantiate(card, Vector3.zero, Quaternion.identity, CardsController.Instance.DrawPile.Holder);
-            CardsController.Instance.DrawPile.AddCard(newCard);
+            CardsController.Instance.DrawPile.ClearCards();
         }
-        yield return new WaitForSeconds(CardHolder.CardMoveDuration);  
+
+        // Ensure player deck is initialized
+        CardsController.Instance.PlayerDeck.CleanupNullCards();
+
+        // Get all valid cards from player's deck
+        List<Card> playerCards = CardsController.Instance.PlayerDeck.GetActiveCards();
+
+        Debug.Log($"Initializing deck with {playerCards.Count} cards");
+
+        // Add each card to the draw pile
+        foreach (Card card in playerCards)
+        {
+            if (card != null && card.gameObject != null)
+            {
+                // ACTIVATE THE CARD FIRST before adding to draw pile
+                card.gameObject.SetActive(true);
+                CardsController.Instance.DrawPile.AddCard(card);
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
+
+        yield return new WaitForSeconds(CardHolder.CardMoveDuration);
         CardsController.Instance.DrawPile.SetInitialRotation();
     }
     IEnumerator InitializeUnits()
