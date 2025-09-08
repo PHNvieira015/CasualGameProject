@@ -49,13 +49,53 @@ public class Card : MonoBehaviour
     }
     public void Rotate(float amount, float duration)
     {
-        if (LeanTween.isTweening(this.gameObject) && LeanTween.isTweening(_rotationTween))
+        // Comprehensive null checking
+        if (this == null)
+        {
+            Debug.LogError("Card.Rotate: 'this' is null!");
+            return;
+        }
+
+        if (gameObject == null)
+        {
+            Debug.LogError("Card.Rotate: gameObject is null!");
+            return;
+        }
+
+        if (!gameObject.activeInHierarchy)
+        {
+            Debug.LogError($"Card.Rotate: GameObject {gameObject.name} is not active!");
+            return;
+        }
+
+        // Ensure RectTransform is available
+        if (_rect == null)
+        {
+            Debug.LogWarning("Card.Rotate: _rect is null, trying to get component...");
+            _rect = GetComponent<RectTransform>();
+
+            if (_rect == null)
+            {
+                Debug.LogError("Card.Rotate: RectTransform component not found!");
+                return;
+            }
+        }
+
+        // Additional check - is the RectTransform valid?
+        if (_rect == null)
+        {
+            Debug.LogError("Card.Rotate: RectTransform is still null after initialization!");
+            return;
+        }
+
+        // Cancel existing tween if any
+        if (LeanTween.isTweening(gameObject) && LeanTween.isTweening(_rotationTween))
         {
             LeanTween.cancel(_rotationTween);
         }
 
-        _rotationTween = _rect.LeanRotateAroundLocal(Vector3.up, amount, duration).id;
-
+        Debug.Log($"Card.Rotate: Rotating card {gameObject.name} by {amount} degrees");
+        _rotationTween = LeanTween.rotateAroundLocal(_rect, Vector3.up, amount, duration).id;
     }
 
     public bool CanPlay()

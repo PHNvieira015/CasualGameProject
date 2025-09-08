@@ -65,4 +65,33 @@ public class CardHolder : MonoBehaviour
         }
     }
 
+    public static void ClearAllHolders()
+    {
+        CardHolder[] allHolders = FindObjectsOfType<CardHolder>();
+        foreach (CardHolder holder in allHolders)
+        {
+            if (holder != null)
+            {
+                holder.ClearCards();
+            }
+        }
+        Debug.Log("All card holders cleared");
+    }
+    public void ClearCards()
+    {
+        // Destroy all card game objects
+        foreach (Card card in Cards.ToArray()) // Use ToArray to avoid modification during iteration
+        {
+            if (card != null && card.gameObject != null)
+            {
+                Destroy(card.gameObject);
+            }
+        }
+
+        // Clear the list
+        Cards.Clear();
+        CardAmount.text = "0";
+
+        Debug.Log($"CardHolder {gameObject.name} cleared");
+    }
 }

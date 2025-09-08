@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
 public class EndBattleState : State
 {
@@ -11,15 +10,54 @@ public class EndBattleState : State
         yield return null;
         Debug.Log("Battle ended - Preparing for reward screen");
 
+        // Clear all card holders first
+        ClearAllCardHolders();
+
         // Optional: Wait a moment before showing rewards
         yield return new WaitForSeconds(_transitionDelay);
 
         // Use the StateMachine's method to show reward screen
         StateMachine.Instance.ShowRewardScreen();
 
-        // Optional: Change to a RewardState if you want more control
-        // machine.ChangeState<RewardState>();
-
         yield return null;
+    }
+
+    private void ClearAllCardHolders()
+    {
+        // Try the simplest approach first - just call the static method
+        // It will handle its own existence checks internally
+        try
+        {
+            CardHolder.ClearAllHolders();
+            return;
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogWarning($"Static method failed: {e.Message}. Trying alternative methods...");
+        }
+
+        // Fallback: Clear through CardsController if available
+        if (CardsController.Instance != null)
+        {
+            if (CardsController.Instance.DrawPile != null)
+                CardsController.Instance.DrawPile.ClearCards();
+            if (CardsController.Instance.Hand != null)
+                CardsController.Instance.Hand.ClearCards();
+            if (CardsController.Instance.DiscardPile != null)
+                CardsController.Instance.DiscardPile.ClearCards();
+            Debug.Log("All card holders cleared through CardsController");
+            return;
+        }
+
+        // Final fallback: Find and clear all CardHolder objects
+        CardHolder[] allHolders = FindObjectsOfType<CardHolder>();
+        foreach (CardHolder holder in allHolders)
+        {
+            if (holder != null)
+            {
+                holder.ClearCards();
+            }
+        }
+        Debug.Log("All card holders cleared via FindObjectsOfType");
     }
 }
