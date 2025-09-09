@@ -20,11 +20,14 @@ public class CardRewardSystem : MonoBehaviour
         rewardSlots = slotsParent.GetComponentsInChildren<CardRewardSlot>(true).ToList();
         rewardUI.SetActive(false);
 
-        // Validate that we're using prefab assets, not scene instances
-        ValidatePrefabReferences();
-    }
+        // Just remove nulls, don't validate prefab types
+        RemoveNullPrefabs();
 
-    // This method checks if we're using proper prefab assets
+        if (cardPrefabs.Count == 0)
+        {
+            Debug.LogError("No card prefabs found! Assign them in the Inspector.");
+        }
+    }
     private void ValidatePrefabReferences()
     {
         List<Card> validPrefabs = new List<Card>();
