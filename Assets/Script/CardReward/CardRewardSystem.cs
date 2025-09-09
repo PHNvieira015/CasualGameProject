@@ -20,9 +20,6 @@ public class CardRewardSystem : MonoBehaviour
         rewardSlots = slotsParent.GetComponentsInChildren<CardRewardSlot>(true).ToList();
         rewardUI.SetActive(false);
 
-        // Just remove nulls, don't validate prefab types
-        RemoveNullPrefabs();
-
         if (cardPrefabs.Count == 0)
         {
             Debug.LogError("No card prefabs found! Assign them in the Inspector.");
@@ -104,7 +101,6 @@ public class CardRewardSystem : MonoBehaviour
 
     private bool ValidateCanGenerate()
     {
-        RemoveNullPrefabs();
 
         if (cardPrefabs.Count < rewardsToShow)
         {
@@ -117,8 +113,6 @@ public class CardRewardSystem : MonoBehaviour
 
     private List<Card> GetRandomCards()
     {
-        RemoveNullPrefabs();
-
         return cardPrefabs
             .OrderBy(x => Random.value)
             .Take(rewardsToShow)
@@ -137,36 +131,4 @@ public class CardRewardSystem : MonoBehaviour
             }
         }
     }
-
-    public void RemoveNullPrefabs()
-    {
-        cardPrefabs.RemoveAll(prefab => prefab == null);
-    }
-
-    // Editor method to help with setup (call this from editor scripts if needed)
-#if UNITY_EDITOR
-    public void FindAllCardPrefabsInProject()
-    {
-        RemoveNullPrefabs();
-
-        // Find all Card prefabs in the project
-        string[] guids = UnityEditor.AssetDatabase.FindAssets("t:Prefab");
-        foreach (string guid in guids)
-        {
-            string path = UnityEditor.AssetDatabase.GUIDToAssetPath(guid);
-            GameObject prefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(path);
-
-            if (prefab != null)
-            {
-                Card card = prefab.GetComponent<Card>();
-                if (card != null && !cardPrefabs.Contains(card))
-                {
-                    cardPrefabs.Add(card);
-                }
-            }
-        }
-
-        Debug.Log($"Found {cardPrefabs.Count} card prefabs in project");
-    }
-#endif
 }
