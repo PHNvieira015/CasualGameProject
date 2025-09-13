@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: a4ef287643fb5f545967ffb8896381f6
+guid: 3ac732df180a5874ab27dd0da408207e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 150646388717667088
-    second: Icon.2_06_0
+      213: -7379065214909453388
+    second: PlaceHolder (2)_0
+  - first:
+      213: 6414621702465625051
+    second: PlaceHolder (2)_1
+  - first:
+      213: -2303817068687560326
+    second: PlaceHolder (2)_2
+  - first:
+      213: -3190850414232377274
+    second: PlaceHolder (2)_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,13 +57,13 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 350
+  spriteBorder: {x: 112, y: 95, z: 95, w: 96}
   spriteGenerateFallbackPhysicsShape: 1
-  alphaUsage: 2
+  alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
@@ -75,7 +84,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -139,13 +148,35 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Icon.2_06_0
+      name: PlaceHolder (2)_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 19
-        width: 373
-        height: 365
+        x: 5
+        y: 10
+        width: 421
+        height: 494
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 61, y: 56, z: 51, w: 60}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bb61e2784b489990800000000000000
+      internalID: -7379065214909453388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlaceHolder (2)_1
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 483
+        width: 9
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +185,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0134636a714371200800000000000000
-      internalID: 150646388717667088
+      spriteID: bdb99f7c370550950800000000000000
+      internalID: 6414621702465625051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlaceHolder (2)_2
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 21
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a71756905923700e0800000000000000
+      internalID: -2303817068687560326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlaceHolder (2)_3
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 21
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64865404472d7b3d0800000000000000
+      internalID: -3190850414232377274
       vertices: []
       indices: 
       edges: []
@@ -164,8 +239,8 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: a37ec5a876c508a499266614bf230360
-    internalID: 0
+    spriteID: e9acd5ab3b9baea45abaf7b9a145d11c
+    internalID: 679547934
     vertices: []
     indices: 
     edges: []
@@ -174,7 +249,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Icon.2_06_0: 150646388717667088
+      PlaceHolder (2)_0: -7379065214909453388
+      PlaceHolder (2)_1: 6414621702465625051
+      PlaceHolder (2)_2: -2303817068687560326
+      PlaceHolder (2)_3: -3190850414232377274
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
