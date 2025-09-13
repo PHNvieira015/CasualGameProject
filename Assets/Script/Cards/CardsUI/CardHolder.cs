@@ -27,29 +27,40 @@ public class CardHolder : MonoBehaviour
     }
     public void AddCard(Card card)
     {
+        if (card == null) return;
+
         RectTransform rect = card.transform as RectTransform;
 
+        // Match anchors/pivots with Holder
         rect.anchorMax = Holder.anchorMax;
         rect.anchorMin = Holder.anchorMin;
         rect.pivot = Holder.pivot;
 
-        CardHolder oldHolder = card.GetComponentInParent<CardHolder>(); // Changed to GetComponentInParent
-        rect.SetParent(this.transform);
+        // Find the previous CardHolder (if any)
+        CardHolder oldHolder = card.GetComponentInParent<CardHolder>();
 
-        //Card.Move
-        // Only rotate if the card came from another holder
-        if (oldHolder != null)
+        //  Always re-parent immediately to Holder
+        rect.SetParent(Holder, worldPositionStays: false);
+
+        // Play animation if moving from another holder
+        if (oldHolder != null && oldHolder != this)
         {
             card.Rotate(oldHolder.CardRotation - CardRotation, CardRotationDuration);
-            card.Move(Holder.anchoredPosition3D, CardMoveDuration, () =>
+            card.Move(Vector3.zero, CardMoveDuration, () =>
             {
                 Cards.Add(card);
-                CardAmount.text = "" + Cards.Count;
-                card.transform.SetParent(Holder);
+                CardAmount.text = Cards.Count.ToString();
             });
-
+        }
+        else
+        {
+            // No animation case  snap into place
+            rect.anchoredPosition3D = Vector3.zero;
+            Cards.Add(card);
+            CardAmount.text = Cards.Count.ToString();
         }
     }
+
 
     public void RemoveCard(Card card)
     {

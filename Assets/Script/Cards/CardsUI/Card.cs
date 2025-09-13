@@ -129,6 +129,14 @@ public class Card : MonoBehaviour
 
         return true;
     }
+    public void SetFaceDown()
+    {
+        transform.localRotation = Quaternion.Euler(0, 180, 0); // back side
+    }
 
+    public void SetFaceUp()
+    {
+        transform.localRotation = Quaternion.Euler(0, 0, 0);   // front side
+    }
     #endregion
 }

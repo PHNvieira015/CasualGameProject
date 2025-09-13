@@ -1,15 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 public class CardRewardSystem : MonoBehaviour
 {
     [Header("Settings")]
     public int rewardsToShow = 3;
-    public List<Card> cardPrefabs = new List<Card>();
+    public List<Card> cardPrefabs = new List<Card>(); // Changed from GameObject to Card
 
     [Header("References")]
     public Transform slotsParent;
@@ -22,38 +19,6 @@ public class CardRewardSystem : MonoBehaviour
     {
         rewardSlots = slotsParent.GetComponentsInChildren<CardRewardSlot>(true).ToList();
         rewardUI.SetActive(false);
-
-
-    private void ValidatePrefabReferences()
-    {
-        List<Card> validPrefabs = new List<Card>();
-
-        foreach (Card card in cardPrefabs)
-        {
-            if (card != null)
-            {
-                if (IsPrefabAsset(card))
-                {
-                    validPrefabs.Add(card);
-                }
-                else
-                {
-                    Debug.LogWarning($"Card {card.name} is a scene instance, not a prefab asset. This will cause issues.");
-                }
-            }
-        }
-
-        cardPrefabs = validPrefabs;
-
-        if (cardPrefabs.Count == 0)
-        {
-            Debug.LogError("No valid card prefabs found! Make sure to assign prefabs from Project folder, not scene objects.");
-        }
-    }
-
-    private bool IsPrefabAsset(Card card)
-    {
-        return card.gameObject.scene.name == null;
     }
 
     public void ShowRewards()
@@ -63,9 +28,9 @@ public class CardRewardSystem : MonoBehaviour
         rewardUI.SetActive(true);
         var randomCards = GetRandomCards();
 
-        for (int i = 0; i < rewardsToShow && i < rewardSlots.Count; i++)
+        for (int i = 0; i < rewardsToShow; i++)
         {
-            if (randomCards[i] != null)
+            if (i < rewardSlots.Count && randomCards[i] != null)
             {
                 rewardSlots[i].gameObject.SetActive(true);
                 rewardSlots[i].Initialize(this, randomCards[i]);
@@ -73,26 +38,31 @@ public class CardRewardSystem : MonoBehaviour
         }
     }
 
-    public void OnCardSelected(Card cardPrefab)
+    public void OnCardSelected(Card cardPrefab) // Changed parameter type
     {
         if (cardPrefab == null)
         {
-            Debug.LogError("Cannot add null card prefab!");
+            Debug.LogError("Cannot instantiate null card prefab!");
             HideRewards();
             return;
         }
 
-        // CREATE A NEW INSTANCE OF THE CARD (but don't activate it yet)
-        Card newCardInstance = Instantiate(cardPrefab);
-
-        if (newCardInstance != null)
+        // Check if the prefab is valid (not destroyed)
+        if (cardPrefab == null || cardPrefab.gameObject == null)
         {
-            // Set the card to inactive - it will be activated when drawn from the deck
-            newCardInstance.gameObject.SetActive(false);
+            Debug.LogError("Card prefab is destroyed or invalid!");
+            HideRewards();
+            return;
+        }
 
-            // Add the INSTANCE to the deck, not the prefab
-            playerDeck.Cards.Add(newCardInstance);
-            Debug.Log($"Added new instance of {cardPrefab.name} to player deck");
+        // Instantiate the card directly as a Card component
+        Card newCard = Instantiate(cardPrefab);
+
+        if (newCard != null)
+        {
+            playerDeck.Cards.Add(newCard);
+            newCard.gameObject.SetActive(false); // Hide until played
+            Debug.Log($"Added {newCard.name} to player deck");
         }
         else
         {
@@ -104,19 +74,34 @@ public class CardRewardSystem : MonoBehaviour
 
     private bool ValidateCanGenerate()
     {
-
         if (cardPrefabs.Count < rewardsToShow)
         {
-            Debug.LogError($"Not enough card prefabs! Need {rewardsToShow}, have {cardPrefabs.Count}");
+            Debug.LogError("Not enough card prefabs!");
+            return false;
+        }
+
+        // Check if any prefabs are null or destroyed
+        if (cardPrefabs.Any(prefab => prefab == null || prefab.gameObject == null))
+        {
+            Debug.LogError("Some card prefabs are null or destroyed!");
             return false;
         }
 
         return true;
     }
 
-    private List<Card> GetRandomCards()
+    private List<Card> GetRandomCards() // Changed return type
     {
-        return cardPrefabs
+        // Filter out any null or destroyed prefabs first
+        var validPrefabs = cardPrefabs.Where(prefab => prefab != null && prefab.gameObject != null).ToList();
+
+        if (validPrefabs.Count < rewardsToShow)
+        {
+            Debug.LogError($"Not enough valid card prefabs! Need {rewardsToShow}, have {validPrefabs.Count}");
+            return new List<Card>();
+        }
+
+        return validPrefabs
             .OrderBy(x => Random.value)
             .Take(rewardsToShow)
             .ToList();
@@ -134,3 +119,11 @@ public class CardRewardSystem : MonoBehaviour
             }
         }
     }
+
+    // Optional: Method to refresh card prefabs list (remove null entries)
+    public void RefreshCardPrefabs()
+    {
+        cardPrefabs = cardPrefabs.Where(prefab => prefab != null && prefab.gameObject != null).ToList();
+        Debug.Log($"Refreshed card prefabs list. Now contains {cardPrefabs.Count} valid prefabs.");
+    }
+}
