@@ -27,40 +27,29 @@ public class CardHolder : MonoBehaviour
     }
     public void AddCard(Card card)
     {
-        if (card == null) return;
-
         RectTransform rect = card.transform as RectTransform;
 
-        // Match anchors/pivots with Holder
         rect.anchorMax = Holder.anchorMax;
         rect.anchorMin = Holder.anchorMin;
         rect.pivot = Holder.pivot;
 
-        // Find the previous CardHolder (if any)
-        CardHolder oldHolder = card.GetComponentInParent<CardHolder>();
+        CardHolder oldHolder = card.GetComponentInParent<CardHolder>(); // Changed to GetComponentInParent
+        rect.SetParent(this.transform);
 
-        //  Always re-parent immediately to Holder
-        rect.SetParent(Holder, worldPositionStays: false);
-
-        // Play animation if moving from another holder
-        if (oldHolder != null && oldHolder != this)
+        //Card.Move
+        // Only rotate if the card came from another holder
+        if (oldHolder != null)
         {
             card.Rotate(oldHolder.CardRotation - CardRotation, CardRotationDuration);
-            card.Move(Vector3.zero, CardMoveDuration, () =>
+            card.Move(Holder.anchoredPosition3D, CardMoveDuration, () =>
             {
                 Cards.Add(card);
-                CardAmount.text = Cards.Count.ToString();
+                CardAmount.text = "" + Cards.Count;
+                card.transform.SetParent(Holder);
             });
-        }
-        else
-        {
-            // No animation case  snap into place
-            rect.anchoredPosition3D = Vector3.zero;
-            Cards.Add(card);
-            CardAmount.text = Cards.Count.ToString();
+
         }
     }
-
 
     public void RemoveCard(Card card)
     {
@@ -78,6 +67,7 @@ public class CardHolder : MonoBehaviour
 
     public static void ClearAllHolders()
     {
+        // Clear all regular holders
         CardHolder[] allHolders = FindObjectsOfType<CardHolder>();
         foreach (CardHolder holder in allHolders)
         {
@@ -86,7 +76,19 @@ public class CardHolder : MonoBehaviour
                 holder.ClearCards();
             }
         }
-        Debug.Log("All card holders cleared");
+
+        // Specifically target discard pile if it has a tag
+        GameObject discardPile = GameObject.FindGameObjectWithTag("DiscardPile");
+        if (discardPile != null)
+        {
+            CardHolder discardHolder = discardPile.GetComponent<CardHolder>();
+            if (discardHolder != null)
+            {
+                discardHolder.ClearCards();
+            }
+        }
+
+        Debug.Log("All card holders cleared including discard pile");
     }
     public void ClearCards()
     {

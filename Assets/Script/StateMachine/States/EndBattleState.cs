@@ -10,7 +10,7 @@ public class EndBattleState : State
         yield return null;
         Debug.Log("Battle ended - Preparing for reward screen");
 
-        // Clear all card holders first
+        // Clear ALL card holders (including discard pile)
         ClearAllCardHolders();
 
         // Optional: Wait a moment before showing rewards

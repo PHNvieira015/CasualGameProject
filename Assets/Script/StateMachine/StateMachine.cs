@@ -150,6 +150,9 @@ public class StateMachine : MonoBehaviour
 
     public void ResetStateMachine()
     {
+        // Clear all card holders first
+        CardHolder.ClearAllHolders();
+
         // Clear all states
         ClearAllStates();
 
@@ -162,7 +165,7 @@ public class StateMachine : MonoBehaviour
         // Reset UI to initial state
         InitializeUI();
 
-        Debug.Log("StateMachine fully reset");
+        Debug.Log("StateMachine fully reset - including all card holders");
     }
 
     #endregion
