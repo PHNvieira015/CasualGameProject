@@ -3,6 +3,9 @@ using System.Collections;
 
 public class EnemyAI2 : MonoBehaviour
 {
+    // Add this property to track if this enemy is dead
+    public bool IsDead { get; private set; } = false;
+
     [Header("References")]
     [SerializeField] private EnemyActionHolder _actionHolder;
 
@@ -79,7 +82,8 @@ public class EnemyAI2 : MonoBehaviour
     {
         return StateMachine.Instance != null &&
                StateMachine.Instance.CurrentUnit != null &&
-               StateMachine.Instance.CurrentUnit.gameObject == this.gameObject;
+               StateMachine.Instance.CurrentUnit.gameObject == this.gameObject &&
+               !IsDead; // Don't take turns if dead
     }
 
     private void UpdateDebugInfo()
@@ -87,6 +91,14 @@ public class EnemyAI2 : MonoBehaviour
         _currentUnitDebug = StateMachine.Instance?.CurrentUnit?.name ?? "null";
         _isMyTurnDebug = IsMyTurn();
         _actionCompletedDebug = !_isActionInProgress;
+    }
+
+    // Add this method to mark the enemy as dead
+    public void MarkAsDead()
+    {
+        IsDead = true;
+        // Disable the AI so it doesn't try to take turns
+        this.enabled = false;
     }
 
 #if UNITY_EDITOR

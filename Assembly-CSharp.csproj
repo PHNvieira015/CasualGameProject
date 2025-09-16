@@ -147,6 +147,7 @@
     <Compile Include="Assets\LeanTween\Framework\LeanTweenExt.cs" />
     <Compile Include="Assets\Script\UI\FloatingMessage\BuffDebuffMessageSpawner.cs" />
     <Compile Include="Assets\Script\Units\Unit.cs" />
+    <Compile Include="Assets\Script\BattleStateChecker.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanAudio.cs" />
     <Compile Include="Assets\Script\Menu\MenuController.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTDescrOptional.cs" />
@@ -184,6 +185,7 @@
     <Compile Include="Assets\Script\UI\FloatingMessage\FloatingMessage.cs" />
     <Compile Include="Assets\IO\BattleButtons.cs" />
     <Compile Include="Assets\Script\Map\MinMax.cs" />
+    <Compile Include="Assets\Script\GameOverState.cs" />
     <Compile Include="Assets\Script\Cards\CardsUI\CardHolder.cs" />
     <Compile Include="Assets\Script\Cards\CardDrag.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasic.cs" />

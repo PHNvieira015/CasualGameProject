@@ -25,6 +25,9 @@ public class Unit : MonoBehaviour, IPointerClickHandler
     public OnUnit OnUnitTakeTurn = delegate { };
     public TagModifier[] Modify = new TagModifier[(int)ModifierTags.None];
 
+    // Event for unit death notifications
+    public static event System.Action<Unit> OnAnyUnitDeath;
+
     #region Initialization
     protected virtual void Awake()
     {
@@ -272,29 +275,28 @@ public class Unit : MonoBehaviour, IPointerClickHandler
             ));
         }
     }
+
     private void DestroyUnit()
     {
+        // Notify that a unit died (for victory/defeat checking)
+        OnAnyUnitDeath?.Invoke(this);
+
         // Trigger any death events or animations first
         StartCoroutine(DeathSequence());
     }
 
     private IEnumerator DeathSequence()
     {
+        Debug.Log($"{gameObject.name} has died");
+
         // Optional: Play death animation
         // GetComponent<Animator>()?.SetTrigger("Die");
 
         // Optional: Wait for animation to complete
-        // yield return new WaitForSeconds(1f);
-
-        // Optional: Fade out or other effects
-        // yield return StartCoroutine(FadeOut());
-
-        Debug.Log($"{gameObject.name} has died");
+        yield return new WaitForSeconds(0.5f);
 
         // Destroy the object
         Destroy(gameObject);
-
-        yield return null;
     }
 
     private IEnumerator FadeOut()
