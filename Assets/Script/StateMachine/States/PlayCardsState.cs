@@ -83,6 +83,13 @@ public class PlayCardsState : State
 
     private IEnumerator DiscardAndEndTurn()
     {
+        // Stop processing cards before discarding
+        if (_cardSequencer != null)
+        {
+            StopCoroutine(_cardSequencer);
+            _cardSequencer = null;
+        }
+
         // Discard all cards in hand
         var hand = CardsController.Instance.Hand;
         while (hand.Cards.Count > 0)
@@ -103,11 +110,27 @@ public class PlayCardsState : State
             if (machine.CardsdToPlay.Count > 0)
             {
                 Card card = machine.CardsdToPlay.Dequeue();
+
+                // Check if the card still exists
+                if (card == null) continue;
+
                 Debug.Log("Playing " + card);
-                yield return StartCoroutine(PlayCardEffect(card, card.transform.Find(PlayedGameObject)));
-                yield return new WaitForSeconds(0.5f);
-                yield return StartCoroutine(PlayCardEffect(card, card.transform.Find(AfterPlayedGameObject)));
-                yield return new WaitForSeconds(0.5f);
+
+                // Check if the Played transform exists
+                Transform playedTransform = card.transform.Find(PlayedGameObject);
+                if (playedTransform != null)
+                {
+                    yield return StartCoroutine(PlayCardEffect(card, playedTransform));
+                    yield return new WaitForSeconds(0.5f);
+                }
+
+                // Check if the AfterPlayed transform exists
+                Transform afterPlayedTransform = card.transform.Find(AfterPlayedGameObject);
+                if (afterPlayedTransform != null)
+                {
+                    yield return StartCoroutine(PlayCardEffect(card, afterPlayedTransform));
+                    yield return new WaitForSeconds(0.5f);
+                }
             }
             yield return null;
         }
@@ -115,23 +138,38 @@ public class PlayCardsState : State
 
     IEnumerator PlayCardEffect(Card card, Transform playTransform)
     {
-        if (playTransform == null) yield break;
+        // Check if the card or playTransform has been destroyed
+        if (card == null || playTransform == null) yield break;
 
-        for (int i = 0; i < playTransform.childCount; i++)
+        int childCount = playTransform.childCount; // Cache the count to avoid issues if children are destroyed
+
+        for (int i = 0; i < childCount; i++)
         {
-            ITarget targeter = playTransform.GetChild(i).GetComponent<ITarget>();
+            // Check if the child still exists before accessing it
+            if (i >= playTransform.childCount) yield break;
+
+            Transform child = playTransform.GetChild(i);
+            if (child == null) continue;
+
+            ITarget targeter = child.GetComponent<ITarget>();
             List<object> targets = new List<object>();
 
             if (targeter == null) continue;
 
             yield return StartCoroutine(targeter.GetTargets(targets));
 
-            foreach (CardEffect effect in playTransform.GetChild(i).GetComponents<CardEffect>())
+            // Get all effects from the child
+            CardEffect[] effects = child.GetComponents<CardEffect>();
+            foreach (CardEffect effect in effects)
             {
-                yield return StartCoroutine(effect.Apply(targets));
-                _handLayout.enabled = true;
+                if (effect != null)
+                {
+                    yield return StartCoroutine(effect.Apply(targets));
+                }
             }
         }
+
+        _handLayout.enabled = true;
     }
 
     void EndTurnButton(bool interactable)
