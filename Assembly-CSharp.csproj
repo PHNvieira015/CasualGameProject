@@ -61,6 +61,7 @@
     <Analyzer Include="C:\Program Files\Unity 6000.0.28f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\Cards\CardsEffects\DestroyCard.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTest.cs" />
     <Compile Include="Assets\Script\(WIP) ScritapbleObjects\StatusEffect\Debuff\Debuff.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingDescr.cs" />
@@ -146,6 +147,7 @@
     <Compile Include="Assets\Script\UI\HealthBar\IHealthBar.cs" />
     <Compile Include="Assets\Script\Cards\Targeting\TargetPlayer.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTweenExt.cs" />
+    <Compile Include="Assets\Script\Cards\CardsEffects\DrawCards.cs" />
     <Compile Include="Assets\Script\UI\FloatingMessage\BuffDebuffMessageSpawner.cs" />
     <Compile Include="Assets\Script\Units\Unit.cs" />
     <Compile Include="Assets\Script\BattleStateChecker.cs" />

@@ -15,6 +15,6 @@ MonoBehaviour:
   effectName: Immolation
   Icon: {fileID: 0}
   DotAmount: 2
-  effectType: 0
+  effectType: 1
   duration: 2
   effectPrefab: {fileID: 0}

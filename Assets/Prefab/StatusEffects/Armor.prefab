@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2878207596254410407}
   - component: {fileID: -6935718072809712596}
   m_Layer: 0
-  m_Name: Dexterity
+  m_Name: Armor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Duration: 99
-  Amount: 1
+  Amount: -1
   StacksIntensity: 0
   StacksDuration: 1
   _currentAmount: 0
-  Tag: 3
+  Tag: 1
   isPercentage: 0
