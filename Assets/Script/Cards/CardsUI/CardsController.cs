@@ -18,6 +18,10 @@ public class CardsController : MonoBehaviour
 
     public CardsList PlayerDeck;
 
+    public CardsList PlayerRelics;
+
+    public CardHolder RelicHolder;
+
     #endregion
 
     private void Awake()

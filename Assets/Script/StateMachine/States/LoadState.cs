@@ -8,6 +8,7 @@ public class LoadState : State
     {
         yield return StartCoroutine(InitializeDeck());
         yield return StartCoroutine(InitializeUnits());
+        yield return StartCoroutine(InitializeRelics());
         StartCoroutine(WaitThenChangeState<TurnBeginState>());
 
     }
@@ -31,7 +32,16 @@ public class LoadState : State
         yield return null;
         //Debug.Log(machine.Units.Count);
     }
-
+    IEnumerator InitializeRelics()
+    {
+        foreach (Card card in CardsController.Instance.PlayerRelics.Cards)
+        {
+            Card newCard = Instantiate(card, Vector3.zero, Quaternion.identity, CardsController.Instance.RelicHolder.Holder);
+            CardsController.Instance.RelicHolder.AddCard(newCard);
+        }
+        yield return new WaitForSeconds(CardHolder.CardMoveDuration);
+        CardsController.Instance.RelicHolder.SetInitialRotation();
+    }
 
 
 }

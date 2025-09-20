@@ -70,6 +70,7 @@
     <Compile Include="Assets\Script\Modifiers\ModifierTags.cs" />
     <Compile Include="Assets\Script\UI\FloatingMessage\MessageSpawner.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasics2d.cs" />
+    <Compile Include="Assets\Script\RelicSystem\RelicHolder.cs" />
     <Compile Include="Assets\Script\StateMachine\States\LoadState.cs" />
     <Compile Include="Assets\Script\Testing\CombatTester.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingZLegacy.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Assets\Script\CardReward\CardRewardSlot.cs" />
     <Compile Include="Assets\Script\Map\MapVisualizer.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathBezier2d.cs" />
+    <Compile Include="Assets\Script\RelicSystem\RelicSystem.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplinePerformance.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralEasingTypes.cs" />
     <Compile Include="Assets\Script\Cards\CardsUI\CardHandHolder.cs" />
@@ -115,10 +117,12 @@
     <Compile Include="Assets\LeanTween\Framework\LeanSmooth.cs" />
     <Compile Include="Assets\Script\Cards\CardsEffects\BlockEffect.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingMaxTweens.cs" />
+    <Compile Include="Assets\Script\RelicSystem\Relics\ExtraDrawRelic.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralUISpace.cs" />
     <Compile Include="Assets\Script\Cards\CardsUI\Card.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplines.cs" />
     <Compile Include="Assets\Script\StateMachine\StateMachine.cs" />
+    <Compile Include="Assets\Script\RelicSystem\RelicList.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralCameraShake.cs" />
     <Compile Include="Assets\Script\Map\MapNode.cs" />
     <Compile Include="Assets\Script\Cards\Targeting\TargetSelfUnit.cs" />
@@ -188,6 +192,7 @@
     <Compile Include="Assets\Script\UI\FloatingMessage\FloatingMessage.cs" />
     <Compile Include="Assets\IO\BattleButtons.cs" />
     <Compile Include="Assets\Script\Map\MinMax.cs" />
+    <Compile Include="Assets\Script\RelicSystem\Relic.cs" />
     <Compile Include="Assets\Script\GameOverState.cs" />
     <Compile Include="Assets\Script\Cards\CardsUI\CardHolder.cs" />
     <Compile Include="Assets\Script\Cards\CardDrag.cs" />
