@@ -81,19 +81,20 @@ public class CardRewardSystem : MonoBehaviour
     {
         if (cardPrefab == null)
         {
-            Debug.LogError("Cannot instantiate null card prefab!");
+            Debug.LogError("Cannot add null card prefab!");
             HideRewards();
             return;
         }
 
-        // Instantiate from the prefab asset
-        Card newCard = Instantiate(cardPrefab);
-
-        if (newCard != null)
+        // Add the PREFAB to the deck, not an instance
+        if (playerDeck != null && playerDeck.Cards != null)
         {
-            playerDeck.Cards.Add(newCard);
-            newCard.gameObject.SetActive(false);
-            Debug.Log($"Added {newCard.name} to player deck");
+            playerDeck.Cards.Add(cardPrefab);
+            Debug.Log($"Added {cardPrefab.name} prefab to player deck");
+        }
+        else
+        {
+            Debug.LogError("Player deck reference is missing!");
         }
 
         HideRewards();

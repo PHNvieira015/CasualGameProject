@@ -165,6 +165,7 @@ public class CardRewardSlot : MonoBehaviour, IPointerClickHandler, IPointerEnter
             if (slotBackground != null)
                 slotBackground.color = selectedColor;
 
+            // Pass the original prefab, not the instance
             rewardSystem.OnCardSelected(assignedCardPrefab);
         }
     }
