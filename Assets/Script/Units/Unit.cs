@@ -232,9 +232,22 @@ public class Unit : MonoBehaviour, IPointerClickHandler
             {
                 blockDisplayComponent.BindToUnit(this);
             }
+            else if (_blockDisplay is MonoBehaviour blockMonoBehaviour)
+            {
+                // Alternative: check if the component has a BindToUnit method
+                var bindMethod = blockMonoBehaviour.GetType().GetMethod("BindToUnit");
+                if (bindMethod != null)
+                {
+                    bindMethod.Invoke(blockMonoBehaviour, new object[] { this });
+                }
+            }
 
             // Initial update
             UpdateBlockDisplay();
+        }
+        else
+        {
+            Debug.LogWarning($"No IBlockValueDisplay found for {gameObject.name}", this);
         }
     }
 

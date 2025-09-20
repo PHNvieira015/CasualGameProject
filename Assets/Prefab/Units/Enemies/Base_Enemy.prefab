@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4118902624730112622
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3100689208887773442}
+  m_Layer: 0
+  m_Name: CardHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3100689208887773442
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4118902624730112622}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1066536843116193995}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5227742375474024883
 GameObject:
   m_ObjectHideFlags: 0
@@ -32,7 +63,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 112}
+  m_AnchoredPosition: {x: -15, y: 94}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &970414071151944775
@@ -103,6 +134,9 @@ PrefabInstance:
     - {fileID: 939271805604336189, guid: ab5ee21e553b5d24484da092a40f4956, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 268672192009718924, guid: ab5ee21e553b5d24484da092a40f4956, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3100689208887773442}
     - targetCorrespondingSourceObject: {fileID: 3914753113614967378, guid: ab5ee21e553b5d24484da092a40f4956, type: 3}
       insertIndex: 0
       addedObject: {fileID: 2482102191013457966}
@@ -114,6 +148,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6104512406157522237}
   m_SourcePrefab: {fileID: 100100000, guid: ab5ee21e553b5d24484da092a40f4956, type: 3}
+--- !u!4 &1066536843116193995 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 268672192009718924, guid: ab5ee21e553b5d24484da092a40f4956, type: 3}
+  m_PrefabInstance: {fileID: 970414071151944775}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3789943714178207850 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4174572759958713389, guid: ab5ee21e553b5d24484da092a40f4956, type: 3}
@@ -132,7 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cardPrefabs: []
-  _holder: {fileID: 0}
+  _holder: {fileID: 3100689208887773442}
 --- !u!114 &6104512406157522237
 MonoBehaviour:
   m_ObjectHideFlags: 0
