@@ -120,6 +120,7 @@
     <Compile Include="Assets\Script\StateMachine\StateMachine.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralCameraShake.cs" />
     <Compile Include="Assets\Script\Map\MapNode.cs" />
+    <Compile Include="Assets\Script\Cards\Targeting\TargetSelfUnit.cs" />
     <Compile Include="Assets\Script\CardReward\CardRewardSystem.cs" />
     <Compile Include="Assets\Script\Cards\CardsUI\CardsController.cs" />
     <Compile Include="Assets\Script\StateMachine\States\RewardState.cs" />

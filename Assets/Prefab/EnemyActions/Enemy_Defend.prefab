@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8248958417020047267, guid: 901933252d4c3c149bd556d63ae5ee0a, type: 3}
       propertyPath: m_Name
-      value: Enemy_Defend1
+      value: Enemy_Defend
       objectReference: {fileID: 0}
     - target: {fileID: 8536224566791419861, guid: 901933252d4c3c149bd556d63ae5ee0a, type: 3}
       propertyPath: m_Pivot.x
@@ -103,6 +103,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1927525976055337096, guid: 901933252d4c3c149bd556d63ae5ee0a, type: 3}
     - {fileID: 6691375487965191430, guid: 901933252d4c3c149bd556d63ae5ee0a, type: 3}
+    - {fileID: 1839465780911679426, guid: 901933252d4c3c149bd556d63ae5ee0a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -111,7 +112,7 @@ PrefabInstance:
       addedObject: {fileID: 7327600991925343186}
     - targetCorrespondingSourceObject: {fileID: 6371277944363626555, guid: 901933252d4c3c149bd556d63ae5ee0a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5295121640658658448}
+      addedObject: {fileID: 7363424676891159339}
   m_SourcePrefab: {fileID: 100100000, guid: 901933252d4c3c149bd556d63ae5ee0a, type: 3}
 --- !u!1 &2410752057654299257 stripped
 GameObject:
@@ -131,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Amount: 5
---- !u!114 &5295121640658658448
+--- !u!114 &7363424676891159339
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,6 +141,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2410752057654299257}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3697348955daed843974ee64d5386295, type: 3}
+  m_Script: {fileID: 11500000, guid: ef922eb96fe57e5439cdd22c6701cd3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
