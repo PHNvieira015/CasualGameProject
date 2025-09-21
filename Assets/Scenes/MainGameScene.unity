@@ -509,7 +509,7 @@ PrefabInstance:
     - target: {fileID: 4441097852667311059, guid: 895003a4d807f354783dd88e4919ce7e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1923407897800295962, guid: 477573a28685ffa4683b60c3f4f95300, type: 3}
+      objectReference: {fileID: -8443292030041095562, guid: ebc2a8b1454242b4584dca3e1d6b3b7e, type: 3}
     - target: {fileID: 4441097852667311059, guid: 895003a4d807f354783dd88e4919ce7e, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -11644,8 +11644,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.4}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -880.1411, y: 5}
-  m_SizeDelta: {x: 59.7177, y: 40}
+  m_AnchoredPosition: {x: -761, y: -242}
+  m_SizeDelta: {x: 95.9881, y: 78.6104}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1741438593
 MonoBehaviour:
@@ -11669,8 +11669,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "3/3\t"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b73b6958c2b809e42999e51fb8821968, type: 2}
+  m_sharedMaterial: {fileID: 2798769438452162915, guid: b73b6958c2b809e42999e51fb8821968, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -11694,8 +11694,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 56
+  m_fontSizeBase: 56
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -11732,7 +11732,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -4.680069, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -15541,6 +15541,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 201002783}
     m_Modifications:
+    - target: {fileID: 754556748892510559, guid: ca85678aca9109e4abfe404ee17004da, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -211
+      objectReference: {fileID: 0}
     - target: {fileID: 6277792409558802358, guid: ca85678aca9109e4abfe404ee17004da, type: 3}
       propertyPath: m_Name
       value: Draw Pile
