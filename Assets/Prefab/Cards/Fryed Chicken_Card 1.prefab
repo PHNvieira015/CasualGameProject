@@ -15,18 +15,14 @@ PrefabInstance:
     - target: {fileID: 2864292285653478253, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -2948010718434902863, guid: 1731ad73bfa45e94fb9231d40405ffb8, type: 3}
+      objectReference: {fileID: -3893101233349078036, guid: 72b143e4fe5559e4a94de167559ebf4b, type: 3}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
-      value: Recover 6 health
-      objectReference: {fileID: 0}
-    - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
-      propertyPath: m_fontSize
-      value: 35
+      value: Gain 5 Block
       objectReference: {fileID: 0}
     - target: {fileID: 7478358879296495923, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
-      value: Fryed Chicken
+      value: Defend
       objectReference: {fileID: 0}
     - target: {fileID: 8087918793295378423, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_Name
@@ -112,27 +108,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2249860519155597880, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6498539486386997359, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5250097852889227705}
+      addedObject: {fileID: 5716576519783714212}
     - targetCorrespondingSourceObject: {fileID: 6498539486386997359, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       insertIndex: -1
       addedObject: {fileID: 140117490619599197}
-    - targetCorrespondingSourceObject: {fileID: 8461326218063870400, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 978436711178750025}
   m_SourcePrefab: {fileID: 100100000, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
 --- !u!1 &271596106327823607 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6498539486386997359, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
   m_PrefabInstance: {fileID: 6479435230263303320}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5250097852889227705
+--- !u!114 &5716576519783714212
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,10 +133,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 271596106327823607}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8c959e1c420d5848b1a5620cd29eafe, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b88410282550ca42a4f45d062bfc5d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Amount: 6
+  Amount: 5
 --- !u!114 &140117490619599197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,22 +147,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 39b7b7634c59d21458de15a9158d7dec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &3208602935313016152 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8461326218063870400, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
-  m_PrefabInstance: {fileID: 6479435230263303320}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &978436711178750025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3208602935313016152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 167d857c5eb761d49b494ccaa88d77e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
