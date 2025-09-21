@@ -6,7 +6,4 @@ using System.Collections.Generic;
 public class CardsList : MonoBehaviour
 {
     public List<Card> Cards;
-
-
-
 }
