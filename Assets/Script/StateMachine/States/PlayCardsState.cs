@@ -158,7 +158,9 @@ public class PlayCardsState : State
 
             yield return StartCoroutine(targeter.GetTargets(targets));
 
-            // Get all effects from the child
+            // Get all effects from the child - check if child still exists
+            if (child == null) continue;
+
             CardEffect[] effects = child.GetComponents<CardEffect>();
             foreach (CardEffect effect in effects)
             {

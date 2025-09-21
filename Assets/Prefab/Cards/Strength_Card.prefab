@@ -19,14 +19,14 @@ PrefabInstance:
     - target: {fileID: 2864292285653478253, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -8805745403167902996, guid: d7b97e01c4a9e5b4f949eb046ae41ddf, type: 3}
+      objectReference: {fileID: -1187286788802795959, guid: 08132fc1c2938984aa60c9706019176e, type: 3}
     - target: {fileID: 4868287157371459211, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: Value
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
-      value: Reduces all Damage taken by 1
+      value: Increase all damage done by 1
       objectReference: {fileID: 0}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_fontSize
@@ -34,7 +34,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7478358879296495923, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
-      value: Armor
+      value: Strength
       objectReference: {fileID: 0}
     - target: {fileID: 7478358879296495923, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_fontSize

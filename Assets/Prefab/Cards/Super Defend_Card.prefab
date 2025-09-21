@@ -62,7 +62,7 @@ PrefabInstance:
     - target: {fileID: 2864292285653478253, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 2472505974824027414, guid: 6c817b1150722a34bb1b5f3cded3ff9b, type: 3}
+      objectReference: {fileID: 2731035488934949648, guid: f08a3a74ad051a94c9b218bbdad29bd5, type: 3}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
       value: 'Gain 6 Block
