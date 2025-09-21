@@ -68,6 +68,7 @@
     <Compile Include="Assets\Script\Enemy\Actions\EnemyAttackEffect.cs" />
     <Compile Include="Assets\Script\StateMachine\States\TurnBeginState.cs" />
     <Compile Include="Assets\Script\Modifiers\ModifierTags.cs" />
+    <Compile Include="Assets\Script\Cards\CardsEffects\DeathPreventionStatus.cs" />
     <Compile Include="Assets\Script\UI\FloatingMessage\MessageSpawner.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasics2d.cs" />
     <Compile Include="Assets\Script\RelicSystem\RelicHolder.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Assets\Script\UI\Menu\MenuController.cs" />
     <Compile Include="Assets\Script\Map\MapGenerator.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralSequencer.cs" />
+    <Compile Include="Assets\Script\Money\MoneyKeySystem.cs" />
     <Compile Include="Assets\Script\Player\PlayerController.cs" />
     <Compile Include="Assets\Script\(WIP) ScritapbleObjects\Map\Nodes\Blueprint\NodeBlueprint.cs" />
     <Compile Include="Assets\Script\CardReward\CardRewardSlot.cs" />
@@ -131,6 +133,7 @@
     <Compile Include="Assets\Script\StateMachine\States\RewardState.cs" />
     <Compile Include="Assets\Script\Modifiers\ModifiedValues.cs" />
     <Compile Include="Assets\Script\Cards\CardsEffects\ChangeMaxEnergyEffect.cs" />
+    <Compile Include="Assets\Script\StateMachine\States\GameOverState.cs" />
     <Compile Include="Assets\Script\Map\GameMapManager.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplineTrack.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSpline.cs" />
@@ -156,11 +159,11 @@
     <Compile Include="Assets\Script\Cards\CardsEffects\DrawCards.cs" />
     <Compile Include="Assets\Script\UI\FloatingMessage\BuffDebuffMessageSpawner.cs" />
     <Compile Include="Assets\Script\Units\Unit.cs" />
-    <Compile Include="Assets\Script\BattleStateChecker.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanAudio.cs" />
     <Compile Include="Assets\Script\Menu\MenuController.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTDescrOptional.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingIssue.cs" />
+    <Compile Include="Assets\Script\StateMachine\States\BattleStateChecker.cs" />
     <Compile Include="Assets\Script\EncounterManager\EventManager.cs" />
     <Compile Include="Assets\Script\Cards\CardsEffects\DamageEffect.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingOptionalCancel.cs" />
@@ -196,7 +199,6 @@
     <Compile Include="Assets\IO\BattleButtons.cs" />
     <Compile Include="Assets\Script\Map\MinMax.cs" />
     <Compile Include="Assets\Script\RelicSystem\Relic.cs" />
-    <Compile Include="Assets\Script\GameOverState.cs" />
     <Compile Include="Assets\Script\Cards\CardsUI\CardHolder.cs" />
     <Compile Include="Assets\Script\Cards\CardDrag.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasic.cs" />

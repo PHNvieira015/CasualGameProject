@@ -4629,6 +4629,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 566407081}
   m_CullTransparentMesh: 1
+--- !u!1 &567833155
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 567833156}
+  m_Layer: 0
+  m_Name: Money_Key_System
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &567833156
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567833155}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 617804053}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &571779399
 GameObject:
   m_ObjectHideFlags: 0
@@ -5051,6 +5082,7 @@ Transform:
   - {fileID: 266682747}
   - {fileID: 1410756165}
   - {fileID: 1735338052}
+  - {fileID: 567833156}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &619394800
@@ -9723,6 +9755,7 @@ MonoBehaviour:
   - {fileID: 7842978911371292441, guid: b665cc28255f0c248b298c693c4251a7, type: 3}
   - {fileID: 3997067217428925397, guid: a24adbc469649504ebd76ae36f3df8fd, type: 3}
   - {fileID: 3997067217428925397, guid: 05c5c20741b43804db8e14bb27eb7407, type: 3}
+  - {fileID: 3997067217428925397, guid: cde5bdffd5bac5647a5e7b885229a2bb, type: 3}
   slotsParent: {fileID: 1245452150}
   rewardUI: {fileID: 1245452149}
   playerDeck: {fileID: 1418798294}
@@ -10258,6 +10291,7 @@ MonoBehaviour:
   - {fileID: 7842978911371292441, guid: 53d5e157d8b583d418fe6778062ea5c1, type: 3}
   - {fileID: 3997067217428925397, guid: d3259c6d9afef2949b850d34bd5177f8, type: 3}
   - {fileID: 3997067217428925397, guid: 26d5c81c3e908e647b128a0fd9dd65f5, type: 3}
+  - {fileID: 3997067217428925397, guid: cde5bdffd5bac5647a5e7b885229a2bb, type: 3}
 --- !u!4 &1418798295
 Transform:
   m_ObjectHideFlags: 0
@@ -10852,6 +10886,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 567833155}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -11641,7 +11687,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1079641116}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.22668836
+  m_Size: 0.45337668
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
