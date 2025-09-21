@@ -130,6 +130,7 @@
     <Compile Include="Assets\Script\Cards\CardsUI\CardsController.cs" />
     <Compile Include="Assets\Script\StateMachine\States\RewardState.cs" />
     <Compile Include="Assets\Script\Modifiers\ModifiedValues.cs" />
+    <Compile Include="Assets\Script\Cards\CardsEffects\ChangeMaxEnergyEffect.cs" />
     <Compile Include="Assets\Script\Map\GameMapManager.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplineTrack.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSpline.cs" />
@@ -137,6 +138,7 @@
     <Compile Include="Assets\LeanTween\Testing\TestingSequencer.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Script\Cards\CardsEffects\Discard.cs" />
+    <Compile Include="Assets\Script\Cards\CardsEffects\ChooseDiscardEffect.cs" />
     <Compile Include="Assets\Script\Cards\StatusEffects\DisableUnit.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\LogoCinematic.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralAdvancedTechniques.cs" />
@@ -169,6 +171,7 @@
     <Compile Include="Assets\LeanTween\Testing\TestingColorTweening.cs" />
     <Compile Include="Assets\Script\(WIP) ScritapbleObjects\Cards_Actions\CardScriptableObject.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralSimpleUI.cs" />
+    <Compile Include="Assets\Script\Cards\CardsEffects\HealEffect.cs" />
     <Compile Include="Assets\Script\(WIP) ScritapbleObjects\StatusEffect\StatusEffectData.cs" />
     <Compile Include="Assets\LeanTween\Testing\Testing243.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyAI2.cs" />

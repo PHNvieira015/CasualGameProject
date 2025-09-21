@@ -30,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3778264926607638906, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3826631459251317152, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
       propertyPath: m_text
@@ -54,11 +54,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5501410116656681748, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
       propertyPath: m_text
-      value: 
+      value: At the start of combat draw 2 additional Cards
       objectReference: {fileID: 0}
     - target: {fileID: 5501410116656681748, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
       propertyPath: m_fontSize
-      value: 30
+      value: 28.55
       objectReference: {fileID: 0}
     - target: {fileID: 5501410116656681748, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
       propertyPath: m_fontAsset
@@ -162,7 +162,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6787706208118968031, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
       propertyPath: m_Name
-      value: Relic1
+      value: Relic_draw2Cards
       objectReference: {fileID: 0}
     - target: {fileID: 7028721788543442978, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
       propertyPath: m_IsActive
@@ -180,12 +180,22 @@ PrefabInstance:
     - {fileID: 3545975198723652368, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
     - {fileID: 7891266418649231267, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
     - {fileID: 3877583118620550846, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5964608689289757310, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6787706208118968031, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5741470468529442116}
+    - targetCorrespondingSourceObject: {fileID: 8183556612245365651, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1786544062269813116}
+    - targetCorrespondingSourceObject: {fileID: 8183556612245365651, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4676111627334899613}
+    - targetCorrespondingSourceObject: {fileID: 6584371243470012648, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1996525446953165601}
     - targetCorrespondingSourceObject: {fileID: 6584371243470012648, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1061259069407954305}
@@ -210,6 +220,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c24d14c4a6c524eb537ddf6ab4dc5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &6889694883269417659 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8183556612245365651, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+  m_PrefabInstance: {fileID: 3318248710876870952}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1786544062269813116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6889694883269417659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b7b7634c59d21458de15a9158d7dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4676111627334899613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6889694883269417659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 391701a3641893e4b9346f09ce9cf2b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawAmount: 2
+  delayBetweenDraws: 0.2
+  shuffleIfEmpty: 1
 --- !u!1 &8087918793295378423 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6787706208118968031, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
@@ -228,13 +270,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RelicName: Drawer
-  Description: Draw 1 extra card each turn
+  Description: Draw 2 Extra Cards
   Icon: {fileID: 7126738399148894813, guid: 28b25e313f833294198e48af67db4ae6, type: 3}
 --- !u!1 &8461326218063870400 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6584371243470012648, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
   m_PrefabInstance: {fileID: 3318248710876870952}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1996525446953165601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8461326218063870400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78c24d14c4a6c524eb537ddf6ab4dc5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1061259069407954305
 MonoBehaviour:
   m_ObjectHideFlags: 0

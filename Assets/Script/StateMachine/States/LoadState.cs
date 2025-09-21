@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq; // Add this for LINQ functionality
+using System.Linq;
 
 public class LoadState : State
 {
@@ -10,6 +10,8 @@ public class LoadState : State
         yield return StartCoroutine(InitializeDeck());
         yield return StartCoroutine(InitializeUnits());
         yield return StartCoroutine(InitializeRelics());
+
+        // No longer playing relics here - they'll play at turn start
         StartCoroutine(WaitThenChangeState<TurnBeginState>());
     }
 
@@ -74,12 +76,5 @@ public class LoadState : State
         }
 
         return cards;
-    }
-
-    // Alternative using LINQ (simpler but less control)
-    private List<Card> ShuffleCardsLINQ(List<Card> cards)
-    {
-        System.Random rng = new System.Random();
-        return cards.OrderBy(card => rng.Next()).ToList();
     }
 }

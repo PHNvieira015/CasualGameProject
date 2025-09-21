@@ -10,5 +10,6 @@ public enum ModifierTags
    TakeAttackDamage,
    WhenUnitDies,
    GainBlock,
+   Heal,
    None
 }

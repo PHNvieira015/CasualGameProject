@@ -1,0 +1,20 @@
+using NUnit.Framework;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ChangeMaxEnergyEffect : CardEffect
+{
+    public int Value;
+    public override IEnumerator Apply(List<object> targets)
+    {
+        foreach (object o in targets)
+        {
+            PlayerUnit player = o as PlayerUnit;
+            player.MaxEnergy = Value;
+            yield return null;
+        }
+    }
+
+
+}
