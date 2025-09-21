@@ -9705,7 +9705,9 @@ MonoBehaviour:
   - {fileID: 3997067217428925397, guid: fadc737e10fe60c46bda0c2420552423, type: 3}
   - {fileID: 3997067217428925397, guid: 2563202c30feb9e46ab08dbe6699c899, type: 3}
   - {fileID: 3997067217428925397, guid: 7af5b5ebeb1031842a40c1ccc2496f95, type: 3}
-  - {fileID: 3997067217428925397, guid: 7af5b5ebeb1031842a40c1ccc2496f95, type: 3}
+  - {fileID: 3997067217428925397, guid: fadc737e10fe60c46bda0c2420552423, type: 3}
+  - {fileID: 7842978911371292441, guid: b665cc28255f0c248b298c693c4251a7, type: 3}
+  - {fileID: 3997067217428925397, guid: 62a59745608934b4baa7d5e91fb86bfa, type: 3}
   slotsParent: {fileID: 1245452150}
   rewardUI: {fileID: 1245452149}
   playerDeck: {fileID: 1418798294}
@@ -10092,18 +10094,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cards:
-  - {fileID: 3997067217428925397, guid: 2563202c30feb9e46ab08dbe6699c899, type: 3}
-  - {fileID: 3997067217428925397, guid: fadc737e10fe60c46bda0c2420552423, type: 3}
+  - {fileID: 3997067217428925397, guid: d9d21890b8898bd4ea883cbb93a213c3, type: 3}
+  - {fileID: 3997067217428925397, guid: d9d21890b8898bd4ea883cbb93a213c3, type: 3}
   - {fileID: 3997067217428925397, guid: d9d21890b8898bd4ea883cbb93a213c3, type: 3}
   - {fileID: 7842978911371292441, guid: 53d5e157d8b583d418fe6778062ea5c1, type: 3}
   - {fileID: 7842978911371292441, guid: 53d5e157d8b583d418fe6778062ea5c1, type: 3}
+  - {fileID: 7842978911371292441, guid: 53d5e157d8b583d418fe6778062ea5c1, type: 3}
+  - {fileID: 3997067217428925397, guid: d3259c6d9afef2949b850d34bd5177f8, type: 3}
   - {fileID: 3997067217428925397, guid: 26d5c81c3e908e647b128a0fd9dd65f5, type: 3}
-  - {fileID: 3997067217428925397, guid: d3259c6d9afef2949b850d34bd5177f8, type: 3}
-  - {fileID: 7842978911371292441, guid: 53d5e157d8b583d418fe6778062ea5c1, type: 3}
-  - {fileID: 3997067217428925397, guid: d9d21890b8898bd4ea883cbb93a213c3, type: 3}
-  - {fileID: 3997067217428925397, guid: d9d21890b8898bd4ea883cbb93a213c3, type: 3}
-  - {fileID: 3997067217428925397, guid: d3259c6d9afef2949b850d34bd5177f8, type: 3}
-  - {fileID: 3997067217428925397, guid: 7af5b5ebeb1031842a40c1ccc2496f95, type: 3}
 --- !u!4 &1418798295
 Transform:
   m_ObjectHideFlags: 0
@@ -11152,7 +11150,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1079641116}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.22668836
+  m_Size: 0.45337668
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -12539,7 +12537,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2285122512304054204, guid: 035bded92e8f1c34eb43cc6679638303, type: 3}
       propertyPath: MaxCards
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2285122512304054204, guid: 035bded92e8f1c34eb43cc6679638303, type: 3}
       propertyPath: MaxEnergy
