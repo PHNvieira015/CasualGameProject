@@ -502,6 +502,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8708350606952751424}
     m_Modifications:
+    - target: {fileID: 2209496082058735191, guid: 895003a4d807f354783dd88e4919ce7e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4441097852667311059, guid: 895003a4d807f354783dd88e4919ce7e, type: 3}
       propertyPath: m_Type
       value: 0
@@ -11150,7 +11154,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1079641116}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.45337668
+  m_Size: 0.22668836
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -11566,6 +11570,82 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1702081033}
   m_CullTransparentMesh: 1
+--- !u!1 &1719372101
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1719372102}
+  - component: {fileID: 1719372104}
+  - component: {fileID: 1719372103}
+  m_Layer: 5
+  m_Name: EnergyMeterImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1719372102
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719372101}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1741438592}
+  m_Father: {fileID: 1763999564}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -835.114, y: -19.586}
+  m_SizeDelta: {x: 130.8044, y: 130.8044}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1719372103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719372101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 1695788610720025306, guid: 9302728c8b146224c950dc1cc7092cef, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1719372104
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719372101}
+  m_CullTransparentMesh: 1
 --- !u!1 &1735338051
 GameObject:
   m_ObjectHideFlags: 0
@@ -11622,7 +11702,7 @@ GameObject:
   - component: {fileID: 1741438594}
   - component: {fileID: 1741438593}
   m_Layer: 5
-  m_Name: EnergyMeter
+  m_Name: EnergyMeter (Text)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11640,12 +11720,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1763999564}
+  m_Father: {fileID: 1719372102}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.4}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -761, y: -242}
-  m_SizeDelta: {x: 95.9881, y: 78.6104}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 10.6, y: 10.6}
+  m_SizeDelta: {x: 95.9881, y: 91.6104}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1741438593
 MonoBehaviour:
@@ -11694,8 +11774,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56
-  m_fontSizeBase: 56
+  m_fontSize: 62
+  m_fontSizeBase: 62
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -11859,7 +11939,7 @@ RectTransform:
   - {fileID: 1023053968}
   - {fileID: 798431621}
   - {fileID: 776813846}
-  - {fileID: 1741438592}
+  - {fileID: 1719372102}
   - {fileID: 173141700}
   - {fileID: 1982349542}
   m_Father: {fileID: 1990515707}
