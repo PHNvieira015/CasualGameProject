@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f892404e3cf3de842898b33c9625d960
+guid: 1fc6b3f564bf6d740bc23c69261a21b7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 271938981397892181
-    second: Robo umanoid_0
+      213: 4330104910405537224
+    second: Galho_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Robo umanoid_0
+      name: Galho_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1169
-        height: 1616
+        width: 2623
+        height: 462
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 55c8dc2101f16c300800000000000000
-      internalID: 271938981397892181
+      spriteID: 8cd85e0697f971c30800000000000000
+      internalID: 4330104910405537224
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Robo umanoid_0: 271938981397892181
+      Galho_0: 4330104910405537224
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
