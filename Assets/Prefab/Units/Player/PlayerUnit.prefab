@@ -88,6 +88,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7944454690400751335, guid: ab5ee21e553b5d24484da092a40f4956, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7944454690400751335, guid: ab5ee21e553b5d24484da092a40f4956, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.32
+      objectReference: {fileID: 0}
     - target: {fileID: 8363059422420093047, guid: ab5ee21e553b5d24484da092a40f4956, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 73.5
@@ -142,6 +150,7 @@ MonoBehaviour:
   MaxEnergy: 3
   DrawAmount: 5
   MaxCards: 5
+  _energyMeter: {fileID: 0}
 --- !u!114 &6568353558207553721 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8021057375642471688, guid: ab5ee21e553b5d24484da092a40f4956, type: 3}
