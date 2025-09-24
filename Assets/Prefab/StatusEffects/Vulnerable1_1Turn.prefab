@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2878207596254410407}
   - component: {fileID: -6935718072809712596}
   m_Layer: 0
-  m_Name: Vulnerable
+  m_Name: Vulnerable1_1Turn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

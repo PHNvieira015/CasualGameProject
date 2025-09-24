@@ -164,8 +164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a6d0f873b92d2b40ba0b8fb5588065e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StatusEffectPrefab: {fileID: -6935718072809712596, guid: 9ec2dc3104c6ce74983bd4f70cb25e83, type: 3}
-  AppliesXTimes: 2
+  StatusEffectPrefab: {fileID: -6935718072809712596, guid: 3a5414d68ac27a8468906d79d4a15454, type: 3}
+  AppliesXTimes: 1
 --- !u!114 &2634503265875883084
 MonoBehaviour:
   m_ObjectHideFlags: 0

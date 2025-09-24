@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class TurnBeginState : State
 {
@@ -13,8 +14,42 @@ public class TurnBeginState : State
         // Find the first alive unit in the queue
         Unit aliveUnit = null;
         int unitsChecked = 0;
+        int totalUnits = machine.Units.Count;
 
-        while (machine.Units.Count > 0 && unitsChecked < machine.Units.Count)
+        // If no units in queue, handle battle end immediately
+        if (totalUnits == 0)
+        {
+            Debug.Log("No units in battle queue");
+            StartCoroutine(WaitThenChangeState<EndBattleState>());
+            yield break;
+        }
+
+        // First, check if player is dead (this should end battle regardless of other units)
+        if (_playerUnit == null)
+        {
+            // Try to find player unit in the queue if we don't have reference
+            foreach (var unit in machine.Units)
+            {
+                if (unit is PlayerUnit playerUnit)
+                {
+                    _playerUnit = playerUnit;
+                    break;
+                }
+            }
+        }
+
+        bool playerDead = (_playerUnit != null && _playerUnit.GetStatValue(StatType.HP) <= 0);
+
+        // If player is dead, end battle immediately
+        if (playerDead)
+        {
+            Debug.Log("Player is dead - ending battle");
+            StartCoroutine(WaitThenChangeState<EndBattleState>());
+            yield break;
+        }
+
+        // Find next alive unit for the turn
+        while (unitsChecked < totalUnits)
         {
             Unit current = machine.Units.Dequeue();
             unitsChecked++;
@@ -30,27 +65,35 @@ public class TurnBeginState : State
             else
             {
                 Debug.LogFormat("Unit {0} is dead", current.name);
-                machine.Units.Enqueue(current); // Keep dead units in queue if needed
+                machine.Units.Enqueue(current);
             }
         }
 
         machine.CurrentUnit = aliveUnit;
-
-        // Try to get player unit reference if we don't have one
-        if (_playerUnit == null && machine.CurrentUnit != null)
-        {
-            _playerUnit = machine.CurrentUnit as PlayerUnit;
-        }
 
         yield return null;
 
         // Play relics at the start of each turn
         yield return StartCoroutine(PlayRelicsForTurn());
 
-        // Check battle end conditions
-        if (machine.Units.Count == 1 ||
-          (_playerUnit != null && _playerUnit.GetStatValue(StatType.HP) <= 0))
+        // Check battle end conditions after relics (relics might affect HP)
+        playerDead = (_playerUnit != null && _playerUnit.GetStatValue(StatType.HP) <= 0);
+        bool noAliveUnits = (aliveUnit == null);
+        bool allEnemiesDead = AreAllEnemiesDead();
+
+        if (playerDead)
         {
+            Debug.Log("Player died during relic effects - ending battle");
+            StartCoroutine(WaitThenChangeState<EndBattleState>());
+        }
+        else if (allEnemiesDead)
+        {
+            Debug.Log("All enemies are dead - victory!");
+            StartCoroutine(WaitThenChangeState<EndBattleState>());
+        }
+        else if (noAliveUnits)
+        {
+            Debug.Log("No alive units found in queue - ending battle");
             StartCoroutine(WaitThenChangeState<EndBattleState>());
         }
         else if (machine.CurrentUnit != null)
@@ -59,9 +102,28 @@ public class TurnBeginState : State
         }
         else
         {
-            Debug.LogError("No valid units found in battle!");
+            Debug.LogWarning("Unexpected state - ending battle");
             StartCoroutine(WaitThenChangeState<EndBattleState>());
         }
+    }
+
+    private bool AreAllEnemiesDead()
+    {
+        bool foundAliveEnemy = false;
+
+        foreach (var unit in machine.Units)
+        {
+            // Skip null units and the player unit
+            if (unit == null || unit is PlayerUnit) continue;
+
+            if (unit.GetStatValue(StatType.HP) > 0)
+            {
+                foundAliveEnemy = true;
+                break;
+            }
+        }
+
+        return !foundAliveEnemy;
     }
 
     IEnumerator PlayRelicsForTurn()
@@ -106,7 +168,6 @@ public class TurnBeginState : State
         }
 
         // Clean up - remove from holder first, then destroy (if it's a one-time use relic)
-        // Remove this line if you want relics to persist across turns
         if (relic != null)
         {
             CardsController.Instance.RelicHolder.RemoveCard(relic);

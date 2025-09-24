@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00e002dbe7dac9f4dacf8328b76378f0, type: 3}
-  m_Name: EncounterSBats
+  m_Name: EncounterBase3
   m_EditorClassIdentifier: 
   groupName: Default Group
-  groupIcon: {fileID: 0}
   enemyPrefabs:
-  - {fileID: 4298939588376936765, guid: 6c0622d6f39320b41a3b3dbdc2b8a94b, type: 3}
+  - {fileID: 4298939588376936765, guid: 55f69a1479a36b947b3c51da8c1d7131, type: 3}
+  - {fileID: 4298939588376936765, guid: 55f69a1479a36b947b3c51da8c1d7131, type: 3}
+  - {fileID: 4298939588376936765, guid: 55f69a1479a36b947b3c51da8c1d7131, type: 3}
   useCustomFormation: 0
-  customPositions: []
+  customPositions:
+  - {x: 0, y: 0, z: 0}
