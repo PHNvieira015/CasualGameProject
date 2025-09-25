@@ -58,33 +58,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drawAmount: 2
-  drawDelay: 0.3
-  cardFlyDuration: 0.5
+  delayBetweenDraws: 0.2
   shuffleIfEmpty: 1
-  drawCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1001 &163291442949748820
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -111,11 +86,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
-      value: lose 6 Heath Gain 2 energy Draw 3 Cards
+      value: 'Consume
+
+        lose 6 Heath Gain 2 energy Draw 3 Cards'
       objectReference: {fileID: 0}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_fontSize
-      value: 31.35
+      value: 23.45
       objectReference: {fileID: 0}
     - target: {fileID: 7478358879296495923, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
@@ -222,6 +199,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6498539486386997359, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6132018352378874011}
+    - targetCorrespondingSourceObject: {fileID: 8461326218063870400, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2578568876685698696}
   m_SourcePrefab: {fileID: 100100000, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
 --- !u!4 &993723955559449030 stripped
 Transform:
@@ -256,5 +236,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 39b7b7634c59d21458de15a9158d7dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &8586266545100161428 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8461326218063870400, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+  m_PrefabInstance: {fileID: 163291442949748820}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2578568876685698696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8586266545100161428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 167d857c5eb761d49b494ccaa88d77e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

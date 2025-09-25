@@ -26,11 +26,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
-      value: Reduces all Damage taken by 1
+      value: 'Consume
+
+        Reduces all Damage taken by 1'
       objectReference: {fileID: 0}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_fontSize
-      value: 31.35
+      value: 23.75
       objectReference: {fileID: 0}
     - target: {fileID: 7478358879296495923, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
@@ -42,7 +44,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8087918793295378423, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_Name
-      value: Armor_Card
+      value: 1Armor Up_Card
       objectReference: {fileID: 0}
     - target: {fileID: 8373005034525413249, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_Pivot.x

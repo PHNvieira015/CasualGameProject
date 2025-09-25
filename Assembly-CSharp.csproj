@@ -92,6 +92,7 @@
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplinePerformance.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralEasingTypes.cs" />
     <Compile Include="Assets\Script\Cards\CardsUI\CardHandHolder.cs" />
+    <Compile Include="Assets\Script\CardStroyAnimation\CardDestroyAnimation.cs" />
     <Compile Include="Assets\Script\UI\BlockIcon\IBlockValueDisplay.cs" />
     <Compile Include="Assets\LeanTween\Testing\FollowingTests.cs" />
     <Compile Include="Assets\Script\StateMachine\States\PlayCardsState.cs" />

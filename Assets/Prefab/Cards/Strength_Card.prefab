@@ -26,11 +26,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
-      value: INscrease all damage done by 1
+      value: 'Consume
+
+        Inscrease all damage done by 1'
       objectReference: {fileID: 0}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_fontSize
-      value: 31.35
+      value: 24.9
       objectReference: {fileID: 0}
     - target: {fileID: 7478358879296495923, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
