@@ -4729,6 +4729,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 567833156}
+  - component: {fileID: 567833157}
   m_Layer: 0
   m_Name: Money_Key_System
   m_TagString: Untagged
@@ -4751,6 +4752,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 617804053}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &567833157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567833155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bf1f09e2577f3d4d9fa7008b9e5c393, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentMoney: 0
+  currentKeys: 0
+  startingMoney: 100
+  startingKeys: 0
 --- !u!1 &571779399
 GameObject:
   m_ObjectHideFlags: 0
@@ -12254,7 +12271,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1079641116}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.22668836
+  m_Size: 0.45337668
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

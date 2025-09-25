@@ -82,7 +82,6 @@
     <Compile Include="Assets\Script\UI\Menu\MenuController.cs" />
     <Compile Include="Assets\Script\Map\MapGenerator.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralSequencer.cs" />
-    <Compile Include="Assets\Script\Money\MoneyKeySystem.cs" />
     <Compile Include="Assets\Script\Player\PlayerController.cs" />
     <Compile Include="Assets\Script\(WIP) ScritapbleObjects\Map\Nodes\Blueprint\NodeBlueprint.cs" />
     <Compile Include="Assets\Script\CardReward\CardRewardSlot.cs" />
@@ -120,6 +119,7 @@
     <Compile Include="Assets\LeanTween\Framework\LeanSmooth.cs" />
     <Compile Include="Assets\Script\Cards\CardsEffects\BlockEffect.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingMaxTweens.cs" />
+    <Compile Include="Assets\Script\Shop-Money\Shop.cs" />
     <Compile Include="Assets\Script\RelicSystem\Relics\ExtraDrawRelic.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralUISpace.cs" />
     <Compile Include="Assets\Script\Cards\CardsUI\Card.cs" />
@@ -147,6 +147,7 @@
     <Compile Include="Assets\LeanTween\Examples\Scripts\LogoCinematic.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralAdvancedTechniques.cs" />
     <Compile Include="Assets\Script\Map\NodeType.cs" />
+    <Compile Include="Assets\Script\Shop-Money\MoneyKeySystem.cs" />
     <Compile Include="Assets\Script\Units\StatType.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralEventsListeners.cs" />
     <Compile Include="Assets\Script\Testing\CardTester.cs" />
@@ -166,6 +167,7 @@
     <Compile Include="Assets\LeanTween\Testing\TestingIssue.cs" />
     <Compile Include="Assets\Script\StateMachine\States\BattleStateChecker.cs" />
     <Compile Include="Assets\Script\EncounterManager\EventManager.cs" />
+    <Compile Include="Assets\Script\Shop-Money\ShopItem.cs" />
     <Compile Include="Assets\Script\Cards\CardsEffects\DamageEffect.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingOptionalCancel.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTDescr.cs" />
@@ -178,6 +180,7 @@
     <Compile Include="Assets\Script\Cards\CardsEffects\HealEffect.cs" />
     <Compile Include="Assets\Script\(WIP) ScritapbleObjects\StatusEffect\StatusEffectData.cs" />
     <Compile Include="Assets\LeanTween\Testing\Testing243.cs" />
+    <Compile Include="Assets\Script\Shop-Money\MoneyRewardSystem.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyAI2.cs" />
     <Compile Include="Assets\Script\(WIP) ScritapbleObjects\EffectStructures.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathBezier.cs" />

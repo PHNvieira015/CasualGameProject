@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groupName: Default Group
   enemyPrefabs:
-  - {fileID: 4298939588376936765, guid: 6c0622d6f39320b41a3b3dbdc2b8a94b, type: 3}
-  - {fileID: 4298939588376936765, guid: 6c0622d6f39320b41a3b3dbdc2b8a94b, type: 3}
   - {fileID: 4298939588376936765, guid: 55f69a1479a36b947b3c51da8c1d7131, type: 3}
+  - {fileID: 4298939588376936765, guid: 2a288aa3f5397cb41ae2dbccd689c93e, type: 3}
+  - {fileID: 4298939588376936765, guid: 6c0622d6f39320b41a3b3dbdc2b8a94b, type: 3}
   useCustomFormation: 0
   customPositions:
   - {x: 0, y: 0, z: 0}
