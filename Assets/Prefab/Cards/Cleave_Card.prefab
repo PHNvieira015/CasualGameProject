@@ -18,15 +18,15 @@ PrefabInstance:
       objectReference: {fileID: -4998600897433398834, guid: 05cc26c476be66c42b4fb4a309fd1454, type: 3}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
-      value: Deal 8 Damage to ALL enemies
+      value: Causa 8 de dano a todos os inimigos
       objectReference: {fileID: 0}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_fontSize
-      value: 29.6
+      value: 31.35
       objectReference: {fileID: 0}
     - target: {fileID: 7478358879296495923, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
-      value: Cleave
+      value: Cutilada
       objectReference: {fileID: 0}
     - target: {fileID: 8087918793295378423, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_Name

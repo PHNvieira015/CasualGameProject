@@ -65,17 +65,21 @@ PrefabInstance:
       objectReference: {fileID: 2731035488934949648, guid: f08a3a74ad051a94c9b218bbdad29bd5, type: 3}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
-      value: 'Gain 6 Block
+      value: 'Recebe 6 de bloqueio
 
-        Draw 1 Card'
+        Compre 1 carta'
       objectReference: {fileID: 0}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_fontSize
-      value: 35
+      value: 27.85
       objectReference: {fileID: 0}
     - target: {fileID: 7478358879296495923, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
-      value: Super Defend
+      value: Defesa Extra
+      objectReference: {fileID: 0}
+    - target: {fileID: 7478358879296495923, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+      propertyPath: m_fontSize
+      value: 33.6
       objectReference: {fileID: 0}
     - target: {fileID: 8087918793295378423, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_Name

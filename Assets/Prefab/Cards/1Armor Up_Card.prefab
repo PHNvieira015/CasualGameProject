@@ -24,23 +24,53 @@ PrefabInstance:
       propertyPath: Value
       value: -2
       objectReference: {fileID: 0}
+    - target: {fileID: 5844897224115780756, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844897224115780756, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844897224115780756, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 269
+      objectReference: {fileID: 0}
+    - target: {fileID: 6403068079006439578, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+      propertyPath: m_text
+      value: 'Consumivel
+
+        Carta removida da partida depois do uso'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6403068079006439578, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 6403068079006439578, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
-      value: 'Consume
+      value: 'Consumivel
 
-        Reduces all Damage taken by 1'
+        Reduz todo o dano recebido em 1.'
       objectReference: {fileID: 0}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_fontSize
-      value: 23.75
+      value: 24.45
       objectReference: {fileID: 0}
     - target: {fileID: 7478358879296495923, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
-      value: Armor Up
+      value: Fortificar
       objectReference: {fileID: 0}
     - target: {fileID: 7478358879296495923, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_fontSize
       value: 33.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8066222774563656026, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8087918793295378423, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_Name

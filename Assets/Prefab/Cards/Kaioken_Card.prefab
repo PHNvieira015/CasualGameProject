@@ -24,18 +24,25 @@ PrefabInstance:
       propertyPath: Value
       value: -3
       objectReference: {fileID: 0}
+    - target: {fileID: 6403068079006439578, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+      propertyPath: m_text
+      value: "Consumivel\r\nCarta removida da partida depois do uso\nBloqueio\r\nprevine
+        dano nessa rodada\r"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6403068079006439578, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
-      value: 'Triple Damage
+      value: 'Consumivel
 
-        Prevent Death for one turn
-
-        Takes Double
-        Damage'
+        Triplica o dano causado, recebe 100 de bloqueio,
+        dobra o Dano recebido'
       objectReference: {fileID: 0}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_fontSize
-      value: 21.75
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_margin.w
@@ -52,6 +59,10 @@ PrefabInstance:
     - target: {fileID: 7478358879296495923, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_fontSize
       value: 33.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8066222774563656026, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8087918793295378423, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_Name

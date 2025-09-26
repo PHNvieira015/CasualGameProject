@@ -16,9 +16,15 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -2948010718434902863, guid: 1731ad73bfa45e94fb9231d40405ffb8, type: 3}
+    - target: {fileID: 6403068079006439578, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+      propertyPath: m_text
+      value: "Consumivel\r\nCarta removida da partida depois do uso\r"
+      objectReference: {fileID: 0}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
-      value: Recover 6 health
+      value: 'Consumivel
+
+        Cura 6 de vida'
       objectReference: {fileID: 0}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_fontSize
@@ -26,11 +32,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7478358879296495923, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
-      value: Fryed Chicken
+      value: Frango frito
+      objectReference: {fileID: 0}
+    - target: {fileID: 8066222774563656026, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8087918793295378423, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_Name
-      value: Defend_Card
+      value: FryedChicken_Card
       objectReference: {fileID: 0}
     - target: {fileID: 8373005034525413249, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_Pivot.x

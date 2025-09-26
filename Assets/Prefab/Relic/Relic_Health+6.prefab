@@ -28,9 +28,21 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2657238234493528352, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2657238234493528352, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2657238234493528352, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -271
+      objectReference: {fileID: 0}
     - target: {fileID: 3778264926607638906, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3826631459251317152, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
       propertyPath: m_text
@@ -52,13 +64,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4754731928714668146, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5501410116656681748, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
       propertyPath: m_text
-      value: At the start of combat draw 2 additional Cards
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5501410116656681748, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
       propertyPath: m_fontSize
-      value: 28.55
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5501410116656681748, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
       propertyPath: m_fontAsset
@@ -175,6 +191,22 @@ PrefabInstance:
     - target: {fileID: 8553837709225905429, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8561498889572901298, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+      propertyPath: m_text
+      value: 'No inicio da partida Recupera 6 de vida '
+      objectReference: {fileID: 0}
+    - target: {fileID: 8561498889572901298, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+      propertyPath: m_margin.z
+      value: -47.0496
+      objectReference: {fileID: 0}
+    - target: {fileID: 8561498889572901298, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 8561498889572901298, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3545975198723652368, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}

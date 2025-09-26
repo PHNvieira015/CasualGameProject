@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 7126738399148894813, guid: 28b25e313f833294198e48af67db4ae6, type: 3}
+    - target: {fileID: 793555088386360379, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1510826497873676639, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -28,9 +32,37 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2657238234493528352, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2657238234493528352, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2657238234493528352, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3028505216351729569, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8066222774563656026}
+    - target: {fileID: 3028505216351729569, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8066222774563656026}
+    - target: {fileID: 3028505216351729569, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 3028505216351729569, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
     - target: {fileID: 3778264926607638906, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3826631459251317152, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
       propertyPath: m_text
@@ -52,13 +84,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4754731928714668146, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5501410116656681748, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
       propertyPath: m_text
-      value: At the start of combat draw 2 additional Cards
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5501410116656681748, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
       propertyPath: m_fontSize
-      value: 28.55
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5501410116656681748, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
       propertyPath: m_fontAsset
@@ -176,6 +212,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8561498889572901298, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+      propertyPath: m_text
+      value: No inicio do combate compre 2 cartas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8561498889572901298, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+      propertyPath: m_margin.z
+      value: -74.934204
+      objectReference: {fileID: 0}
+    - target: {fileID: 8561498889572901298, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 8561498889572901298, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9156370623811863996, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -14
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3545975198723652368, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
     - {fileID: 7891266418649231267, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
@@ -227,24 +283,11 @@ MonoBehaviour:
   - eventID: 0
     callback:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1901608048518150226}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
---- !u!1 &1901608048518150226 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3778264926607638906, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
-  m_PrefabInstance: {fileID: 3318248710876870952}
-  m_PrefabAsset: {fileID: 0}
+        m_Calls: []
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &4749401241585036462 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8063003381688374662, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
@@ -294,6 +337,11 @@ MonoBehaviour:
   drawAmount: 2
   delayBetweenDraws: 0.2
   shuffleIfEmpty: 1
+--- !u!1 &8066222774563656026 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4754731928714668146, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+  m_PrefabInstance: {fileID: 3318248710876870952}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8087918793295378423 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6787706208118968031, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}

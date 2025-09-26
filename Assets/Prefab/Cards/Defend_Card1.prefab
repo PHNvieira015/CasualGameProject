@@ -16,17 +16,31 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -3893101233349078036, guid: 72b143e4fe5559e4a94de167559ebf4b, type: 3}
+    - target: {fileID: 6403068079006439578, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+      propertyPath: m_text
+      value: 'Bloqueio
+
+        previne dano nessa rodada'
+      objectReference: {fileID: 0}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
-      value: Gain 5 Block
+      value: Recebe 5 de bloqueio
+      objectReference: {fileID: 0}
+    - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+      propertyPath: m_fontSize
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 7478358879296495923, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
-      value: Defend
+      value: Defender
+      objectReference: {fileID: 0}
+    - target: {fileID: 8066222774563656026, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8087918793295378423, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_Name
-      value: Defend_Card
+      value: Defend_Card1
       objectReference: {fileID: 0}
     - target: {fileID: 8373005034525413249, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_Pivot.x

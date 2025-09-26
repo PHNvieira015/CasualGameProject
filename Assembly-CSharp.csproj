@@ -102,6 +102,7 @@
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplineEndless.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\Following.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingRotate.cs" />
+    <Compile Include="Assets\Script\AutoSizeParent.cs" />
     <Compile Include="Assets\Script\Units\SelectableUnit.cs" />
     <Compile Include="Assets\LeanTween\Testing\Testing240.cs" />
     <Compile Include="Assets\LeanTween\Testing\Scripts\LeanPool.cs" />
@@ -127,6 +128,7 @@
     <Compile Include="Assets\Script\StateMachine\StateMachine.cs" />
     <Compile Include="Assets\Script\RelicSystem\RelicList.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralCameraShake.cs" />
+    <Compile Include="Assets\Script\HoverText.cs" />
     <Compile Include="Assets\Script\Map\MapNode.cs" />
     <Compile Include="Assets\Script\Cards\Targeting\TargetSelfUnit.cs" />
     <Compile Include="Assets\Script\CardReward\CardRewardSystem.cs" />
@@ -157,10 +159,12 @@
     <Compile Include="Assets\Script\Cards\Targeting\TargetAllEnemies.cs" />
     <Compile Include="Assets\Script\UI\HealthBar\IHealthBar.cs" />
     <Compile Include="Assets\Script\Cards\Targeting\TargetPlayer.cs" />
+    <Compile Include="Assets\Script\Tooltip.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTweenExt.cs" />
     <Compile Include="Assets\Script\Cards\CardsEffects\DrawCards.cs" />
     <Compile Include="Assets\Script\UI\FloatingMessage\BuffDebuffMessageSpawner.cs" />
     <Compile Include="Assets\Script\Units\Unit.cs" />
+    <Compile Include="Assets\Script\ClickableTextHandler.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanAudio.cs" />
     <Compile Include="Assets\Script\Menu\MenuController.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTDescrOptional.cs" />
@@ -204,6 +208,7 @@
     <Compile Include="Assets\Script\Map\MinMax.cs" />
     <Compile Include="Assets\Script\RelicSystem\Relic.cs" />
     <Compile Include="Assets\Script\Cards\CardsUI\CardHolder.cs" />
+    <Compile Include="Assets\Script\TooltipManager.cs" />
     <Compile Include="Assets\Script\Cards\CardDrag.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasic.cs" />
     <Compile Include="Assets\Script\UI\BlockIcon\BlockValueDisplay.cs" />

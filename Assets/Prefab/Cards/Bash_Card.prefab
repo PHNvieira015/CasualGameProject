@@ -24,17 +24,37 @@ PrefabInstance:
       propertyPath: Value
       value: -2
       objectReference: {fileID: 0}
+    - target: {fileID: 6403068079006439578, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+      propertyPath: m_text
+      value: 'Vulnerabilidade
+
+        Recebe 25% a mais de dano'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6403068079006439578, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 6403068079006439578, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
-      value: Deal 8 Damage Applies 2 Vulnerable
+      value: 'Causa 8 de dano.
+
+        aplica 2 de vulnerabilidade.'
       objectReference: {fileID: 0}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_fontSize
-      value: 29.6
+      value: 24.1
       objectReference: {fileID: 0}
     - target: {fileID: 7478358879296495923, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
-      value: Bash
+      value: Pancada
+      objectReference: {fileID: 0}
+    - target: {fileID: 8066222774563656026, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8087918793295378423, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_Name
