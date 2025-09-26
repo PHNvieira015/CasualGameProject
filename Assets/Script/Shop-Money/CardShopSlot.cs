@@ -1,26 +1,25 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine.UI;
+
+public enum CostType { Money, Key }
 
 [RequireComponent(typeof(BoxCollider2D), typeof(Image))]
 public class CardShopSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    [Header("Card Display")]
+    [Header("References")]
     public Transform cardAnchor;
     public Image slotBackground;
-
-    [Header("Cost Display")]
     public GameObject costPanel;
-    public TMP_Text costText;
+    public TextMeshProUGUI costText;
 
-    [Header("Cost Settings")]
-    public bool useMoney = true;   // true = money, false = key
-    public int costAmount = 0;     // set by CardShopSystem
+    [HideInInspector] public int costAmount;
+    [HideInInspector] public CostType costType;
 
     private CardShopSystem shopSystem;
-    private Card currentCardInstance;
     private Card assignedCardPrefab;
+    private Card currentCardInstance;
 
     private BoxCollider2D slotCollider;
     private Image slotImage;
@@ -50,10 +49,7 @@ public class CardShopSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
             slotBackground = slotImage;
     }
 
-    void Start()
-    {
-        Invoke("SetupCollider", 0.1f);
-    }
+    void Start() => Invoke("SetupCollider", 0.1f);
 
     void SetupCollider()
     {
@@ -65,10 +61,13 @@ public class CardShopSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         }
     }
 
-    public void Initialize(CardShopSystem system, Card cardPrefab)
+    // Correct Initialize method with 5 arguments
+    public void Initialize(CardShopSystem system, Card cardPrefab, int moneyCost, int keyCost, CostType type)
     {
         shopSystem = system;
         assignedCardPrefab = cardPrefab;
+        costType = type;
+        costAmount = (type == CostType.Money) ? moneyCost : keyCost;
         isPurchased = false;
 
         SpawnCard();
@@ -80,7 +79,6 @@ public class CardShopSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     void SpawnCard()
     {
         ClearCard();
-
         if (assignedCardPrefab == null) return;
 
         currentCardInstance = Instantiate(assignedCardPrefab, cardAnchor);
@@ -88,54 +86,32 @@ public class CardShopSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         currentCardInstance.transform.localRotation = Quaternion.identity;
         currentCardInstance.transform.localScale = Vector3.one;
 
-        // Disable interactions
-        CanvasGroup canvasGroup = currentCardInstance.GetComponent<CanvasGroup>();
-        if (canvasGroup == null)
-            canvasGroup = currentCardInstance.gameObject.AddComponent<CanvasGroup>();
+        CanvasGroup cg = currentCardInstance.GetComponent<CanvasGroup>();
+        if (!cg) cg = currentCardInstance.gameObject.AddComponent<CanvasGroup>();
+        cg.blocksRaycasts = false;
+        cg.interactable = false;
 
-        canvasGroup.blocksRaycasts = false;
-        canvasGroup.interactable = false;
-
-        foreach (var collider in currentCardInstance.GetComponentsInChildren<Collider2D>())
-            collider.enabled = false;
-
-        Button button = currentCardInstance.GetComponent<Button>();
-        if (button != null) button.enabled = false;
-
-        Image[] images = currentCardInstance.GetComponentsInChildren<Image>();
-        foreach (var img in images)
+        foreach (var img in currentCardInstance.GetComponentsInChildren<Image>())
             img.raycastTarget = false;
-    }
 
-    public void ClearCard()
-    {
-        if (currentCardInstance != null)
-        {
-            Destroy(currentCardInstance.gameObject);
-            currentCardInstance = null;
-        }
-    }
-
-    void CheckAffordability()
-    {
-        if (MoneyKeySystem.Instance != null)
-            canAfford = !isPurchased && (useMoney ?
-                MoneyKeySystem.Instance.CanAfford(costAmount, 0) :
-                MoneyKeySystem.Instance.CanAfford(0, costAmount));
+        foreach (var col in currentCardInstance.GetComponentsInChildren<Collider2D>())
+            col.enabled = false;
     }
 
     void UpdateCostDisplay()
     {
         if (costPanel != null && costText != null)
         {
-            costPanel.SetActive(!isPurchased);
-
-            string text = "";
-            if (useMoney) text = $"{costAmount}G";
-            else text = $"{costAmount}K";
-
-            costText.text = text;
+            costPanel.SetActive(true);
+            costText.text = $"{costAmount} {(costType == CostType.Money ? "G" : "K")}";
         }
+    }
+
+    void CheckAffordability()
+    {
+        canAfford = !isPurchased && (costType == CostType.Money ?
+            MoneyKeySystem.Instance.Money >= costAmount :
+            MoneyKeySystem.Instance.Keys >= costAmount);
     }
 
     void UpdateVisualState()
@@ -148,34 +124,60 @@ public class CardShopSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
             if (costText != null) costText.text = "SOLD";
         }
         else if (canAfford)
+        {
             slotBackground.color = affordableColor;
+        }
         else
+        {
             slotBackground.color = unaffordableColor;
+        }
+    }
+
+    public void ClearCard()
+    {
+        if (currentCardInstance != null)
+            Destroy(currentCardInstance.gameObject);
+        currentCardInstance = null;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (isPurchased) return;
+        Debug.Log($"Clicked slot for card: {assignedCardPrefab?.name}, Purchased: {isPurchased}, CanAfford: {canAfford}");
 
-        if (!canAfford) return;
+        if (isPurchased || !canAfford) return;
 
-        bool purchased = useMoney ?
+        bool purchaseSuccess = costType == CostType.Money ?
             MoneyKeySystem.Instance.MakePurchase(costAmount, 0) :
             MoneyKeySystem.Instance.MakePurchase(0, costAmount);
 
-        if (!purchased) return;
+        if (!purchaseSuccess)
+        {
+            Debug.Log("Purchase failed: not enough resources");
+            return;
+        }
 
         isPurchased = true;
         UpdateVisualState();
-        UpdateCostDisplay();
 
-        shopSystem?.OnCardPurchasedHandler(assignedCardPrefab, this);
+        if (shopSystem != null)
+        {
+            CardsList targetList = (costType == CostType.Money) ? shopSystem.playerDeck : shopSystem.playerRelics;
+            if (targetList != null)
+            {
+                targetList.Cards.Add(assignedCardPrefab);
+                Debug.Log($"Added {assignedCardPrefab.name} to {(costType == CostType.Money ? "PlayerDeck" : "PlayerRelics")}");
+            }
+
+            shopSystem.OnCardPurchasedHandler(assignedCardPrefab, this, costType == CostType.Key);
+        }
+
+        if (currentCardInstance != null)
+            currentCardInstance.gameObject.SetActive(false);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (isPurchased) return;
-        if (slotBackground != null)
+        if (!isPurchased && slotBackground != null)
             slotBackground.color = hoverColor;
     }
 
@@ -189,25 +191,6 @@ public class CardShopSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         isPurchased = false;
         ClearCard();
         SpawnCard();
-        CheckAffordability();
-        UpdateCostDisplay();
-        UpdateVisualState();
-    }
-
-    void OnEnable()
-    {
-        if (MoneyKeySystem.Instance != null)
-            MoneyKeySystem.Instance.OnValuesChanged += OnResourcesChanged;
-    }
-
-    void OnDisable()
-    {
-        if (MoneyKeySystem.Instance != null)
-            MoneyKeySystem.Instance.OnValuesChanged -= OnResourcesChanged;
-    }
-
-    void OnResourcesChanged(int money, int keys)
-    {
         CheckAffordability();
         UpdateVisualState();
         UpdateCostDisplay();

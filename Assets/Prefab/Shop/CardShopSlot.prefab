@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 100, y: -219}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 22, y: -23.5103}
+  m_SizeDelta: {x: 290.0044, y: 484.2896}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2044917067426474229
 CanvasRenderer:
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -179.4127, w: 0}
+  m_margin: {x: 95.04812, y: 410.437, z: 1.9171523, w: 10.629257}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -211,7 +211,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -24.17733}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -221,7 +221,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 250, y: 405.96}
+  m_Size: {x: 250, y: 455}
   m_EdgeRadius: 0
 --- !u!222 &3713915622230167705
 CanvasRenderer:
@@ -277,8 +277,9 @@ MonoBehaviour:
   slotBackground: {fileID: 7452193367508619100}
   costPanel: {fileID: 1521685948032219210}
   costText: {fileID: 4153037579553006698}
-  useMoney: 1
+  costType: 0
   costAmount: 50
+  shopSystem: {fileID: 0}
 --- !u!1 &6600690762326470272
 GameObject:
   m_ObjectHideFlags: 0

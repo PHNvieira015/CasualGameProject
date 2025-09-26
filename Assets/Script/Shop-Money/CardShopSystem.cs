@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class CardShopSystem : MonoBehaviour
 {
@@ -11,12 +11,9 @@ public class CardShopSystem : MonoBehaviour
     public List<Card> availableShopCards = new List<Card>();
     public List<Card> availableRelics = new List<Card>();
 
-    [Header("Pricing")]
-    public int baseCardCost = 50;
-    public int baseRelicCost = 100;
-
-    public Vector2Int cardCostVariance = new Vector2Int(-10, 20);
-    public Vector2Int relicCostVariance = new Vector2Int(-20, 30);
+    [Header("Player Deck Reference")]
+    public CardsList playerDeck;
+    public CardsList playerRelics;
 
     [Header("Shop Refresh")]
     public int maxRefreshesPerDay = 3;
@@ -28,16 +25,13 @@ public class CardShopSystem : MonoBehaviour
     public event CardPurchasedEventHandler CardPurchased;
     public event CardPurchasedEventHandler RelicPurchased;
 
-    private void Start()
-    {
-        InitializeShop();
-    }
+    private void Start() => InitializeShop();
 
     public void InitializeShop()
     {
-        // Clear slots visually
-        foreach (var slot in cardSlots) slot.ResetSlot();
-        foreach (var slot in relicSlots) slot.ResetSlot();
+        // Clear all slots visually
+        foreach (var slot in cardSlots) slot.ClearCard();
+        foreach (var slot in relicSlots) slot.ClearCard();
 
         // Populate card slots
         foreach (var slot in cardSlots)
@@ -45,16 +39,8 @@ public class CardShopSystem : MonoBehaviour
             if (availableShopCards.Count == 0) break;
 
             Card randomCard = availableShopCards[Random.Range(0, availableShopCards.Count)];
-
-            // Randomize cost
-            int randomizedCost = baseCardCost + Random.Range(cardCostVariance.x, cardCostVariance.y + 1);
-            randomizedCost = Mathf.Max(1, randomizedCost);
-
-            // Assign cost to slot
-            slot.useMoney = true; // true = money, false = key (set in inspector if needed)
-            slot.costAmount = randomizedCost;
-
-            slot.Initialize(this, randomCard);
+            int randomCost = Random.Range(10, 101); // Random money cost between 10-100
+            slot.Initialize(this, randomCard, randomCost, 0, CostType.Money);
         }
 
         // Populate relic slots
@@ -63,23 +49,15 @@ public class CardShopSystem : MonoBehaviour
             if (availableRelics.Count == 0) break;
 
             Card randomRelic = availableRelics[Random.Range(0, availableRelics.Count)];
-
-            int randomizedCost = baseRelicCost + Random.Range(relicCostVariance.x, relicCostVariance.y + 1);
-            randomizedCost = Mathf.Max(1, randomizedCost);
-
-            slot.useMoney = true; // or false for key
-            slot.costAmount = randomizedCost;
-
-            slot.Initialize(this, randomRelic);
+            int randomKeyCost = Random.Range(1, 3); // 1 or 2 keys
+            slot.Initialize(this, randomRelic, 0, randomKeyCost, CostType.Key);
         }
     }
 
     public void OnCardPurchasedHandler(Card card, CardShopSlot slot, bool isRelic = false)
     {
-        if (isRelic)
-            RelicPurchased?.Invoke(card, slot);
-        else
-            CardPurchased?.Invoke(card, slot);
+        if (isRelic) RelicPurchased?.Invoke(card, slot);
+        else CardPurchased?.Invoke(card, slot);
     }
 
     public void RefreshShop()

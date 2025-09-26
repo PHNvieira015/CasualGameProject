@@ -3907,6 +3907,8 @@ MonoBehaviour:
   - {fileID: 7693925896098680523, guid: 9bc82ef667e47b244b7b192521f21615, type: 3}
   - {fileID: 7693925896098680523, guid: 447faaa6736ae2941bae08f204d35ec5, type: 3}
   - {fileID: 3836028699633038209, guid: c99352ade8c61b44dba486921cd13ef7, type: 3}
+  playerDeck: {fileID: 1418798294}
+  playerRelics: {fileID: 723742691}
   maxRefreshesPerDay: 3
   refreshCost: 25
 --- !u!1001 &507180523
@@ -4459,7 +4461,7 @@ MonoBehaviour:
   currentMoney: 0
   currentKeys: 0
   startingMoney: 100
-  startingKeys: 1
+  startingKeys: 5
 --- !u!1 &571779399
 GameObject:
   m_ObjectHideFlags: 0
@@ -7764,7 +7766,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1191808610
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7871,10 +7873,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 257585403}
     m_Modifications:
-    - target: {fileID: -8467023007794771687, guid: 8055e8e680132e541af355a20960622f, type: 3}
-      propertyPath: cardAnchor
-      value: 
-      objectReference: {fileID: 1208195610}
     - target: {fileID: 241460316990395083, guid: 8055e8e680132e541af355a20960622f, type: 3}
       propertyPath: m_Pivot.x
       value: 0
