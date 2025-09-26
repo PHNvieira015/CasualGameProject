@@ -221,8 +221,16 @@ PrefabInstance:
       value: Relic testing
       objectReference: {fileID: 0}
     - target: {fileID: 8561498889572901298, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+      propertyPath: m_fontSize
+      value: 53
+      objectReference: {fileID: 0}
+    - target: {fileID: 8561498889572901298, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 53
+      objectReference: {fileID: 0}
+    - target: {fileID: 8561498889572901298, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
       propertyPath: m_VerticalAlignment
-      value: 1024
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 8561498889572901298, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
       propertyPath: m_HorizontalAlignment
@@ -234,7 +242,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9156370623811863996, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -111
+      value: -212
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

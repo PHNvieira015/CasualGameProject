@@ -8,9 +8,53 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 787181637462134792, guid: fe18f239527e6fb4ebdf677da1541f4c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -207
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670511129470418195, guid: fe18f239527e6fb4ebdf677da1541f4c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844897224115780756, guid: fe18f239527e6fb4ebdf677da1541f4c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -143
+      objectReference: {fileID: 0}
     - target: {fileID: 6403068079006439578, guid: fe18f239527e6fb4ebdf677da1541f4c, type: 3}
       propertyPath: m_text
       value: Aumenta Energia Maxima em 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6403068079006439578, guid: fe18f239527e6fb4ebdf677da1541f4c, type: 3}
+      propertyPath: m_fontSize
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 6403068079006439578, guid: fe18f239527e6fb4ebdf677da1541f4c, type: 3}
+      propertyPath: m_margin.y
+      value: -243.92926
+      objectReference: {fileID: 0}
+    - target: {fileID: 6403068079006439578, guid: fe18f239527e6fb4ebdf677da1541f4c, type: 3}
+      propertyPath: m_margin.z
+      value: -135.47585
+      objectReference: {fileID: 0}
+    - target: {fileID: 6403068079006439578, guid: fe18f239527e6fb4ebdf677da1541f4c, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 6403068079006439578, guid: fe18f239527e6fb4ebdf677da1541f4c, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 6403068079006439578, guid: fe18f239527e6fb4ebdf677da1541f4c, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6700171773251077589, guid: fe18f239527e6fb4ebdf677da1541f4c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 4792097461550522169, guid: a500c8a90e5aceb4685f4e533835fee5, type: 3}
+    - target: {fileID: 8066222774563656026, guid: fe18f239527e6fb4ebdf677da1541f4c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8087918793295378423, guid: fe18f239527e6fb4ebdf677da1541f4c, type: 3}
       propertyPath: m_Name

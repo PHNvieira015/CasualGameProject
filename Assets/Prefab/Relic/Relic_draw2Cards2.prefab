@@ -8,9 +8,53 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5844897224115780756, guid: fe18f239527e6fb4ebdf677da1541f4c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -146
+      objectReference: {fileID: 0}
     - target: {fileID: 6403068079006439578, guid: fe18f239527e6fb4ebdf677da1541f4c, type: 3}
       propertyPath: m_text
       value: Compra 2 Cartas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6403068079006439578, guid: fe18f239527e6fb4ebdf677da1541f4c, type: 3}
+      propertyPath: m_fontSize
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 6403068079006439578, guid: fe18f239527e6fb4ebdf677da1541f4c, type: 3}
+      propertyPath: m_margin.x
+      value: -20.663994
+      objectReference: {fileID: 0}
+    - target: {fileID: 6403068079006439578, guid: fe18f239527e6fb4ebdf677da1541f4c, type: 3}
+      propertyPath: m_margin.z
+      value: -42.91584
+      objectReference: {fileID: 0}
+    - target: {fileID: 6403068079006439578, guid: fe18f239527e6fb4ebdf677da1541f4c, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 6700171773251077589, guid: fe18f239527e6fb4ebdf677da1541f4c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7126738399148894813, guid: 28b25e313f833294198e48af67db4ae6, type: 3}
+    - target: {fileID: 7458653626738653152, guid: fe18f239527e6fb4ebdf677da1541f4c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7458653626738653152, guid: fe18f239527e6fb4ebdf677da1541f4c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7458653626738653152, guid: fe18f239527e6fb4ebdf677da1541f4c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7458653626738653152, guid: fe18f239527e6fb4ebdf677da1541f4c, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8066222774563656026, guid: fe18f239527e6fb4ebdf677da1541f4c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8087918793295378423, guid: fe18f239527e6fb4ebdf677da1541f4c, type: 3}
       propertyPath: m_Name

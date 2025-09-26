@@ -130,6 +130,7 @@
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralCameraShake.cs" />
     <Compile Include="Assets\Script\HoverText.cs" />
     <Compile Include="Assets\Script\Map\MapNode.cs" />
+    <Compile Include="Assets\Script\Shop-Money\CardShopSystem.cs" />
     <Compile Include="Assets\Script\Cards\Targeting\TargetSelfUnit.cs" />
     <Compile Include="Assets\Script\CardReward\CardRewardSystem.cs" />
     <Compile Include="Assets\Script\Cards\CardsUI\CardsController.cs" />
@@ -189,6 +190,7 @@
     <Compile Include="Assets\Script\(WIP) ScritapbleObjects\EffectStructures.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathBezier.cs" />
     <Compile Include="Assets\Script\CardReward\RewardButton.cs" />
+    <Compile Include="Assets\Script\Shop-Money\CardShopSlot.cs" />
     <Compile Include="Assets\Script\Cards\Targeting\ITarget.cs" />
     <Compile Include="Assets\Script\Cards\CardsEffects\CardEffect.cs" />
     <Compile Include="Assets\Script\Cards\Playability\EnergyRequirement.cs" />
