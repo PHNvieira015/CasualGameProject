@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "\xEDcone de Jogo_0": 7882273309622307872
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
