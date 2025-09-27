@@ -122,6 +122,7 @@
     <Compile Include="Assets\LeanTween\Testing\TestingMaxTweens.cs" />
     <Compile Include="Assets\Script\Shop-Money\Shop.cs" />
     <Compile Include="Assets\Script\RelicSystem\Relics\ExtraDrawRelic.cs" />
+    <Compile Include="Assets\Script\CardTooltip.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralUISpace.cs" />
     <Compile Include="Assets\Script\Cards\CardsUI\Card.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplines.cs" />
