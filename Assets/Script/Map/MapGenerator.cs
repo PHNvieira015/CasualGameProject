@@ -87,8 +87,9 @@ public class MapGenerator : MonoBehaviour
 
     private int GetNodeCountForRow(int row)
     {
-        // First and last two rows always have 1 node
-        return (row == 0 || row >= totalRows - 2) ? 1 : Random.Range(1, maxColumns + 1);
+        // First three rows and last two rows always have 1 node
+        // Row 0 (start), Row 1 (store), Row 2 (one node), and last two rows (rest site & boss)
+        return (row == 0 || row == 1 || row == 2 || row >= totalRows - 2) ? 1 : Random.Range(1, maxColumns + 1);
     }
 
     private int GetXPosition(int index, int nodeCount)
@@ -99,10 +100,12 @@ public class MapGenerator : MonoBehaviour
 
     private NodeType GetNodeTypeForRow(int row)
     {
-        if (row == 0) return NodeType.MinorEnemy;
-        if (row == 1) return NodeType.Store;
-        if (row == totalRows - 2) return NodeType.RestSite;
-        if (row == totalRows - 1) return NodeType.Boss;
+        if (row == 0) return NodeType.RestSite;          // Start node
+        if (row == 1) return NodeType.MinorEnemy;          //First battle
+        if (row == 2) return NodeType.Store;               // First store
+        if (row == 3) return NodeType.MinorEnemy;               // Third row always minor enemy
+        if (row == totalRows - 2) return NodeType.RestSite; // Rest site before boss
+        if (row == totalRows - 1) return NodeType.Boss;    // Boss node
         return GetRandomNodeType();
     }
 

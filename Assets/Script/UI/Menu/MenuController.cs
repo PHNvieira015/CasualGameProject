@@ -44,8 +44,8 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject deckGalleryScreen;
     [SerializeField] private GameObject discardPileGalleryScreen;
     [SerializeField] private GameObject drawPileGalleryScreen;
-    [SerializeField] private GameObject restSiteScreen; // Added rest site reference
-    [SerializeField] private GameObject shopScreen; // Added shop reference
+    [SerializeField] private GameObject restSiteScreen;
+    [SerializeField] private GameObject shopScreen;
     [SerializeField] private GameObject victoryScreen;
     [SerializeField] private TMP_Text messageTXT;
 
@@ -187,6 +187,20 @@ public class MenuController : MonoBehaviour
         }
     }
 
+    public void ShowDefeatScreen()
+    {
+        ChangeScreen(Screens.Defeat);
+        Debug.Log("Defeat screen shown!");
+    }
+
+    public void HideDefeatScreen()
+    {
+        if (currentScreen == Screens.Defeat)
+        {
+            ChangeScreen(Screens.None);
+        }
+    }
+
     public void ShowShopScreen()
     {
         ChangeScreen(Screens.Shop);
@@ -221,6 +235,35 @@ public class MenuController : MonoBehaviour
         SceneManager.LoadScene(sceneId);
     }
 
+    public void RetryGame()
+    {
+        Debug.Log("Retrying game...");
+
+        // Hide defeat screen
+        HideDefeatScreen();
+
+        // Show loading screen
+        ChangeScreen(Screens.Loading);
+
+        // Reload the current scene
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
+    }
+
+    public void ReturnToMainMenu()
+    {
+        Debug.Log("Returning to main menu...");
+
+        // Close any active screens
+        CloseAllScreens();
+
+        // Show loading screen
+        ChangeScreen(Screens.Loading);
+
+        // Load main menu (assuming scene 0 is main menu)
+        SceneManager.LoadScene(0);
+    }
+
     public void QuitGame()
     {
         Debug.Log("Quitting application...");
@@ -231,13 +274,11 @@ public class MenuController : MonoBehaviour
 #endif
     }
 
-    // Helper method to check if a specific screen is active
     public bool IsScreenActive(Screens screen)
     {
         return currentScreen == screen;
     }
 
-    // Method to close all screens
     public void CloseAllScreens()
     {
         SetScreenActive(currentScreen, false);
