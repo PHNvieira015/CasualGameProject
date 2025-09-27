@@ -1,8 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+[DefaultExecutionOrder(-100)] // Ensures this initializes early
 public class MoneyKeySystem : MonoBehaviour
 {
     [System.Serializable]
@@ -37,8 +37,22 @@ public class MoneyKeySystem : MonoBehaviour
     public System.Action<int> OnKeysChanged;
     public System.Action<int, int> OnValuesChanged;
 
-    // Singleton instance
-    public static MoneyKeySystem Instance { get; private set; }
+    // Singleton
+    private static MoneyKeySystem _instance;
+    private static bool _applicationIsQuitting = false;
+
+    public static MoneyKeySystem Instance
+    {
+        get
+        {
+            if (_applicationIsQuitting)
+            {
+                Debug.LogWarning("[MoneyKeySystem] Instance destroyed on quit. Returning null.");
+                return null;
+            }
+            return _instance;
+        }
+    }
 
     public int Money
     {
@@ -72,26 +86,46 @@ public class MoneyKeySystem : MonoBehaviour
         }
     }
 
-    void Awake()
+    private void Awake()
     {
-        if (Instance == null)
+        if (_instance != null && _instance != this)
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-            Initialize(startingMoney, startingKeys);
-        }
-        else
-        {
+            Debug.LogWarning("[MoneyKeySystem] Duplicate instance found, destroying.");
             Destroy(gameObject);
+            return;
         }
+
+        _instance = this;
+        InitializeSingleton();
     }
 
-    void Start()
+    private void InitializeSingleton()
     {
-        // Initial UI update for all displays
+        Initialize(startingMoney, startingKeys);
+        Debug.Log("[MoneyKeySystem] Singleton initialized.");
+    }
+
+    private void Start()
+    {
         UpdateAllDisplays();
     }
 
+    private void OnApplicationQuit()
+    {
+        _applicationIsQuitting = true;
+    }
+
+    private void OnDestroy()
+    {
+        if (_instance == this)
+        {
+            _applicationIsQuitting = true;
+            _instance = null;
+            Debug.Log("[MoneyKeySystem] Instance destroyed.");
+        }
+    }
+
+    // Initialization
     public void Initialize(int money = 0, int keys = 0)
     {
         Money = money;
@@ -114,10 +148,7 @@ public class MoneyKeySystem : MonoBehaviour
         return true;
     }
 
-    public bool CanAfford(int amount)
-    {
-        return Money >= amount;
-    }
+    public bool CanAfford(int amount) => Money >= amount;
 
     // Key methods
     public bool AddKeys(int amount)
@@ -134,10 +165,7 @@ public class MoneyKeySystem : MonoBehaviour
         return true;
     }
 
-    public bool HasKeys(int amount)
-    {
-        return Keys >= amount;
-    }
+    public bool HasKeys(int amount) => Keys >= amount;
 
     // Combined transactions
     public bool CanAfford(int moneyCost, int keyCost)
@@ -153,15 +181,13 @@ public class MoneyKeySystem : MonoBehaviour
         return true;
     }
 
-    // UI Display Methods for Multiple References
+    // UI Display Methods
     private void UpdateAllMoneyDisplays()
     {
         foreach (var moneyText in moneyTexts)
         {
             if (moneyText != null)
-            {
                 moneyText.text = string.Format(moneyFormat, currentMoney);
-            }
         }
     }
 
@@ -170,9 +196,7 @@ public class MoneyKeySystem : MonoBehaviour
         foreach (var keysText in keysTexts)
         {
             if (keysText != null)
-            {
                 keysText.text = string.Format(keysFormat, currentKeys);
-            }
         }
     }
 
@@ -182,7 +206,7 @@ public class MoneyKeySystem : MonoBehaviour
         UpdateAllKeysDisplays();
     }
 
-    // Public methods to manage UI references
+    // UI Reference Management
     public void AddMoneyTextReference(TextMeshProUGUI newMoneyText)
     {
         if (newMoneyText != null && !moneyTexts.Contains(newMoneyText))
@@ -203,37 +227,20 @@ public class MoneyKeySystem : MonoBehaviour
 
     public void RemoveMoneyTextReference(TextMeshProUGUI moneyTextToRemove)
     {
-        if (moneyTexts.Contains(moneyTextToRemove))
-        {
-            moneyTexts.Remove(moneyTextToRemove);
-        }
+        moneyTexts.Remove(moneyTextToRemove);
     }
 
     public void RemoveKeysTextReference(TextMeshProUGUI keysTextToRemove)
     {
-        if (keysTexts.Contains(keysTextToRemove))
-        {
-            keysTexts.Remove(keysTextToRemove);
-        }
+        keysTexts.Remove(keysTextToRemove);
     }
 
-    public void ClearAllMoneyTextReferences()
-    {
-        moneyTexts.Clear();
-    }
+    public void ClearAllMoneyTextReferences() => moneyTexts.Clear();
+    public void ClearAllKeysTextReferences() => keysTexts.Clear();
 
-    public void ClearAllKeysTextReferences()
-    {
-        keysTexts.Clear();
-    }
+    public void RefreshAllUI() => UpdateAllDisplays();
 
-    // Method to force UI refresh
-    public void RefreshAllUI()
-    {
-        UpdateAllDisplays();
-    }
-
-    // Reset methods
+    // Reset
     public void ResetToDefault()
     {
         Money = startingMoney;
@@ -246,9 +253,26 @@ public class MoneyKeySystem : MonoBehaviour
         Keys = keys;
     }
 
-    // Debug method to see how many references we have
     public void PrintReferenceCount()
     {
-        Debug.Log($"Money Texts: {moneyTexts.Count}, Keys Texts: {keysTexts.Count}");
+        Debug.Log($"[MoneyKeySystem] Money Texts: {moneyTexts.Count}, Keys Texts: {keysTexts.Count}");
+    }
+
+    // Save & Load
+    public void SaveToPlayerPrefs()
+    {
+        PlayerPrefs.SetInt("MoneyKeySystem_Money", currentMoney);
+        PlayerPrefs.SetInt("MoneyKeySystem_Keys", currentKeys);
+        PlayerPrefs.Save();
+    }
+
+    public void LoadFromPlayerPrefs()
+    {
+        if (PlayerPrefs.HasKey("MoneyKeySystem_Money"))
+        {
+            currentMoney = PlayerPrefs.GetInt("MoneyKeySystem_Money");
+            currentKeys = PlayerPrefs.GetInt("MoneyKeySystem_Keys");
+            UpdateAllDisplays();
+        }
     }
 }
