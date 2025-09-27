@@ -16,7 +16,6 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 4298939588376936765, guid: 55f69a1479a36b947b3c51da8c1d7131, type: 3}
   - {fileID: 4298939588376936765, guid: 55f69a1479a36b947b3c51da8c1d7131, type: 3}
-  - {fileID: 4298939588376936765, guid: 55f69a1479a36b947b3c51da8c1d7131, type: 3}
   useCustomFormation: 0
   customPositions:
   - {x: 0, y: 0, z: 0}

@@ -1,37 +1,45 @@
 using UnityEngine;
-using System.Collections;
 using System.Linq;
+using System.Collections.Generic;
 
 public class BattleStateChecker : MonoBehaviour
 {
+    private HashSet<EnemyAI2> deadEnemies = new HashSet<EnemyAI2>();
+
     private void OnEnable()
     {
-        // Subscribe to unit death events
         Unit.OnAnyUnitDeath += HandleUnitDeath;
     }
 
     private void OnDisable()
     {
-        // Unsubscribe to prevent memory leaks
         Unit.OnAnyUnitDeath -= HandleUnitDeath;
     }
 
     private void HandleUnitDeath(Unit deadUnit)
     {
-        // If an enemy died, mark it as dead in its EnemyAI2 component
-        EnemyAI2 enemyAI = deadUnit.GetComponent<EnemyAI2>();
-        if (enemyAI != null)
+        // Check if the dead unit is a boss
+        Boss bossComponent = deadUnit.GetComponent<Boss>();
+        if (bossComponent != null)
         {
-            enemyAI.MarkAsDead();
+            Debug.Log("Boss defeated! Handling boss death...");
+            bossComponent.HandleBossDeath();
+            return;
         }
 
-        // Check battle conditions when any unit dies
+        // For regular enemies, track them in our own list
+        EnemyAI2 enemyAI = deadUnit.GetComponent<EnemyAI2>();
+        if (enemyAI != null && enemyAI.GetComponent<Boss>() == null)
+        {
+            deadEnemies.Add(enemyAI);
+            Debug.Log($"Enemy tracked as dead: {enemyAI.name}");
+        }
+
         CheckBattleConditions();
     }
 
     private void CheckBattleConditions()
     {
-        // Check for player defeat first
         if (IsPlayerDefeated())
         {
             Debug.Log("Player defeated! Game Over!");
@@ -39,13 +47,15 @@ public class BattleStateChecker : MonoBehaviour
             return;
         }
 
-        // Check for player victory
         if (AreAllEnemiesDefeated())
         {
             Debug.Log("All enemies defeated! Victory!");
             StateMachine.Instance.ChangeState<EndBattleState>();
+            deadEnemies.Clear(); // Reset for next battle
             return;
         }
+
+        Debug.Log("Battle continues... enemies remaining: " + GetRemainingEnemyCount());
     }
 
     private bool IsPlayerDefeated()
@@ -56,31 +66,27 @@ public class BattleStateChecker : MonoBehaviour
 
     private bool AreAllEnemiesDefeated()
     {
-        // Find all EnemyAI2 components and check if they're all dead
-        EnemyAI2[] enemies = FindObjectsOfType<EnemyAI2>();
-        return enemies.Length == 0 || enemies.All(enemy => enemy.IsDead);
+        // Get all non-boss enemies in the scene
+        EnemyAI2[] allEnemies = FindObjectsOfType<EnemyAI2>()
+            .Where(enemy => enemy.GetComponent<Boss>() == null)
+            .ToArray();
+
+        // Check if all enemies are in our dead list
+        return allEnemies.Length == 0 || allEnemies.All(enemy => deadEnemies.Contains(enemy));
     }
 
-    // Optional: Backup checks that can be called from other states
-    public static bool CheckVictory()
+    private int GetRemainingEnemyCount()
     {
-        EnemyAI2[] enemies = FindObjectsOfType<EnemyAI2>();
-        if (enemies.Length == 0 || enemies.All(enemy => enemy.IsDead))
-        {
-            StateMachine.Instance.ChangeState<EndBattleState>();
-            return true;
-        }
-        return false;
+        EnemyAI2[] allEnemies = FindObjectsOfType<EnemyAI2>()
+            .Where(enemy => enemy.GetComponent<Boss>() == null)
+            .ToArray();
+
+        return allEnemies.Count(enemy => !deadEnemies.Contains(enemy));
     }
 
-    public static bool CheckDefeat()
+    public void ManualBattleCheck()
     {
-        PlayerUnit player = FindObjectOfType<PlayerUnit>();
-        if (player == null || player.GetStatValue(StatType.HP) <= 0)
-        {
-            StateMachine.Instance.ChangeState<GameOverState>();
-            return true;
-        }
-        return false;
+        Debug.Log("Manual battle check from End Turn");
+        CheckBattleConditions();
     }
 }
