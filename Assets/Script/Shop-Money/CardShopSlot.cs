@@ -13,6 +13,11 @@ public class CardShopSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     public Image slotBackground;
     public GameObject costPanel;
     public TextMeshProUGUI costText;
+    public Image costIcon; // New reference for the cost icon
+
+    [Header("Cost Icons")]
+    public Sprite moneyIcon; // Gold icon
+    public Sprite keyIcon;   // Key icon
 
     [HideInInspector] public int costAmount;
     [HideInInspector] public CostType costType;
@@ -61,7 +66,6 @@ public class CardShopSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         }
     }
 
-    // Correct Initialize method with 5 arguments
     public void Initialize(CardShopSystem system, Card cardPrefab, int moneyCost, int keyCost, CostType type)
     {
         shopSystem = system;
@@ -103,7 +107,16 @@ public class CardShopSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         if (costPanel != null && costText != null)
         {
             costPanel.SetActive(true);
-            costText.text = $"{costAmount} {(costType == CostType.Money ? "G" : "K")}";
+
+            // Set the cost text to just the number
+            costText.text = costAmount.ToString();
+
+            // Set the appropriate icon
+            if (costIcon != null)
+            {
+                costIcon.sprite = costType == CostType.Money ? moneyIcon : keyIcon;
+                costIcon.gameObject.SetActive(true);
+            }
         }
     }
 
@@ -122,14 +135,17 @@ public class CardShopSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         {
             slotBackground.color = purchasedColor;
             if (costText != null) costText.text = "SOLD";
+            if (costIcon != null) costIcon.gameObject.SetActive(false);
         }
         else if (canAfford)
         {
             slotBackground.color = affordableColor;
+            if (costIcon != null) costIcon.gameObject.SetActive(true);
         }
         else
         {
             slotBackground.color = unaffordableColor;
+            if (costIcon != null) costIcon.gameObject.SetActive(true);
         }
     }
 

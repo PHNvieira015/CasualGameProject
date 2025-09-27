@@ -100,6 +100,7 @@ public class MapGenerator : MonoBehaviour
     private NodeType GetNodeTypeForRow(int row)
     {
         if (row == 0) return NodeType.MinorEnemy;
+        if (row == 1) return NodeType.Store;
         if (row == totalRows - 2) return NodeType.RestSite;
         if (row == totalRows - 1) return NodeType.Boss;
         return GetRandomNodeType();

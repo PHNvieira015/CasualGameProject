@@ -99,8 +99,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -277,9 +277,11 @@ MonoBehaviour:
   slotBackground: {fileID: 7452193367508619100}
   costPanel: {fileID: 1521685948032219210}
   costText: {fileID: 4153037579553006698}
-  costType: 0
+  costIcon: {fileID: 1340764197641005206}
+  moneyIcon: {fileID: 4370616331324915677, guid: 75067acefddb4e24a9a9334b4577e4cd, type: 3}
+  keyIcon: {fileID: -6143077916657042800, guid: 534f398c036ac2a43beb79412cfbd794, type: 3}
   costAmount: 50
-  shopSystem: {fileID: 0}
+  costType: 0
 --- !u!1 &6600690762326470272
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,7 +347,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 4370616331324915677, guid: 75067acefddb4e24a9a9334b4577e4cd, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
