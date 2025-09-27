@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 391701a3641893e4b9346f09ce9cf2b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drawAmount: 2
+  drawAmount: 3
   delayBetweenDraws: 0.2
   shuffleIfEmpty: 1
 --- !u!1001 &163291442949748820
@@ -70,7 +70,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1951787717443768456, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2544878826338724817, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: Energy
@@ -82,11 +82,11 @@ PrefabInstance:
       objectReference: {fileID: -2815721605971327136, guid: 9417ae4e5e9d72c4887da23968d10dcc, type: 3}
     - target: {fileID: 4868287157371459211, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: Value
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
-      value: Compre 2 Cartas
+      value: Compre 3 Cartas
       objectReference: {fileID: 0}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_fontSize
@@ -184,9 +184,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4868287157371459211, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
-    - {fileID: 2000505136163282838, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1120914858226465170, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}

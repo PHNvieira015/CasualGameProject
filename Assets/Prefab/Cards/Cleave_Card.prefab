@@ -18,11 +18,11 @@ PrefabInstance:
       objectReference: {fileID: -4998600897433398834, guid: 05cc26c476be66c42b4fb4a309fd1454, type: 3}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
-      value: Causa 8 de dano a todos os inimigos
+      value: Causa 7 de dano a todos os inimigos
       objectReference: {fileID: 0}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_fontSize
-      value: 31.35
+      value: 32.5
       objectReference: {fileID: 0}
     - target: {fileID: 7478358879296495923, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4568c070b76042849ae61e62bbd7c095, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Amount: 8
+  Amount: 7
 --- !u!114 &7042141484348708818
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 2170500591780798776, guid: 1331ab97f6f4b954792ace4d885dd7df, type: 3}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
-      value: Causa 6 de dano
+      value: Causa 8 de dano
       objectReference: {fileID: 0}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_fontSize
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4568c070b76042849ae61e62bbd7c095, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Amount: 6
+  Amount: 8
 --- !u!114 &3073467837371254631
 MonoBehaviour:
   m_ObjectHideFlags: 0
