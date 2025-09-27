@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BG_Greed Vicotry1_0: 1276535141002663964
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

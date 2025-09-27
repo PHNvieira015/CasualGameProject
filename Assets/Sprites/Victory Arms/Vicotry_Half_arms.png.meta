@@ -172,7 +172,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Vicotry_Half_arms_0: -665107034994707340
+      Vicotry_Half_arms_1: -3689550468198109803
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

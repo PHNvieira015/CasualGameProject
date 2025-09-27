@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Vicotry_Body1_0: 955809168165627440
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
