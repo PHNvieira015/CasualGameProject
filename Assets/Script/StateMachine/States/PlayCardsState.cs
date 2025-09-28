@@ -1,192 +1,191 @@
-using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
+    using UnityEngine;
+    using UnityEngine.UI;
+    using System.Collections;
+    using System.Collections.Generic;
 
-public class PlayCardsState : State
-{
-    public const string PlayedGameObject = "Effects/Played";
-    public const string AfterPlayedGameObject = "Effects/AfterPlayed";
-
-    [Header("UI References")]
-    [SerializeField] private Button _endTurnButton;
-    private string _endTurnButtonPath = "Canvas/Menus/CombatScreen/EndTurnButton";
-
-    Coroutine _cardSequencer;
-    HorizontalLayoutGroup _handLayout;
-
-    private void Awake()
+    public class PlayCardsState : State
     {
-        _handLayout = CardsController.Instance.Hand.Holder.GetComponent<HorizontalLayoutGroup>();
-        CacheEndTurnButton();
-    }
+        public const string PlayedGameObject = "Effects/Played";
+        public const string AfterPlayedGameObject = "Effects/AfterPlayed";
 
-    private void CacheEndTurnButton()
-    {
-        if (_endTurnButton == null)
+        [Header("UI References")]
+        [SerializeField] private Button _endTurnButton;
+        private string _endTurnButtonPath = "Canvas/Menus/CombatScreen/EndTurnButton";
+
+        Coroutine _cardSequencer;
+        HorizontalLayoutGroup _handLayout;
+
+        private void Awake()
         {
-            GameObject buttonObj = GameObject.Find(_endTurnButtonPath);
-            if (buttonObj != null)
-            {
-                _endTurnButton = buttonObj.GetComponent<Button>();
-            }
-
-            if (_endTurnButton == null)
-            {
-                Debug.LogError("End Turn Button not found at path: " + _endTurnButtonPath);
-            }
-        }
-    }
-
-    public override IEnumerator Enter()
-    {
-        yield return new WaitForSeconds(0.5f);
-
-        CacheEndTurnButton(); // Double-check we have the button reference
-        EndTurnButton(true);
-
-        _handLayout.enabled = false;
-        _cardSequencer = StartCoroutine(CardSequencer());
-
-        if (_endTurnButton != null)
-        {
-            _endTurnButton.onClick.AddListener(OnEndTurnClicked);
-        }
-    }
-
-    public override IEnumerator Exit()
-    {
-        yield return null;
-
-        EndTurnButton(false);
-        _handLayout.enabled = true;
-
-        if (_cardSequencer != null)
-        {
-            StopCoroutine(_cardSequencer);
-        }
-
-        if (_endTurnButton != null)
-        {
-            _endTurnButton.onClick.RemoveListener(OnEndTurnClicked);
-        }
-    }
-
-    private void OnEndTurnClicked()
-    {
-        if (_endTurnButton != null)
-        {
-            _endTurnButton.interactable = false; // Immediate feedback
-        }
-        StartCoroutine(DiscardAndEndTurn());
-    }
-
-    private IEnumerator DiscardAndEndTurn()
-    {
-        // Stop processing cards before discarding
-        if (_cardSequencer != null)
-        {
-            StopCoroutine(_cardSequencer);
-            _cardSequencer = null;
-        }
-
-        // Discard all cards in hand
-        var hand = CardsController.Instance.Hand;
-        while (hand.Cards.Count > 0)
-        {
-            Card card = hand.Cards[0];
-            CardsController.Instance.Discard(card);
-            yield return new WaitForSeconds(0.1f);
-        }
-
-        // Change state after discarding
-        machine.ChangeState<EndTurnState>();
-    }
-
-    IEnumerator CardSequencer()
-    {
-        while (true)
-        {
-            if (machine.CardsdToPlay.Count > 0)
-            {
-                Card card = machine.CardsdToPlay.Dequeue();
-
-                // Check if the card still exists
-                if (card == null) continue;
-
-                Debug.Log("Playing " + card);
-
-                // Check if the Played transform exists
-                Transform playedTransform = card.transform.Find(PlayedGameObject);
-                if (playedTransform != null)
-                {
-                    yield return StartCoroutine(PlayCardEffect(card, playedTransform));
-                    yield return new WaitForSeconds(0.5f);
-                }
-
-                // Check if the AfterPlayed transform exists
-                Transform afterPlayedTransform = card.transform.Find(AfterPlayedGameObject);
-                if (afterPlayedTransform != null)
-                {
-                    yield return StartCoroutine(PlayCardEffect(card, afterPlayedTransform));
-                    yield return new WaitForSeconds(0.5f);
-                }
-            }
-            yield return null;
-        }
-    }
-
-    IEnumerator PlayCardEffect(Card card, Transform playTransform)
-    {
-        // Check if the card or playTransform has been destroyed
-        if (card == null || playTransform == null) yield break;
-
-        int childCount = playTransform.childCount; // Cache the count to avoid issues if children are destroyed
-
-        for (int i = 0; i < childCount; i++)
-        {
-            // Check if the child still exists before accessing it
-            if (i >= playTransform.childCount) yield break;
-
-            Transform child = playTransform.GetChild(i);
-            if (child == null) continue;
-
-            ITarget targeter = child.GetComponent<ITarget>();
-            List<object> targets = new List<object>();
-
-            if (targeter == null) continue;
-
-            yield return StartCoroutine(targeter.GetTargets(targets));
-
-            // Get all effects from the child - check if child still exists
-            if (child == null) continue;
-
-            CardEffect[] effects = child.GetComponents<CardEffect>();
-            foreach (CardEffect effect in effects)
-            {
-                if (effect != null)
-                {
-                    yield return StartCoroutine(effect.Apply(targets));
-                }
-            }
-        }
-
-        _handLayout.enabled = true;
-    }
-
-    void EndTurnButton(bool interactable)
-    {
-        if (_endTurnButton == null)
-        {
+            _handLayout = CardsController.Instance.Hand.Holder.GetComponent<HorizontalLayoutGroup>();
             CacheEndTurnButton();
+        }
 
+        private void CacheEndTurnButton()
+        {
             if (_endTurnButton == null)
             {
-                Debug.LogWarning("Failed to find End Turn Button");
-                return;
+                GameObject buttonObj = GameObject.Find(_endTurnButtonPath);
+                if (buttonObj != null)
+                {
+                    _endTurnButton = buttonObj.GetComponent<Button>();
+                }
+
+                if (_endTurnButton == null)
+                {
+                    Debug.LogError("End Turn Button not found at path: " + _endTurnButtonPath);
+                }
             }
         }
 
-        _endTurnButton.interactable = interactable;
+        public override IEnumerator Enter()
+        {
+            yield return new WaitForSeconds(0.5f);
+
+            CacheEndTurnButton(); // Double-check we have the button reference
+            EndTurnButton(true);
+
+            _handLayout.enabled = false;
+            _cardSequencer = StartCoroutine(CardSequencer());
+
+            if (_endTurnButton != null)
+            {
+                _endTurnButton.onClick.AddListener(OnEndTurnClicked);
+            }
+        }
+
+        public override IEnumerator Exit()
+        {
+            yield return null;
+
+            EndTurnButton(false);
+            _handLayout.enabled = true;
+
+            if (_cardSequencer != null)
+            {
+                StopCoroutine(_cardSequencer);
+            }
+
+            if (_endTurnButton != null)
+            {
+                _endTurnButton.onClick.RemoveListener(OnEndTurnClicked);
+            }
+        }
+
+        private void OnEndTurnClicked()
+        {
+            if (_endTurnButton != null)
+            {
+                _endTurnButton.interactable = false; // Immediate feedback
+            }
+            StartCoroutine(DiscardAndEndTurn());
+        }
+
+        private IEnumerator DiscardAndEndTurn()
+        {
+            // Stop processing cards before discarding
+            if (_cardSequencer != null)
+            {
+                StopCoroutine(_cardSequencer);
+                _cardSequencer = null;
+            }
+
+            // Discard all cards in hand
+            var hand = CardsController.Instance.Hand;
+            while (hand.Cards.Count > 0)
+            {
+                Card card = hand.Cards[0];
+                CardsController.Instance.Discard(card);
+                yield return new WaitForSeconds(0.1f);
+            }
+
+            // Change state after discarding
+            machine.ChangeState<EndTurnState>();
+        }
+
+        IEnumerator CardSequencer()
+        {
+            while (true)
+            {
+                if (machine.CardsdToPlay.Count > 0)
+                {
+                    Card card = machine.CardsdToPlay.Dequeue();
+
+                    if (card == null) continue;
+
+                    Debug.Log("Playing " + card);
+
+                    Transform playedTransform = card.transform.Find(PlayedGameObject);
+                    if (playedTransform != null)
+                    {
+                        yield return StartCoroutine(PlayCardEffect(card, playedTransform));
+                        yield return new WaitForSeconds(0.5f);
+                    }
+
+                    Transform afterPlayedTransform = card.transform.Find(AfterPlayedGameObject);
+                    if (afterPlayedTransform != null)
+                    {
+                        yield return StartCoroutine(PlayCardEffect(card, afterPlayedTransform));
+                        yield return new WaitForSeconds(0.5f);
+                    }
+
+                    CardDrag.AllowSelection(); // <-- Add this line
+                }
+                yield return null;
+            }
+        }
+
+        IEnumerator PlayCardEffect(Card card, Transform playTransform)
+        {
+            // Check if the card or playTransform has been destroyed
+            if (card == null || playTransform == null) yield break;
+
+            int childCount = playTransform.childCount; // Cache the count to avoid issues if children are destroyed
+
+            for (int i = 0; i < childCount; i++)
+            {
+                // Check if the child still exists before accessing it
+                if (i >= playTransform.childCount) yield break;
+
+                Transform child = playTransform.GetChild(i);
+                if (child == null) continue;
+
+                ITarget targeter = child.GetComponent<ITarget>();
+                List<object> targets = new List<object>();
+
+                if (targeter == null) continue;
+
+                yield return StartCoroutine(targeter.GetTargets(targets));
+
+                // Get all effects from the child - check if child still exists
+                if (child == null) continue;
+
+                CardEffect[] effects = child.GetComponents<CardEffect>();
+                foreach (CardEffect effect in effects)
+                {
+                    if (effect != null)
+                    {
+                        yield return StartCoroutine(effect.Apply(targets));
+                    }
+                }
+            }
+
+            _handLayout.enabled = true;
+        }
+
+        void EndTurnButton(bool interactable)
+        {
+            if (_endTurnButton == null)
+            {
+                CacheEndTurnButton();
+
+                if (_endTurnButton == null)
+                {
+                    Debug.LogWarning("Failed to find End Turn Button");
+                    return;
+                }
+            }
+
+            _endTurnButton.interactable = interactable;
+        }
     }
-}

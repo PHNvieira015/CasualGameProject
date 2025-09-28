@@ -1,17 +1,29 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using System.Collections;
 
 public class CardDrag : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 {
     bool _dragging;
-    
+
     Transform _objectToDrag;
     Card _card;
     Vector2 _offset;
     Vector3 _cardSavedPoisition;
-    int heightforCardtoPlay=180;
+    int heightforCardtoPlay = 180;
+    private static bool _canSelect = true;
+    private static float animationWaitTime = 0.5f; // Match PlayCardsState animation
 
+    public static void AllowSelection()
+    {
+        _canSelect = true;
+    }
+
+    public static void BlockSelection()
+    {
+        _canSelect = false;
+    }
 
     void Awake()
     {
@@ -19,37 +31,46 @@ public class CardDrag : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
         _objectToDrag = _card.transform;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (_dragging)
         {
-           _objectToDrag.position = Mouse.current.position.ReadValue() - _offset;
+            _objectToDrag.position = Mouse.current.position.ReadValue() - _offset;
         }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (!_canSelect) return;
         _dragging = true;
         _offset = eventData.position - new Vector2(_objectToDrag.position.x, _objectToDrag.position.y);
         _cardSavedPoisition = _card.Rect.anchoredPosition3D;
     }
-    public void OnPointerUp(PointerEventData eventData)
+
+     public void OnPointerUp(PointerEventData eventData)
     {
-      _dragging = false;
-      EventSystem.current.SetSelectedGameObject(null);
+        if (!_dragging) return;
+        _dragging = false;
+        EventSystem.current.SetSelectedGameObject(null);
 
-
-        if(Mouse.current.position.ReadValue().y>=heightforCardtoPlay && _card.CanPlay())
-
+        if (Mouse.current.position.ReadValue().y >= heightforCardtoPlay && _card.CanPlay())
         {
-            StateMachine.Instance.CardsdToPlay.Enqueue(_card);
+            if (StateMachine.Instance.CardsdToPlay.Count == 0)
+            {
+                StateMachine.Instance.CardsdToPlay.Enqueue(_card);
+                StartCoroutine(BlockSelectionForAnimation(animationWaitTime));
+            }
         }
         else
         {
             _card.Move(_cardSavedPoisition, 0.2f, () => { });
         }
-
     }
 
+    private IEnumerator BlockSelectionForAnimation(float delay)
+    {
+        BlockSelection();
+        yield return new WaitForSeconds(delay);
+        AllowSelection();
+    }
 }
