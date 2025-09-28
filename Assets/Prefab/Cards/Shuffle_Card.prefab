@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c42cfc52bb55614cbf1d6ff0bafa205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NumberOfCardsToDiscard: 2
+  NumberOfCardsToDiscard: 1
 --- !u!114 &8246454947745477832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 391701a3641893e4b9346f09ce9cf2b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drawAmount: 2
+  drawAmount: 1
   delayBetweenDraws: 0.2
   shuffleIfEmpty: 1
 --- !u!1001 &163291442949748820
@@ -100,11 +100,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
-      value: descarte 2 cartas e compra 2 cartas
+      value: descarte 1 carta e compre 1 carta
       objectReference: {fileID: 0}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_fontSize
-      value: 28.65
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 7478358879296495923, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_text
