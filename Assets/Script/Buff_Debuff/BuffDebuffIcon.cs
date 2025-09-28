@@ -10,14 +10,11 @@ public class BuffDebuffIcon : MonoBehaviour
     public string EffectName { get; private set; }
     public int CurrentStacks { get; private set; }
 
-    // FIXED: Simplified Initialize method with correct parameters
     public void Initialize(string effectName, int stacks)
     {
         EffectName = effectName;
         CurrentStacks = stacks;
         UpdateStacksDisplay();
-
-        Debug.Log($"Initialized icon for {effectName}");
     }
 
     public void UpdateStacks(int stacks)

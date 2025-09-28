@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public abstract class StatusEffect : MonoBehaviour
 {
@@ -10,34 +11,49 @@ public abstract class StatusEffect : MonoBehaviour
     protected Unit _host;
     private int _currentDuration;
     public int _currentAmount;
+    public int AppliedValue { get; protected set; }
 
     void OnEnable()
     {
         _host = GetComponentInParent<Unit>();
+        if (_host == null) return;
+
         if (Duration >= 0)
         {
             _currentDuration = Duration;
             _host.OnUnitTakeTurn += DurationCountdown;
         }
 
-        Invoke("OnInflicted", 0.1f);
-
-        // notify holder
-        BuffDebuffHolder holder = _host.GetComponentInChildren<BuffDebuffHolder>();
-        if (holder != null)
-            holder.RefreshUI();
+        StartCoroutine(InflictAfterFrame());
     }
 
     void OnDisable()
     {
         OnRemoved();
+        NotifyHolder();
+    }
 
-        // notify holder
+    void OnDestroy()
+    {
+        NotifyHolder();
+    }
+
+    private IEnumerator InflictAfterFrame()
+    {
+        yield return null;
+        OnInflicted();
+        NotifyHolder();
+    }
+
+    private void NotifyHolder()
+    {
         if (_host != null)
         {
             BuffDebuffHolder holder = _host.GetComponentInChildren<BuffDebuffHolder>();
             if (holder != null)
+            {
                 holder.RefreshUI();
+            }
         }
     }
 
@@ -46,7 +62,10 @@ public abstract class StatusEffect : MonoBehaviour
 
     public virtual void OnDurationEnded()
     {
-        _host.OnUnitTakeTurn -= DurationCountdown;
+        if (_host != null)
+        {
+            _host.OnUnitTakeTurn -= DurationCountdown;
+        }
         Destroy(gameObject);
     }
 
@@ -57,5 +76,14 @@ public abstract class StatusEffect : MonoBehaviour
         {
             OnDurationEnded();
         }
+        else
+        {
+            NotifyHolder();
+        }
+    }
+
+    protected void StacksChanged()
+    {
+        NotifyHolder();
     }
 }

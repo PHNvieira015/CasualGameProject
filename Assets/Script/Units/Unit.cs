@@ -456,5 +456,11 @@ public class Unit : MonoBehaviour, IPointerClickHandler
                 yield return null;
             }
         }
+
+    }
+    [ContextMenu("Force Refresh Buff/Debuff UI")]
+    public void ForceRefreshBuffDebuffUI()
+    {
+        _buffDebuffHolder?.RefreshUI();
     }
 }
