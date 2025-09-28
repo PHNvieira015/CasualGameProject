@@ -37,12 +37,12 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Consumivel
 
-        Triplica o dano causado, recebe 100 de bloqueio,
-        dobra o Dano recebido'
+        Recebe 40 de bloqueio, Triplica o dano causado,
+        dobra o Dano recebido por 2 turnos.'
       objectReference: {fileID: 0}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_fontSize
-      value: 21
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7085330742908643900, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: m_margin.w
@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b88410282550ca42a4f45d062bfc5d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Amount: 100
+  Amount: 40
 --- !u!114 &1436873001951878363
 MonoBehaviour:
   m_ObjectHideFlags: 0

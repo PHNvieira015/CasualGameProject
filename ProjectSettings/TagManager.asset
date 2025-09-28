@@ -9,6 +9,7 @@ TagManager:
   - CardHolder
   - DiscardPile
   - Hand
+  - Buff_Debuff
   layers:
   - Default
   - TransparentFX

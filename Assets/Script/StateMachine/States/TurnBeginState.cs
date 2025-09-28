@@ -9,6 +9,9 @@ public class TurnBeginState : State
 
     public override IEnumerator Enter()
     {
+        // RESET CARD SELECTION - This is the key fix
+        CardDrag.AllowSelection();
+
         machine.CurrentUnit = null;
 
         // Find the first alive unit in the queue

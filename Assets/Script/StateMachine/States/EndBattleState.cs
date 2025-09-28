@@ -10,6 +10,9 @@ public class EndBattleState : State
         yield return null;
         Debug.Log("Battle ended - Preparing for reward screen");
 
+        // Reset card selection so player can interact in next battle/turn
+        CardDrag.ResetSelectionAfterWin();
+
         // Clear ALL card holders (including discard pile)
         ClearAllCardHolders();
 

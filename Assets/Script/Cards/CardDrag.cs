@@ -77,4 +77,10 @@ public class CardDrag : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, I
     {
         _canSelect = true;
     }
+
+    // Add this public static method to reset selection after a win
+    public static void ResetSelectionAfterWin()
+    {
+        _canSelect = true;
+    }
 }
