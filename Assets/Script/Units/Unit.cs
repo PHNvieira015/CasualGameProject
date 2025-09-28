@@ -463,4 +463,17 @@ public class Unit : MonoBehaviour, IPointerClickHandler
     {
         _buffDebuffHolder?.RefreshUI();
     }
+    [ContextMenu("Test Add Debuff Icon")]
+    public void TestAddDebuffIcon()
+    {
+        if (_buffDebuffHolder != null)
+        {
+            _buffDebuffHolder.AddBuffDebuff("Weak", 1, false);
+            Debug.Log("Test: Added Weak debuff icon");
+        }
+        else
+        {
+            Debug.LogError("No BuffDebuffHolder found!");
+        }
+    }
 }

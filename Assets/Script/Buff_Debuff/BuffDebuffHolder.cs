@@ -93,6 +93,10 @@ public class BuffDebuffHolder : MonoBehaviour
         else
         {
             GameObject iconObject = Instantiate(iconPrefab, _buffDebuffContainer);
+
+            // ACTIVATE THE ICON OBJECT
+            iconObject.SetActive(true);
+
             BuffDebuffIcon iconComponent = iconObject.GetComponent<BuffDebuffIcon>();
 
             if (iconComponent != null)
@@ -100,6 +104,12 @@ public class BuffDebuffHolder : MonoBehaviour
                 iconComponent.Initialize(effectName, value);
                 _activeIcons[effectName] = iconComponent;
                 UpdateIconPositions();
+
+                Debug.Log("Icon created and activated for: " + effectName);
+            }
+            else
+            {
+                Debug.LogError("BuffDebuffIcon component missing on prefab: " + iconPrefab.name);
             }
         }
 
@@ -315,5 +325,38 @@ public class BuffDebuffHolder : MonoBehaviour
                effectName.ToLower().Contains("vulnerable2") ||
                effectName.ToLower().Contains("frail") ||
                effectName.ToLower().Contains("poison");
+    }
+    [ContextMenu("Debug Check Icon Setup")]
+    public void DebugCheckIconSetup()
+    {
+        Debug.Log("=== BUFF/DEBUFF HOLDER DEBUG ===");
+        Debug.Log("Owner: " + (_owner != null ? _owner.name : "null"));
+        Debug.Log("Effect Icon Mappings: " + _effectIconMappings.Count);
+
+        foreach (var mapping in _effectIconMappings)
+        {
+            Debug.Log("Mapping: '" + mapping.effectName + "' -> " + (mapping.iconPrefab != null ? mapping.iconPrefab.name : "NULL"));
+        }
+
+        Debug.Log("Active Icons: " + _activeIcons.Count);
+        foreach (var icon in _activeIcons)
+        {
+            Debug.Log("Active: " + icon.Key);
+        }
+
+        // Check if we can find any buff/debuff objects
+        if (_owner != null)
+        {
+            int buffCount = 0;
+            foreach (Transform child in _owner.transform)
+            {
+                if (child.CompareTag("Buff_Debuff"))
+                {
+                    buffCount++;
+                    Debug.Log("Found Buff_Debuff: " + child.name);
+                }
+            }
+            Debug.Log("Total Buff_Debuff objects: " + buffCount);
+        }
     }
 }
