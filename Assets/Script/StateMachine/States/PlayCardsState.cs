@@ -14,6 +14,7 @@ public class PlayCardsState : State
 
     Coroutine _cardSequencer;
     HorizontalLayoutGroup _handLayout;
+    private bool _isProcessingCard = false; // Track if we're currently processing a card
 
     private void Awake()
     {
@@ -46,6 +47,7 @@ public class PlayCardsState : State
         EndTurnButton(true);
 
         _handLayout.enabled = false;
+        _isProcessingCard = false; // Reset processing state
         _cardSequencer = StartCoroutine(CardSequencer());
 
         if (_endTurnButton != null)
@@ -60,6 +62,7 @@ public class PlayCardsState : State
 
         EndTurnButton(false);
         _handLayout.enabled = true;
+        _isProcessingCard = false; // Reset processing state
 
         if (_cardSequencer != null)
         {
@@ -90,11 +93,23 @@ public class PlayCardsState : State
             _cardSequencer = null;
         }
 
-        // Discard all cards in hand
+        _isProcessingCard = false; // Reset processing state
+
+        // Disable all CardDrag components in hand to prevent stuck cards
         var hand = CardsController.Instance.Hand;
-        while (hand.Cards.Count > 0)
+
+        // Create a copy of the list to avoid modification during iteration
+        List<Card> cardsToDiscard = new List<Card>(hand.Cards);
+
+        foreach (Card card in cardsToDiscard)
         {
-            Card card = hand.Cards[0];
+            // Disable CardDrag for this specific card
+            CardDrag cardDrag = card.GetComponentInChildren<CardDrag>();
+            if (cardDrag != null)
+            {
+                cardDrag.enabled = false;
+            }
+
             CardsController.Instance.Discard(card);
             yield return new WaitForSeconds(0.1f);
         }
@@ -107,14 +122,33 @@ public class PlayCardsState : State
     {
         while (true)
         {
-            if (machine.CardsdToPlay.Count > 0)
+            if (machine.CardsdToPlay.Count > 0 && !_isProcessingCard)
             {
+                _isProcessingCard = true; // Start processing a card
+
                 Card card = machine.CardsdToPlay.Dequeue();
 
-                // Check if the card still exists
-                if (card == null) continue;
+                // Check if the card still exists and is valid
+                if (card == null || card.transform == null)
+                {
+                    _isProcessingCard = false; // Reset if card is invalid
+                    continue;
+                }
 
                 Debug.Log("Playing " + card);
+
+                // Mark card as being played to prevent double play
+                card.SetBeingPlayed(true);
+
+                // Disable the CardDrag component immediately when playing starts
+                CardDrag cardDrag = card.GetComponentInChildren<CardDrag>();
+                if (cardDrag != null)
+                {
+                    cardDrag.enabled = false;
+                }
+
+                // Remove from hand immediately
+                CardsController.Instance.Hand.RemoveCard(card);
 
                 // Check if the Played transform exists
                 Transform playedTransform = card.transform.Find(PlayedGameObject);
@@ -131,6 +165,11 @@ public class PlayCardsState : State
                     yield return StartCoroutine(PlayCardEffect(card, afterPlayedTransform));
                     yield return new WaitForSeconds(0.5f);
                 }
+
+                // Discard the card after all effects are complete
+                CardsController.Instance.Discard(card);
+
+                _isProcessingCard = false; // Finished processing this card
             }
             yield return null;
         }
@@ -141,11 +180,10 @@ public class PlayCardsState : State
         // Check if the card or playTransform has been destroyed
         if (card == null || playTransform == null) yield break;
 
-        int childCount = playTransform.childCount; // Cache the count to avoid issues if children are destroyed
+        int childCount = playTransform.childCount;
 
         for (int i = 0; i < childCount; i++)
         {
-            // Check if the child still exists before accessing it
             if (i >= playTransform.childCount) yield break;
 
             Transform child = playTransform.GetChild(i);
@@ -158,7 +196,6 @@ public class PlayCardsState : State
 
             yield return StartCoroutine(targeter.GetTargets(targets));
 
-            // Get all effects from the child - check if child still exists
             if (child == null) continue;
 
             CardEffect[] effects = child.GetComponents<CardEffect>();
@@ -188,5 +225,11 @@ public class PlayCardsState : State
         }
 
         _endTurnButton.interactable = interactable;
+    }
+
+    // Public method to check if we can queue a card
+    public bool CanQueueCard()
+    {
+        return !_isProcessingCard && machine.CardsdToPlay.Count == 0;
     }
 }

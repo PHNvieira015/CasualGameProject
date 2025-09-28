@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class Card : MonoBehaviour
 {
     public RectTransform Rect { get { return rect; } }
+    public bool IsBeingPlayed { get; private set; }
 
     private RectTransform rect;
     private Transform back;
@@ -17,6 +18,7 @@ public class Card : MonoBehaviour
         rect = GetComponent<RectTransform>();
         back = transform.Find("Back");
         front = transform.Find("Front");
+        IsBeingPlayed = false;
     }
 
     private void Update()
@@ -93,6 +95,11 @@ public class Card : MonoBehaviour
 
     public bool CanPlay()
     {
+        if (IsBeingPlayed)
+        {
+            return false;
+        }
+
         if (StateMachine.Instance == null)
             return false;
 
@@ -117,5 +124,35 @@ public class Card : MonoBehaviour
         }
 
         return true;
+    }
+
+    public void SetBeingPlayed(bool beingPlayed)
+    {
+        IsBeingPlayed = beingPlayed;
+
+        // Optional: Add visual feedback when card is being played
+        if (beingPlayed)
+        {
+            // You could change the card's appearance here to show it's being played
+            // For example: dim the card, change color, etc.
+        }
+    }
+
+    public void ResetCardState()
+    {
+        IsBeingPlayed = false;
+        // Reset any visual changes made by SetBeingPlayed
+    }
+
+    // Called when the card is disabled or destroyed
+    private void OnDisable()
+    {
+        ResetCardState();
+    }
+
+    // Called when the card is enabled
+    private void OnEnable()
+    {
+        ResetCardState();
     }
 }
