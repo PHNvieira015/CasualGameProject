@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using System.Collections;
 
-public class CardDrag : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
+public class CardDrag : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, IEventSystemHandler
 {
     bool _dragging;
 
@@ -13,17 +13,7 @@ public class CardDrag : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     Vector3 _cardSavedPoisition;
     int heightforCardtoPlay = 180;
     private static bool _canSelect = true;
-    private static float animationWaitTime = 0.5f; // Match PlayCardsState animation
-
-    public static void AllowSelection()
-    {
-        _canSelect = true;
-    }
-
-    public static void BlockSelection()
-    {
-        _canSelect = false;
-    }
+    private static float animationWaitTime = 0.5f;
 
     void Awake()
     {
@@ -33,6 +23,14 @@ public class CardDrag : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 
     void Update()
     {
+        // Always reset dragging if mouse button is not pressed
+        if (_dragging && Mouse.current.leftButton.wasReleasedThisFrame)
+        {
+            _dragging = false;
+            EventSystem.current.SetSelectedGameObject(null);
+            _card.Move(_cardSavedPoisition, 0.2f, () => { });
+        }
+
         if (_dragging)
         {
             _objectToDrag.position = Mouse.current.position.ReadValue() - _offset;
@@ -47,7 +45,7 @@ public class CardDrag : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
         _cardSavedPoisition = _card.Rect.anchoredPosition3D;
     }
 
-     public void OnPointerUp(PointerEventData eventData)
+    public void OnPointerUp(PointerEventData eventData)
     {
         if (!_dragging) return;
         _dragging = false;
@@ -69,8 +67,14 @@ public class CardDrag : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 
     private IEnumerator BlockSelectionForAnimation(float delay)
     {
-        BlockSelection();
+        _canSelect = false;
         yield return new WaitForSeconds(delay);
-        AllowSelection();
+        _canSelect = true;
+    }
+
+    // Add this static method to allow selection
+    public static void AllowSelection()
+    {
+        _canSelect = true;
     }
 }

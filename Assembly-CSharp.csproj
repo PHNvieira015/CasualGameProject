@@ -129,6 +129,7 @@
     <Compile Include="Assets\Script\CardTooltip.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralUISpace.cs" />
     <Compile Include="Assets\Script\Cards\CardsUI\Card.cs" />
+    <Compile Include="Assets\Script\CardDrag.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplines.cs" />
     <Compile Include="Assets\Script\StateMachine\StateMachine.cs" />
     <Compile Include="Assets\Script\RelicSystem\RelicList.cs" />
