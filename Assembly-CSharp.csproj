@@ -134,6 +134,7 @@
     <Compile Include="Assets\Script\RelicSystem\RelicList.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralCameraShake.cs" />
     <Compile Include="Assets\Script\HoverText.cs" />
+    <Compile Include="Assets\Script\Buff_Debuff\BuffDebuffHolder.cs" />
     <Compile Include="Assets\Script\Map\MapNode.cs" />
     <Compile Include="Assets\Script\Shop-Money\CardShopSystem.cs" />
     <Compile Include="Assets\Script\Cards\Targeting\TargetSelfUnit.cs" />
@@ -141,6 +142,7 @@
     <Compile Include="Assets\Script\Cards\CardsUI\CardsController.cs" />
     <Compile Include="Assets\Script\StateMachine\States\RewardState.cs" />
     <Compile Include="Assets\Script\Modifiers\ModifiedValues.cs" />
+    <Compile Include="Assets\Script\Buff_Debuff\BuffDebuffIcon.cs" />
     <Compile Include="Assets\Script\Cards\CardsEffects\ChangeMaxEnergyEffect.cs" />
     <Compile Include="Assets\Script\StateMachine\States\GameOverState.cs" />
     <Compile Include="Assets\Script\Map\GameMapManager.cs" />
@@ -179,6 +181,7 @@
     <Compile Include="Assets\Script\EncounterManager\EventManager.cs" />
     <Compile Include="Assets\Script\Shop-Money\ShopItem.cs" />
     <Compile Include="Assets\Script\Cards\CardsEffects\DamageEffect.cs" />
+    <Compile Include="Assets\Script\Buff_Debuff\StatusEffectIconManager.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingOptionalCancel.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTDescr.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyActionHolder.cs" />

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class StatusEffect : MonoBehaviour
@@ -8,40 +6,56 @@ public abstract class StatusEffect : MonoBehaviour
     public int Amount;
     public bool StacksIntensity;
     public bool StacksDuration;
+
     protected Unit _host;
     private int _currentDuration;
     public int _currentAmount;
+
     void OnEnable()
     {
-     _host = GetComponentInParent<Unit>();
+        _host = GetComponentInParent<Unit>();
         if (Duration >= 0)
         {
             _currentDuration = Duration;
             _host.OnUnitTakeTurn += DurationCountdown;
-
         }
-     Invoke("OnInflicted", 1);
+
+        Invoke("OnInflicted", 0.1f);
+
+        // notify holder
+        BuffDebuffHolder holder = _host.GetComponentInChildren<BuffDebuffHolder>();
+        if (holder != null)
+            holder.RefreshUI();
     }
+
     void OnDisable()
     {
-    OnRemoved();
-    }
-public abstract void OnInflicted();
+        OnRemoved();
 
-public abstract void OnRemoved();
+        // notify holder
+        if (_host != null)
+        {
+            BuffDebuffHolder holder = _host.GetComponentInChildren<BuffDebuffHolder>();
+            if (holder != null)
+                holder.RefreshUI();
+        }
+    }
+
+    public abstract void OnInflicted();
+    public abstract void OnRemoved();
+
     public virtual void OnDurationEnded()
     {
         _host.OnUnitTakeTurn -= DurationCountdown;
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 
     void DurationCountdown(Unit unit)
     {
         _currentDuration--;
-        if(_currentDuration <= 0)
+        if (_currentDuration <= 0)
         {
             OnDurationEnded();
         }
-
     }
 }

@@ -21,6 +21,9 @@ public class Unit : MonoBehaviour, IPointerClickHandler
 
     private IHealthBar _healthBar;
     private IBlockValueDisplay _blockDisplay;
+    private BuffDebuffHolder _buffDebuffHolder;
+    private StatusEffectIconManager _statusEffectIconManager;
+
     public OnUnit OnUnitClicked = delegate { };
     public OnUnit OnUnitTakeTurn = delegate { };
     public TagModifier[] Modify = new TagModifier[(int)ModifierTags.None];
@@ -32,6 +35,8 @@ public class Unit : MonoBehaviour, IPointerClickHandler
     protected virtual void Awake()
     {
         InitializeStats();
+        InitializeBuffDebuffHolder();
+        InitializeStatusEffectIconManager();
         FindHealthBar();
         InitializeHealthBarConnection();
         InitializeBlockDisplayConnection();
@@ -47,6 +52,37 @@ public class Unit : MonoBehaviour, IPointerClickHandler
         {
             // Ensure current HP doesn't exceed MaxHP
             SetStatValue(StatType.HP, GetStatValue(StatType.HP));
+        }
+    }
+
+    private void InitializeBuffDebuffHolder()
+    {
+        _buffDebuffHolder = GetComponentInChildren<BuffDebuffHolder>();
+        if (_buffDebuffHolder == null)
+        {
+            GameObject holderObject = new GameObject("BuffDebuffHolder");
+            holderObject.transform.SetParent(transform);
+            holderObject.transform.localPosition = new Vector3(0, 1.5f, 0);
+
+            Canvas canvas = holderObject.AddComponent<Canvas>();
+            canvas.renderMode = RenderMode.WorldSpace;
+            canvas.sortingOrder = 100;
+
+            _buffDebuffHolder = holderObject.AddComponent<BuffDebuffHolder>();
+        }
+
+        _buffDebuffHolder.Initialize(this);
+    }
+
+    private void InitializeStatusEffectIconManager()
+    {
+        _statusEffectIconManager = GetComponentInChildren<StatusEffectIconManager>();
+        if (_statusEffectIconManager == null)
+        {
+            GameObject managerObject = new GameObject("StatusEffectIconManager");
+            managerObject.transform.SetParent(transform);
+            managerObject.transform.localPosition = Vector3.zero;
+            _statusEffectIconManager = managerObject.AddComponent<StatusEffectIconManager>();
         }
     }
 
@@ -139,6 +175,55 @@ public class Unit : MonoBehaviour, IPointerClickHandler
     {
         OnUnitClicked(this);
     }
+
+    public virtual void ResetForNewBattle()
+    {
+        Debug.Log($"Resetting {gameObject.name} for new battle");
+
+        // Clear all buff/debuff icons
+        _statusEffectIconManager?.ClearAllIcons();
+
+        // Clear all buff/debuff GameObjects with the "Buff_Debuff" tag
+        ClearAllBuffDebuffObjects();
+
+        // Clear any status effect components
+        ClearStatusEffectComponents();
+
+        // Reset stats
+        ResetStatsForNewBattle();
+
+        // Reset block to 0
+        SetStatValue(StatType.Block, 0);
+
+        // Ensure HP doesn't exceed MaxHP
+        int currentHP = GetStatValue(StatType.HP);
+        int maxHP = GetStatValue(StatType.MaxHP);
+        if (currentHP > maxHP)
+        {
+            SetStatValue(StatType.HP, maxHP);
+        }
+    }
+
+    [ContextMenu("Debug: Check Buffs/Debuffs")]
+    public void LogCurrentBuffsDebuffs()
+    {
+        int buffDebuffCount = 0;
+        foreach (Transform child in transform)
+        {
+            if (child.CompareTag("Buff_Debuff"))
+            {
+                buffDebuffCount++;
+                Debug.Log($"Found buff/debuff: {child.name} on {gameObject.name}");
+            }
+        }
+        Debug.Log($"{gameObject.name} has {buffDebuffCount} buffs/debuffs");
+    }
+
+    // Method to refresh buff/debuff UI manually
+    public void RefreshBuffDebuffUI()
+    {
+        _buffDebuffHolder?.RefreshUI();
+    }
     #endregion
 
     #region Helper Methods
@@ -192,6 +277,47 @@ public class Unit : MonoBehaviour, IPointerClickHandler
     private void UpdateBlockDisplay()
     {
         _blockDisplay?.UpdateBlockDisplay(GetStatValue(StatType.Block));
+    }
+
+    private void ClearAllBuffDebuffObjects()
+    {
+        // Find and destroy all child objects with the "Buff_Debuff" tag
+        List<GameObject> toDestroy = new List<GameObject>();
+
+        foreach (Transform child in transform)
+        {
+            if (child.CompareTag("Buff_Debuff"))
+            {
+                toDestroy.Add(child.gameObject);
+            }
+        }
+
+        foreach (GameObject obj in toDestroy)
+        {
+            if (obj != null)
+            {
+                DestroyImmediate(obj);
+            }
+        }
+
+        Debug.Log($"Cleared {toDestroy.Count} buff/debuff objects from {gameObject.name}");
+    }
+
+    private void ClearStatusEffectComponents()
+    {
+        StatusEffect[] statusEffects = GetComponents<StatusEffect>();
+        foreach (StatusEffect effect in statusEffects)
+        {
+            if (effect != null)
+            {
+                DestroyImmediate(effect);
+            }
+        }
+    }
+
+    private void ResetStatsForNewBattle()
+    {
+        SetStatValue(StatType.Block, 0);
     }
     #endregion
 
