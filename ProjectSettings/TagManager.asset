@@ -8,6 +8,7 @@ TagManager:
   - CardReward
   - CardHolder
   - DiscardPile
+  - Hand
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - UI Highlight
   - 
   - 
   - Character
@@ -51,5 +52,9 @@ TagManager:
   - name: Top
     uniqueID: 1443445857
     locked: 0
+  - name: Highlight
+    uniqueID: 3716164385
+    locked: 0
   m_RenderingLayers:
   - Default
+  - Highlight

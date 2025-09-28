@@ -61,6 +61,7 @@
     <Analyzer Include="C:\Program Files\Unity 6000.0.28f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\Cards\CardsUI\CardHoverEffect.cs" />
     <Compile Include="Assets\Script\Cards\CardsEffects\DestroyCard.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTest.cs" />
     <Compile Include="Assets\Script\(WIP) ScritapbleObjects\StatusEffect\Debuff\Debuff.cs" />
@@ -92,7 +93,7 @@
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralEasingTypes.cs" />
     <Compile Include="Assets\Script\Cards\CardsUI\CardHandHolder.cs" />
     <Compile Include="Assets\Script\UI\Button\DefeatScreenUIHandler.cs" />
-    <Compile Include="Assets\Script\CardStroyAnimation\CardDestroyAnimation.cs" />
+    <Compile Include="Assets\Script\CardDestroyAnimation\CardDestroyAnimation.cs" />
     <Compile Include="Assets\Script\UI\BlockIcon\IBlockValueDisplay.cs" />
     <Compile Include="Assets\LeanTween\Testing\FollowingTests.cs" />
     <Compile Include="Assets\Script\VictoryScreenManager.cs" />
@@ -212,6 +213,7 @@
     <Compile Include="Assets\Script\UI\FloatingMessage\FloatingMessage.cs" />
     <Compile Include="Assets\IO\BattleButtons.cs" />
     <Compile Include="Assets\Script\Map\MinMax.cs" />
+    <Compile Include="Assets\Script\Cards\CardsUI\CardHightlightManager.cs" />
     <Compile Include="Assets\Script\RelicSystem\Relic.cs" />
     <Compile Include="Assets\Script\Cards\CardsUI\CardHolder.cs" />
     <Compile Include="Assets\Script\TooltipManager.cs" />
