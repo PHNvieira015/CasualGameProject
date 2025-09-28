@@ -37,7 +37,7 @@ public class TagModifierStatusEffect : StatusEffect
 
     public void UpdateStacks(int newStacks)
     {
-        _currentAmount = newStacks;
+        CurrentAmount = newStacks; // Use CurrentAmount instead of _currentAmount
         StacksChanged();
     }
 }

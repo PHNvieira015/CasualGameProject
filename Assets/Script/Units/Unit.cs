@@ -178,15 +178,12 @@ public class Unit : MonoBehaviour, IPointerClickHandler
 
     public virtual void ResetForNewBattle()
     {
-        Debug.Log($"Resetting {gameObject.name} for new battle");
+        // Clear the buff/debuff holder (this just clears the dictionary)
+        _buffDebuffHolder?.ClearAll();
 
-        // Clear all buff/debuff icons
-        _statusEffectIconManager?.ClearAllIcons();
+        // Don't manually destroy buff/debuff objects - they'll be cleaned up automatically
 
-        // Clear all buff/debuff GameObjects with the "Buff_Debuff" tag
-        ClearAllBuffDebuffObjects();
-
-        // Clear any status effect components
+        // Disable status effect components instead of destroying them
         ClearStatusEffectComponents();
 
         // Reset stats
@@ -281,36 +278,20 @@ public class Unit : MonoBehaviour, IPointerClickHandler
 
     private void ClearAllBuffDebuffObjects()
     {
-        // Find and destroy all child objects with the "Buff_Debuff" tag
-        List<GameObject> toDestroy = new List<GameObject>();
-
-        foreach (Transform child in transform)
-        {
-            if (child.CompareTag("Buff_Debuff"))
-            {
-                toDestroy.Add(child.gameObject);
-            }
-        }
-
-        foreach (GameObject obj in toDestroy)
-        {
-            if (obj != null)
-            {
-                DestroyImmediate(obj);
-            }
-        }
-
-        Debug.Log($"Cleared {toDestroy.Count} buff/debuff objects from {gameObject.name}");
+        // Don't manually destroy the objects - they will be destroyed automatically
+        // when the Unit is destroyed or when the battle ends
+        // This avoids the destruction race condition
     }
 
     private void ClearStatusEffectComponents()
     {
+        // Instead of destroying, just disable them and let Unity clean them up
         StatusEffect[] statusEffects = GetComponents<StatusEffect>();
         foreach (StatusEffect effect in statusEffects)
         {
             if (effect != null)
             {
-                DestroyImmediate(effect);
+                effect.enabled = false;
             }
         }
     }
@@ -468,7 +449,7 @@ public class Unit : MonoBehaviour, IPointerClickHandler
     {
         if (_buffDebuffHolder != null)
         {
-            _buffDebuffHolder.AddBuffDebuff("Weak", 1, false);
+            _buffDebuffHolder.AddBuffDebuff("Weak", 1);
             Debug.Log("Test: Added Weak debuff icon");
         }
         else

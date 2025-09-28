@@ -9,8 +9,8 @@ public abstract class StatusEffect : MonoBehaviour
     public bool StacksDuration;
 
     protected Unit _host;
-    private int _currentDuration;
-    public int _currentAmount;
+    public int CurrentDuration { get; protected set; } // Changed to protected set
+    public int CurrentAmount { get; protected set; }   // Changed to protected set
     public int AppliedValue { get; protected set; }
 
     void OnEnable()
@@ -18,9 +18,12 @@ public abstract class StatusEffect : MonoBehaviour
         _host = GetComponentInParent<Unit>();
         if (_host == null) return;
 
+        // Initialize current duration and amount
+        CurrentDuration = Duration;
+        CurrentAmount = Amount;
+
         if (Duration >= 0)
         {
-            _currentDuration = Duration;
             _host.OnUnitTakeTurn += DurationCountdown;
         }
 
@@ -30,11 +33,11 @@ public abstract class StatusEffect : MonoBehaviour
     void OnDisable()
     {
         OnRemoved();
-        NotifyHolder();
     }
 
     void OnDestroy()
     {
+        // Notify when destroyed so icon gets removed
         NotifyHolder();
     }
 
@@ -42,7 +45,7 @@ public abstract class StatusEffect : MonoBehaviour
     {
         yield return null;
         OnInflicted();
-        NotifyHolder();
+        NotifyHolder(); // Create icon when applied
     }
 
     private void NotifyHolder()
@@ -71,19 +74,21 @@ public abstract class StatusEffect : MonoBehaviour
 
     void DurationCountdown(Unit unit)
     {
-        _currentDuration--;
-        if (_currentDuration <= 0)
+        CurrentDuration--;
+        if (CurrentDuration <= 0)
         {
             OnDurationEnded();
         }
         else
         {
+            // Update icon every turn to show remaining duration
             NotifyHolder();
         }
     }
 
     protected void StacksChanged()
     {
+        // Update icon when stacks change
         NotifyHolder();
     }
 }

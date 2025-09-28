@@ -34,121 +34,101 @@ public class BuffDebuffHolder : MonoBehaviour
         RefreshUI();
     }
 
-    public void RefreshUI()
+    // Public method for Unit class to call directly
+    public void AddBuffDebuff(string effectName, int value)
     {
-        ClearAll();
-
-        if (_owner != null)
-        {
-            StatusEffect[] statusEffects = _owner.GetComponentsInChildren<StatusEffect>(true);
-            foreach (StatusEffect effect in statusEffects)
-            {
-                if (effect != null && effect.isActiveAndEnabled)
-                {
-                    AddStatusEffectIcon(effect);
-                }
-            }
-
-            foreach (Transform child in _owner.transform)
-            {
-                if (child.CompareTag("Buff_Debuff"))
-                {
-                    AddBuffDebuffObject(child.gameObject);
-                }
-            }
-        }
-    }
-
-    private void AddStatusEffectIcon(StatusEffect effect)
-    {
-        if (effect == null) return;
-
-        string effectName = GetEffectName(effect);
-        int displayValue = GetDisplayValue(effect);
-        bool isPercentage = IsPercentageEffect(effect);
-
-        AddBuffDebuff(effectName, displayValue, isPercentage);
-    }
-
-    private void AddBuffDebuffObject(GameObject buffDebuffObj)
-    {
-        if (buffDebuffObj == null) return;
-
-        string effectName = GetEffectNameFromObject(buffDebuffObj);
-        int displayValue = GetDisplayValueFromObject(buffDebuffObj);
-        bool isPercentage = IsPercentageEffectFromObject(buffDebuffObj);
-
-        AddBuffDebuff(effectName, displayValue, isPercentage);
-    }
-
-    public void AddBuffDebuff(string effectName, int value, bool isPercentage = false)
-    {
-        GameObject iconPrefab = GetIconPrefabForEffect(effectName);
-        if (iconPrefab == null) return;
-
         if (_activeIcons.ContainsKey(effectName))
         {
             _activeIcons[effectName].UpdateStacks(value);
         }
         else
         {
-            GameObject iconObject = Instantiate(iconPrefab, _buffDebuffContainer);
-
-            // ACTIVATE THE ICON OBJECT
-            iconObject.SetActive(true);
-
-            BuffDebuffIcon iconComponent = iconObject.GetComponent<BuffDebuffIcon>();
-
-            if (iconComponent != null)
-            {
-                iconComponent.Initialize(effectName, value);
-                _activeIcons[effectName] = iconComponent;
-                UpdateIconPositions();
-
-                Debug.Log("Icon created and activated for: " + effectName);
-            }
-            else
-            {
-                Debug.LogError("BuffDebuffIcon component missing on prefab: " + iconPrefab.name);
-            }
+            AddBuffDebuffIcon(effectName, value);
         }
+    }
 
+    public void RefreshUI()
+    {
+        // Don't clear all - just update existing icons and add new ones
         if (_owner != null)
         {
-            var spawner = _owner.GetComponent<BuffDebuffMessageSpawner>();
-            if (spawner != null)
-            {
-                bool isDebuff = IsDebuff(effectName);
-                string message = GetEffectMessage(effectName, value, isPercentage);
+            // Track which effects we found in this refresh
+            HashSet<string> foundEffects = new HashSet<string>();
 
-                if (isDebuff)
-                    spawner.SpawnDebuffMessage(message, 0);
-                else
-                    spawner.SpawnBuffMessage(message, 0);
+            // Update existing icons or create new ones
+            StatusEffect[] statusEffects = _owner.GetComponentsInChildren<StatusEffect>(true);
+            foreach (StatusEffect effect in statusEffects)
+            {
+                if (effect != null && effect.isActiveAndEnabled)
+                {
+                    string effectName = GetEffectName(effect);
+                    int stacks = GetStacks(effect);
+                    foundEffects.Add(effectName);
+
+                    // Update existing icon or create new one
+                    if (_activeIcons.ContainsKey(effectName))
+                    {
+                        _activeIcons[effectName].UpdateStacks(stacks);
+                    }
+                    else
+                    {
+                        AddBuffDebuffIcon(effectName, stacks);
+                    }
+                }
+            }
+
+            // Also check Buff_Debuff tagged objects
+            foreach (Transform child in _owner.transform)
+            {
+                if (child.CompareTag("Buff_Debuff"))
+                {
+                    string effectName = GetEffectNameFromObject(child.gameObject);
+                    int stacks = GetStacksFromObject(child.gameObject);
+                    foundEffects.Add(effectName);
+
+                    if (_activeIcons.ContainsKey(effectName))
+                    {
+                        _activeIcons[effectName].UpdateStacks(stacks);
+                    }
+                    else
+                    {
+                        AddBuffDebuffIcon(effectName, stacks);
+                    }
+                }
+            }
+
+            // Remove icons for effects that no longer exist
+            List<string> effectsToRemove = new List<string>();
+            foreach (var effectName in _activeIcons.Keys)
+            {
+                if (!foundEffects.Contains(effectName))
+                {
+                    effectsToRemove.Add(effectName);
+                }
+            }
+
+            foreach (string effectName in effectsToRemove)
+            {
+                RemoveBuffDebuff(effectName);
             }
         }
     }
 
-    private string GetEffectMessage(string effectName, int value, bool isPercentage)
+    private void AddBuffDebuffIcon(string effectName, int stacks)
     {
-        if (isPercentage)
+        GameObject iconPrefab = GetIconPrefabForEffect(effectName);
+        if (iconPrefab == null) return;
+
+        GameObject iconObject = Instantiate(iconPrefab, _buffDebuffContainer);
+        iconObject.SetActive(true);
+
+        BuffDebuffIcon iconComponent = iconObject.GetComponent<BuffDebuffIcon>();
+
+        if (iconComponent != null)
         {
-            switch (value)
-            {
-                case 200:
-                    if (effectName.ToLower().Contains("strength"))
-                        return "Double Strength";
-                    else if (effectName.ToLower().Contains("dexterity"))
-                        return "Double Dexterity";
-                    else
-                        return "Double " + effectName;
-                default:
-                    return "+" + value + "% " + effectName;
-            }
-        }
-        else
-        {
-            return "+" + value + " " + effectName;
+            iconComponent.Initialize(effectName, stacks);
+            _activeIcons[effectName] = iconComponent;
+            UpdateIconPositions();
         }
     }
 
@@ -168,18 +148,13 @@ public class BuffDebuffHolder : MonoBehaviour
     {
         if (_activeIcons.ContainsKey(effectName))
         {
-            Destroy(_activeIcons[effectName].gameObject);
+            var icon = _activeIcons[effectName];
+            if (icon != null && icon.gameObject != null)
+            {
+                Destroy(icon.gameObject);
+            }
             _activeIcons.Remove(effectName);
             UpdateIconPositions();
-
-            if (_owner != null)
-            {
-                var spawner = _owner.GetComponent<BuffDebuffMessageSpawner>();
-                if (spawner != null)
-                {
-                    spawner.SpawnExpirationMessage(effectName);
-                }
-            }
         }
     }
 
@@ -219,13 +194,7 @@ public class BuffDebuffHolder : MonoBehaviour
 
     public void ClearAll()
     {
-        foreach (var icon in _activeIcons.Values)
-        {
-            if (icon != null)
-            {
-                Destroy(icon.gameObject);
-            }
-        }
+        // Just clear the dictionary - let Unity handle the GameObject destruction automatically
         _activeIcons.Clear();
     }
 
@@ -280,22 +249,33 @@ public class BuffDebuffHolder : MonoBehaviour
         return objectName;
     }
 
-    private int GetDisplayValue(StatusEffect effect)
+    private int GetStacks(StatusEffect effect)
     {
-        if (effect is TagModifierStatusEffect tagEffect)
+        // For duration-based effects, show remaining turns
+        if (effect.StacksDuration)
         {
-            return tagEffect.AppliedValue;
+            return effect.CurrentDuration; // Use the public property
         }
-        return effect.Amount;
+
+        // For intensity-based effects, show intensity
+        if (effect.StacksIntensity)
+        {
+            return effect.CurrentAmount; // Use the public property
+        }
+
+        // Default: show 1 if active
+        return 1;
     }
 
-    private int GetDisplayValueFromObject(GameObject buffDebuffObj)
+    private int GetStacksFromObject(GameObject buffDebuffObj)
     {
         StatusEffect statusEffect = buffDebuffObj.GetComponent<StatusEffect>();
         if (statusEffect != null)
         {
-            return GetDisplayValue(statusEffect);
+            return GetStacks(statusEffect);
         }
+
+        // Default to 1 if no StatusEffect component
         return 1;
     }
 
@@ -318,6 +298,34 @@ public class BuffDebuffHolder : MonoBehaviour
         return false;
     }
 
+    // MESSAGE METHOD - COMMENTED OUT
+    /*
+    private string GetEffectMessage(string effectName, int value, bool isPercentage)
+    {
+        if (isPercentage)
+        {
+            switch (value)
+            {
+                case 200:
+                    if (effectName.ToLower().Contains("strength"))
+                        return "Double Strength";
+                    else if (effectName.ToLower().Contains("dexterity"))
+                        return "Double Dexterity";
+                    else
+                        return "Double " + effectName;
+                default:
+                    return "+" + value + "% " + effectName;
+            }
+        }
+        else
+        {
+            return "+" + value + " " + effectName;
+        }
+    }
+    */
+
+    // DEBUFF CHECK METHOD - COMMENTED OUT (but kept for future use)
+    /*
     private bool IsDebuff(string effectName)
     {
         return effectName.ToLower().Contains("weak") ||
@@ -326,37 +334,5 @@ public class BuffDebuffHolder : MonoBehaviour
                effectName.ToLower().Contains("frail") ||
                effectName.ToLower().Contains("poison");
     }
-    [ContextMenu("Debug Check Icon Setup")]
-    public void DebugCheckIconSetup()
-    {
-        Debug.Log("=== BUFF/DEBUFF HOLDER DEBUG ===");
-        Debug.Log("Owner: " + (_owner != null ? _owner.name : "null"));
-        Debug.Log("Effect Icon Mappings: " + _effectIconMappings.Count);
-
-        foreach (var mapping in _effectIconMappings)
-        {
-            Debug.Log("Mapping: '" + mapping.effectName + "' -> " + (mapping.iconPrefab != null ? mapping.iconPrefab.name : "NULL"));
-        }
-
-        Debug.Log("Active Icons: " + _activeIcons.Count);
-        foreach (var icon in _activeIcons)
-        {
-            Debug.Log("Active: " + icon.Key);
-        }
-
-        // Check if we can find any buff/debuff objects
-        if (_owner != null)
-        {
-            int buffCount = 0;
-            foreach (Transform child in _owner.transform)
-            {
-                if (child.CompareTag("Buff_Debuff"))
-                {
-                    buffCount++;
-                    Debug.Log("Found Buff_Debuff: " + child.name);
-                }
-            }
-            Debug.Log("Total Buff_Debuff objects: " + buffCount);
-        }
-    }
+    */
 }
