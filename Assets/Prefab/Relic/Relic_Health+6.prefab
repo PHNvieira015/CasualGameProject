@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: m_HorizontalFit
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1510826497873676639, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1760764260084529856, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -81,6 +85,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4754731928714668146, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5265330239236635760, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -223,6 +231,10 @@ PrefabInstance:
     - target: {fileID: 7974584348795433142, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
       propertyPath: m_Colors.m_DisabledColor.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8227320402054724681, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8284093499814214909, guid: 11c11484a4c811e43a3c25438db7a490, type: 3}
       propertyPath: m_Sprite

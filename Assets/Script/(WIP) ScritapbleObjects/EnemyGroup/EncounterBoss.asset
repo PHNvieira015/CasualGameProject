@@ -17,4 +17,4 @@ MonoBehaviour:
   - {fileID: 4298939588376936765, guid: 1d8010bf9c9a62d49898cd00ecf8cda6, type: 3}
   useCustomFormation: 0
   customPositions:
-  - {x: 0, y: 0, z: 0}
+  - {x: -2, y: 0, z: 0}

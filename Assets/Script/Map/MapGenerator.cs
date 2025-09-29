@@ -11,7 +11,7 @@ public class MapGenerator : MonoBehaviour
     }
 
     [Header("Settings")]
-    [SerializeField] private int totalRows = 5;
+    [SerializeField] private int totalRows = 9;
     [SerializeField] private int maxColumns = 3;
     [SerializeField] private List<NodeBlueprintMapping> blueprintMappings = new List<NodeBlueprintMapping>();
 
@@ -100,11 +100,11 @@ public class MapGenerator : MonoBehaviour
 
     private NodeType GetNodeTypeForRow(int row)
     {
-        if (row == 0) return NodeType.RestSite;          // Start node
-        if (row == 1) return NodeType.MinorEnemy;          //First battle
-        if (row == 2) return NodeType.Store;               // First store
-        if (row == 3) return NodeType.MinorEnemy;               // Third row always minor enemy
-        if (row == totalRows - 2) return NodeType.RestSite; // Rest site before boss
+        if (row == 0) return NodeType.RestSite;       // Start node
+        if (row == 1) return NodeType.MinorEnemy;     // First battle
+        if (row == 2) return NodeType.Store;          // First store
+        if (row == 3) return NodeType.MinorEnemy;     // Third row always minor enemy
+        if (row == totalRows - 2) return NodeType.Store; // Shop before boss (2 rows before boss)
         if (row == totalRows - 1) return NodeType.Boss;    // Boss node
         return GetRandomNodeType();
     }
