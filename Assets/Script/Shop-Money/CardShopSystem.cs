@@ -60,12 +60,62 @@ public class CardShopSystem : MonoBehaviour
         else CardPurchased?.Invoke(card, slot);
     }
 
+    // Modify your existing RefreshShop method in CardShopSystem
     public void RefreshShop()
     {
-        if (currentRefreshes >= maxRefreshesPerDay) return;
-        if (!MoneyKeySystem.Instance.SpendMoney(refreshCost)) return;
+        if (currentRefreshes >= maxRefreshesPerDay)
+        {
+            Debug.LogWarning("Max refreshes reached for today!");
+            return;
+        }
+
+        if (!MoneyKeySystem.Instance.SpendMoney(refreshCost))
+        {
+            Debug.LogWarning($"Not enough money to refresh! Need {refreshCost}");
+            return;
+        }
 
         currentRefreshes++;
-        InitializeShop();
+
+        // Use the randomize function instead of InitializeShop
+        RandomizeShopRewards();
+
+        Debug.Log($"Shop refreshed! ({currentRefreshes}/{maxRefreshesPerDay} refreshes used)");
     }
-}
+    public void RandomizeShopRewards()
+    {
+        Debug.Log("[CardShopSystem] Randomizing shop rewards...");
+
+        // Clear all slots first
+        foreach (var slot in cardSlots) slot.ClearCard();
+        foreach (var slot in relicSlots) slot.ClearCard();
+
+        // Randomize card slots
+        foreach (var slot in cardSlots)
+        {
+            if (availableShopCards.Count == 0)
+            {
+                Debug.LogWarning("No available shop cards to randomize!");
+                continue;
+            }
+
+            Card randomCard = availableShopCards[Random.Range(0, availableShopCards.Count)];
+            int randomCost = Random.Range(10, 101); // Random cost between 10-100
+            slot.Initialize(this, randomCard, randomCost, 0, CostType.Money);
+        }
+
+        // Randomize relic slots
+            foreach (var slot in relicSlots)
+            {
+                if (availableRelics.Count == 0)
+                {
+                    Debug.LogWarning("No available relics to randomize!");
+                    continue;
+                }
+
+                Card randomRelic = availableRelics[Random.Range(0, availableRelics.Count)];
+                int randomKeyCost = Random.Range(1, 3); // 1 or 2 keys
+                slot.Initialize(this, randomRelic, 0, randomKeyCost, CostType.Key);
+            }
+        }
+    }

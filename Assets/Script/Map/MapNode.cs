@@ -9,6 +9,7 @@ public class MapNode
     public bool isActive;
     public bool isBossNode;
     public bool isRestNode;
+    public bool isVictoryNode;
 
     [System.NonSerialized]
     private List<MapNode> connectedNodes = new List<MapNode>();

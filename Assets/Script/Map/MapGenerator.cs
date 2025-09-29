@@ -38,7 +38,7 @@ public class MapGenerator : MonoBehaviour
         }
 
         // 2. Connect each node to at least one node above
-        for (int y = 0; y < rows.Count - 1; y++) // Skip last row (boss)
+        for (int y = 0; y < rows.Count - 1; y++) // Skip last row (victory)
         {
             List<MapNode> currentRow = rows[y];
             List<MapNode> rowAbove = rows[y + 1];
@@ -61,7 +61,7 @@ public class MapGenerator : MonoBehaviour
             {
                 // Connect to closest node below
                 MapNode closestBelow = GetClosestNode(node, rowBelow);
-                closestBelow.AddConnection(node); // Reverse connection
+                node.AddConnection(closestBelow); // Connect FROM current node TO node below
             }
         }
 
@@ -88,8 +88,8 @@ public class MapGenerator : MonoBehaviour
     private int GetNodeCountForRow(int row)
     {
         // First three rows and last two rows always have 1 node
-        // Row 0 (start), Row 1 (store), Row 2 (one node), and last two rows (rest site & boss)
-        return (row == 0 || row == 1 || row == 2 || row >= totalRows - 2) ? 1 : Random.Range(1, maxColumns + 1);
+        // Row 0 (start), Row 1 (store), Row 2 (one node), and last row (victory)
+        return (row == 0 || row == 1 || row == 2 || row >= totalRows - 1) ? 1 : Random.Range(1, maxColumns + 1);
     }
 
     private int GetXPosition(int index, int nodeCount)
@@ -100,12 +100,13 @@ public class MapGenerator : MonoBehaviour
 
     private NodeType GetNodeTypeForRow(int row)
     {
-        if (row == 0) return NodeType.RestSite;       // Start node
+        if (row == 0) return NodeType.RestSite;       // Start node (rest site)
         if (row == 1) return NodeType.MinorEnemy;     // First battle
         if (row == 2) return NodeType.Store;          // First store
         if (row == 3) return NodeType.MinorEnemy;     // Third row always minor enemy
-        if (row == totalRows - 2) return NodeType.Store; // Shop before boss (2 rows before boss)
-        if (row == totalRows - 1) return NodeType.Boss;    // Boss node
+        if (row == totalRows - 3) return NodeType.Store; // Shop before boss (2 rows before boss)
+        if (row == totalRows - 2) return NodeType.Boss;    // Boss node
+        if (row == totalRows - 1) return NodeType.Victory; // NEW: Victory node after boss
         return GetRandomNodeType();
     }
 
@@ -119,12 +120,22 @@ public class MapGenerator : MonoBehaviour
 
     private MapNode CreateNode(Vector2Int pos, NodeType type)
     {
-        return new MapNode()
+        MapNode node = new MapNode()
         {
             position = pos,
             nodeBlueprint = GetBlueprintForType(type),
             isActive = true
         };
+
+        // Set special flags based on node type
+        if (type == NodeType.Boss)
+            node.isBossNode = true;
+        else if (type == NodeType.RestSite)
+            node.isRestNode = true;
+        else if (type == NodeType.Victory)
+            node.isVictoryNode = true;
+
+        return node;
     }
 
     private NodeBlueprint GetBlueprintForType(NodeType type)

@@ -275,4 +275,49 @@ public class MoneyKeySystem : MonoBehaviour
             UpdateAllDisplays();
         }
     }
+    public void ReduceMoneyBy10()
+    {
+        if (SpendMoney(10))
+        {
+            Debug.Log("[MoneyKeySystem] Reduced 10 money. Current balance: " + Money);
+        }
+        else
+        {
+            Debug.LogWarning("[MoneyKeySystem] Not enough money to reduce by 10. Current balance: " + Money);
+        }
+    }
+    // Add this method to your MoneyKeySystem class
+    public void AddMoneyFromEncounter(EncounterType encounterType)
+    {
+        if (EncounterManager.Instance == null)
+        {
+            Debug.LogError("[MoneyKeySystem] EncounterManager instance not found!");
+            return;
+        }
+
+        int reward = EncounterManager.Instance.CalculateBattleReward();
+
+        if (AddMoney(reward))
+        {
+            Debug.Log($"[MoneyKeySystem] Added {reward} money from {encounterType} encounter. New balance: {Money}");
+
+            // Optional: Show visual feedback
+            ShowRewardPopup(reward, encounterType);
+        }
+        else
+        {
+            Debug.LogWarning("[MoneyKeySystem] Failed to add money from encounter reward");
+        }
+    }
+
+    // Optional: Visual feedback method
+    private void ShowRewardPopup(int reward, EncounterType encounterType)
+    {
+        // You can implement popup logic here
+        Debug.Log($"[Reward] +{reward} from {encounterType} battle!");
+
+        // Example: If you have a popup system, you could call it here
+        // RewardPopup.ShowReward(reward, encounterType.ToString());
+    }
+
 }

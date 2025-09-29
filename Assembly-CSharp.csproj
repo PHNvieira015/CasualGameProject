@@ -102,11 +102,13 @@
     <Compile Include="Assets\Script\Map\NodeVisual.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingUnitTests.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingIssue2.cs" />
+    <Compile Include="Assets\Script\CardReward\MoneyRewardButton.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplineEndless.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\Following.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingRotate.cs" />
     <Compile Include="Assets\Script\AutoSizeParent.cs" />
     <Compile Include="Assets\Script\Units\SelectableUnit.cs" />
+    <Compile Include="Assets\Script\Map\BattleNextButton.cs" />
     <Compile Include="Assets\LeanTween\Testing\Testing240.cs" />
     <Compile Include="Assets\LeanTween\Testing\Scripts\LeanPool.cs" />
     <Compile Include="Assets\Script\Units\Boss.cs" />

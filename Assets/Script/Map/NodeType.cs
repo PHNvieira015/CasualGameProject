@@ -12,5 +12,6 @@ public enum NodeType
     RestSite,
     Treasure,
     Store,
-    Event
+    Event,
+    Victory
 }

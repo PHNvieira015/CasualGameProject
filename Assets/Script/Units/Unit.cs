@@ -457,4 +457,26 @@ public class Unit : MonoBehaviour, IPointerClickHandler
             Debug.LogError("No BuffDebuffHolder found!");
         }
     }
+    public void Heal(int amount)
+    {
+        int currentHP = GetStatValue(StatType.HP);
+        int maxHP = GetStatValue(StatType.MaxHP);
+
+        int newHP = Mathf.Min(currentHP + amount, maxHP);
+        SetStatValue(StatType.HP, newHP);
+
+        Debug.Log($"{gameObject.name} healed {amount} HP. Current HP: {newHP}/{maxHP}");
+    }
+
+    [ContextMenu("Test Heal 10 HP")]
+    public void TestHeal10()
+    {
+        Heal(10);
+    }
+    [ContextMenu("Test Damage 10 HP")]
+    public void Damage10()
+    {
+        Heal(-10);
+    }
+
 }

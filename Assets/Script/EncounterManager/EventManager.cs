@@ -46,6 +46,12 @@ public class EventManager : MonoBehaviour
                 Debug.Log("Found treasure!");
                 break;
 
+            // ADD THIS CASE FOR VICTORY NODE
+            case NodeType.Victory:
+                Debug.Log("VICTORY! Game completed!");
+                MenuController.Instance.ChangeScreen(MenuController.Screens.Victory);
+                break;
+
             default:
                 Debug.LogWarning($"Unknown node type: {nodeType}");
                 break;
