@@ -55,6 +55,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 501061236883265335, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2544878826338724817, guid: 3d8936abd76f09e45bacde39ffeb8604, type: 3}
       propertyPath: Energy
       value: 1
@@ -196,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b88410282550ca42a4f45d062bfc5d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Amount: 6
+  Amount: 10
 --- !u!114 &140117490619599197
 MonoBehaviour:
   m_ObjectHideFlags: 0
