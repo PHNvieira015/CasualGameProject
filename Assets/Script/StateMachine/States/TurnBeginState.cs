@@ -6,28 +6,51 @@ using System.Linq;
 public class TurnBeginState : State
 {
     PlayerUnit _playerUnit;
+    private bool _isProcessing = false;
 
     public override IEnumerator Enter()
     {
-        // RESET CARD SELECTION - This is the key fix
+        if (_isProcessing)
+        {
+            Debug.LogWarning("TurnBeginState already processing - skipping");
+            yield break;
+        }
+
+        _isProcessing = true;
+        Debug.Log("=== TURN BEGIN STATE STARTED ===");
+
+        // Use a flag to track if we encountered an error
+        bool encounteredError = false;
+
+        // RESET CARD SELECTION
         CardDrag.AllowSelection();
 
         machine.CurrentUnit = null;
+
+        // Safety check - ensure units queue is valid
+        if (machine.Units == null)
+        {
+            Debug.LogError("Units queue is null!");
+            machine.Units = new Queue<Unit>();
+        }
 
         // Find the first alive unit in the queue
         Unit aliveUnit = null;
         int unitsChecked = 0;
         int totalUnits = machine.Units.Count;
 
+        Debug.Log($"Units in queue: {totalUnits}");
+
         // If no units in queue, handle battle end immediately
         if (totalUnits == 0)
         {
             Debug.Log("No units in battle queue");
             StartCoroutine(WaitThenChangeState<EndBattleState>());
+            _isProcessing = false;
             yield break;
         }
 
-        // First, check if player is dead (this should end battle regardless of other units)
+        // First, check if player is dead
         if (_playerUnit == null)
         {
             // Try to find player unit in the queue if we don't have reference
@@ -48,66 +71,84 @@ public class TurnBeginState : State
         {
             Debug.Log("Player is dead - ending battle");
             StartCoroutine(WaitThenChangeState<EndBattleState>());
+            _isProcessing = false;
             yield break;
         }
 
         // Find next alive unit for the turn
-        while (unitsChecked < totalUnits)
+        while (unitsChecked < totalUnits && aliveUnit == null)
         {
             Unit current = machine.Units.Dequeue();
             unitsChecked++;
 
-            if (current == null) continue;
+            if (current == null)
+            {
+                Debug.LogWarning("Found null unit in queue");
+                continue;
+            }
 
             if (current.GetStatValue(StatType.HP) > 0)
             {
                 aliveUnit = current;
-                machine.Units.Enqueue(current);
-                break;
+                Debug.Log($"Next unit: {aliveUnit.name}");
             }
             else
             {
                 Debug.LogFormat("Unit {0} is dead", current.name);
-                machine.Units.Enqueue(current);
             }
+
+            // Always enqueue back to maintain queue structure
+            machine.Units.Enqueue(current);
         }
 
         machine.CurrentUnit = aliveUnit;
 
-        yield return null;
-
-        // Play relics at the start of each turn
-        yield return StartCoroutine(PlayRelicsForTurn());
-
-        // Check battle end conditions after relics (relics might affect HP)
+        // Check battle end conditions
         playerDead = (_playerUnit != null && _playerUnit.GetStatValue(StatType.HP) <= 0);
-        bool noAliveUnits = (aliveUnit == null);
         bool allEnemiesDead = AreAllEnemiesDead();
 
         if (playerDead)
         {
-            Debug.Log("Player died during relic effects - ending battle");
+            Debug.Log("Player died - ending battle");
             StartCoroutine(WaitThenChangeState<EndBattleState>());
+            _isProcessing = false;
+            yield break;
         }
         else if (allEnemiesDead)
         {
             Debug.Log("All enemies are dead - victory!");
             StartCoroutine(WaitThenChangeState<EndBattleState>());
+            _isProcessing = false;
+            yield break;
         }
-        else if (noAliveUnits)
+        else if (aliveUnit == null)
         {
             Debug.Log("No alive units found in queue - ending battle");
             StartCoroutine(WaitThenChangeState<EndBattleState>());
+            _isProcessing = false;
+            yield break;
         }
-        else if (machine.CurrentUnit != null)
+
+        // Play relics at the start of each turn
+        yield return StartCoroutine(PlayRelicsForTurn());
+
+        // Re-check conditions after relics
+        playerDead = (_playerUnit != null && _playerUnit.GetStatValue(StatType.HP) <= 0);
+        allEnemiesDead = AreAllEnemiesDead();
+
+        if (playerDead || allEnemiesDead)
         {
-            StartCoroutine(WaitThenChangeState<RecoveryState>());
-        }
-        else
-        {
-            Debug.LogWarning("Unexpected state - ending battle");
+            Debug.Log("Battle ended during relic effects");
             StartCoroutine(WaitThenChangeState<EndBattleState>());
+            _isProcessing = false;
+            yield break;
         }
+
+        // Proceed to recovery state
+        Debug.Log("Transitioning to RecoveryState");
+        StartCoroutine(WaitThenChangeState<RecoveryState>());
+
+        _isProcessing = false;
     }
 
     private bool AreAllEnemiesDead()
@@ -131,8 +172,12 @@ public class TurnBeginState : State
 
     IEnumerator PlayRelicsForTurn()
     {
+        var relicHolder = CardsController.Instance?.RelicHolder;
+        if (relicHolder == null) yield break;
+
         // Create a copy of the list to avoid modification during iteration
-        List<Card> relicsToPlay = new List<Card>(CardsController.Instance.RelicHolder.Cards);
+        List<Card> relicsToPlay = new List<Card>(relicHolder.Cards);
+        Debug.Log($"Playing {relicsToPlay.Count} relics");
 
         // Play all relics from the relic holder
         foreach (Card relic in relicsToPlay)
@@ -146,11 +191,12 @@ public class TurnBeginState : State
 
     IEnumerator PlayRelicDirectly(Card relic)
     {
-        // Store all necessary references BEFORE playing effects
+        if (relic == null) yield break;
+
         string relicName = relic.gameObject.name;
         Vector3 originalScale = relic.transform.localScale;
 
-        // Get references to effect transforms BEFORE anything might get destroyed
+        // Get references to effect transforms
         Transform playedTransform = relic.transform.Find(PlayCardsState.PlayedGameObject);
         Transform afterPlayedTransform = relic.transform.Find(PlayCardsState.AfterPlayedGameObject);
 
@@ -160,20 +206,24 @@ public class TurnBeginState : State
         relic.transform.localScale = originalScale * 1.2f;
         yield return new WaitForSeconds(0.3f);
 
-        // Play the relic effects using stored transform references
+        // Play the relic effects
         yield return StartCoroutine(PlayCardEffects(relic, playedTransform, afterPlayedTransform));
 
-        // Additional visual feedback - only if relic still exists
+        // Reset scale if relic still exists
         if (relic != null)
         {
             relic.transform.localScale = originalScale;
             yield return new WaitForSeconds(0.2f);
         }
 
-        // Clean up - remove from holder first, then destroy (if it's a one-time use relic)
+        // Clean up - remove from holder first, then destroy
         if (relic != null)
         {
-            CardsController.Instance.RelicHolder.RemoveCard(relic);
+            var relicHolder = CardsController.Instance?.RelicHolder;
+            if (relicHolder != null)
+            {
+                relicHolder.RemoveCard(relic);
+            }
             Destroy(relic.gameObject);
         }
     }
@@ -195,14 +245,12 @@ public class TurnBeginState : State
 
     IEnumerator PlayCardEffect(Card card, Transform playTransform)
     {
-        // Check if the card or playTransform has been destroyed
         if (card == null || playTransform == null) yield break;
 
         int childCount = playTransform.childCount;
 
         for (int i = 0; i < childCount; i++)
         {
-            // Check if the child still exists before accessing it
             if (i >= playTransform.childCount) yield break;
 
             Transform child = playTransform.GetChild(i);
@@ -215,7 +263,6 @@ public class TurnBeginState : State
 
             yield return StartCoroutine(targeter.GetTargets(targets));
 
-            // Get all effects from the child
             if (child == null) continue;
 
             CardEffect[] effects = child.GetComponents<CardEffect>();

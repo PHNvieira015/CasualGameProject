@@ -9,8 +9,10 @@ public class Card : MonoBehaviour
     private Transform back;
     private Transform front;
 
-    private int movementTween;
-    private int rotationTween;
+    private int movementTween = -1;
+    private int rotationTween = -1;
+    private bool isMoving = false;
+    private System.Action onMoveComplete;
 
     private void Awake()
     {
@@ -40,14 +42,26 @@ public class Card : MonoBehaviour
             return;
         }
 
-        if (LeanTween.isTweening(gameObject) && LeanTween.isTweening(movementTween))
+        // Cancel any existing movement
+        if (movementTween != -1 && LeanTween.isTweening(movementTween))
         {
             LeanTween.cancel(movementTween);
         }
 
+        isMoving = true;
+        onMoveComplete = onComplete;
+
         movementTween = LeanTween.move(rect, position, duration)
-            .setOnComplete(onComplete)
+            .setOnComplete(OnMoveComplete)
             .id;
+    }
+
+    private void OnMoveComplete()
+    {
+        isMoving = false;
+        movementTween = -1;
+        onMoveComplete?.Invoke();
+        onMoveComplete = null;
     }
 
     public void Rotate(float amount, float duration)
@@ -82,13 +96,49 @@ public class Card : MonoBehaviour
             }
         }
 
-        if (LeanTween.isTweening(gameObject) && LeanTween.isTweening(rotationTween))
+        // Only cancel if we have a valid tween ID and it's actually tweening
+        if (rotationTween != -1 && LeanTween.isTweening(rotationTween))
         {
             LeanTween.cancel(rotationTween);
         }
 
         Debug.Log("Card.Rotate: Rotating card " + gameObject.name + " by " + amount + " degrees");
-        rotationTween = LeanTween.rotateAroundLocal(rect, Vector3.up, amount, duration).id;
+        rotationTween = LeanTween.rotateAroundLocal(rect, Vector3.up, amount, duration)
+            .setOnComplete(() => rotationTween = -1)
+            .id;
+    }
+
+    public void ForceCompleteMove()
+    {
+        if (isMoving && movementTween != -1 && LeanTween.isTweening(movementTween))
+        {
+            LeanTween.cancel(movementTween);
+            OnMoveComplete();
+        }
+    }
+
+    public bool IsMoving()
+    {
+        return isMoving || (movementTween != -1 && LeanTween.isTweening(movementTween));
+    }
+
+    public void MoveToDiscardImmediate()
+    {
+        ForceCompleteMove();
+
+        GameObject discardPile = GameObject.FindGameObjectWithTag("DiscardPile");
+        if (discardPile != null)
+        {
+            CardHolder discardHolder = discardPile.GetComponent<CardHolder>();
+            if (discardHolder != null && discardHolder.Holder != null)
+            {
+                transform.SetParent(discardHolder.Holder);
+                if (rect != null)
+                {
+                    rect.anchoredPosition3D = discardHolder.Holder.anchoredPosition3D;
+                }
+            }
+        }
     }
 
     public bool CanPlay()
