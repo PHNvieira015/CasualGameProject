@@ -48,6 +48,5 @@ MonoBehaviour:
   Amount: 200
   StacksIntensity: 0
   StacksDuration: 1
-  _currentAmount: 0
   Tag: 0
   isPercentage: 1
