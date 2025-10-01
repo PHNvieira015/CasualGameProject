@@ -28,86 +28,104 @@ public class MoneyRewardButton : MonoBehaviour
             rewardButton.onClick.AddListener(ClaimReward);
         }
 
+        Debug.Log("[MoneyRewardButton] Start() called - Initializing button");
         UpdateButtonState();
     }
 
     private void OnEnable()
     {
-        // When the button becomes active (when reward screen opens), calculate the reward
+        Debug.Log("[MoneyRewardButton] BUTTON ENABLED - REWARD SCREEN OPENED");
         CalculatePendingReward();
     }
 
     public void CalculatePendingReward()
     {
+        Debug.Log("[MoneyRewardButton] CALCULATING PENDING REWARD");
+
         if (EncounterManager.Instance == null)
         {
-            Debug.LogError("EncounterManager not found!");
+            Debug.LogError("[MoneyRewardButton] EncounterManager not found!");
             _pendingReward = 0;
             UpdateButtonState();
             return;
         }
 
-        // SIMPLE: Just ask the EncounterManager what the reward should be
+        Debug.Log("[MoneyRewardButton] EncounterManager found");
+
+        EncounterType currentType = EncounterManager.Instance.GetCurrentEncounterType();
+        Debug.Log("[MoneyRewardButton] Current encounter type: " + currentType);
+
         _pendingReward = EncounterManager.Instance.CalculateBattleReward();
         _rewardClaimed = false;
 
-        Debug.Log($"[MoneyRewardButton] Reward calculated: {_pendingReward} gold");
+        Debug.Log("[MoneyRewardButton] Calculated reward: " + _pendingReward + " gold");
         UpdateButtonState();
     }
 
     public void ClaimReward()
     {
+        Debug.Log("[MoneyRewardButton] CLAIM REWARD CLICKED");
+        Debug.Log("[MoneyRewardButton] Pending: " + _pendingReward + ", Claimed: " + _rewardClaimed);
+
         if (_rewardClaimed)
         {
-            Debug.LogWarning("Reward already claimed!");
+            Debug.LogWarning("[MoneyRewardButton] Reward already claimed!");
             return;
         }
 
         if (MoneyKeySystem.Instance == null)
         {
-            Debug.LogError("MoneyKeySystem not found!");
+            Debug.LogError("[MoneyRewardButton] MoneyKeySystem not found!");
             return;
         }
 
         if (_pendingReward <= 0)
         {
-            Debug.LogWarning("No pending reward to claim!");
+            Debug.LogWarning("[MoneyRewardButton] No pending reward to claim! (" + _pendingReward + ")");
             return;
         }
 
-        // Add the money to player's balance
+        int oldMoney = MoneyKeySystem.Instance.Money;
         if (MoneyKeySystem.Instance.AddMoney(_pendingReward))
         {
             _rewardClaimed = true;
             UpdateButtonState();
 
-            Debug.Log($"[MoneyRewardButton] Claimed {_pendingReward} gold! New balance: {MoneyKeySystem.Instance.Money}");
+            Debug.Log("[MoneyRewardButton] Successfully claimed " + _pendingReward + " gold! Old: " + oldMoney + ", New: " + MoneyKeySystem.Instance.Money);
         }
         else
         {
-            Debug.LogError("Failed to add money reward!");
+            Debug.LogError("[MoneyRewardButton] Failed to add money reward!");
         }
     }
 
     private void UpdateButtonState()
     {
-        if (rewardButton == null || buttonText == null) return;
+        Debug.Log("[MoneyRewardButton] Updating button state - Reward: " + _pendingReward + ", Claimed: " + _rewardClaimed);
+
+        if (rewardButton == null || buttonText == null)
+        {
+            Debug.LogError("[MoneyRewardButton] Button references are null!");
+            return;
+        }
 
         if (_rewardClaimed)
         {
             rewardButton.interactable = false;
             buttonText.text = claimedText;
+            Debug.Log("[MoneyRewardButton] Button state: CLAIMED");
         }
         else
         {
             rewardButton.interactable = true;
             buttonText.text = string.Format(buttonFormat, _pendingReward);
+            Debug.Log("[MoneyRewardButton] Button state: READY - " + _pendingReward + " gold");
         }
     }
 
-    // Reset for new encounters
     public void ResetForNewEncounter()
     {
+        Debug.Log("[MoneyRewardButton] Resetting for new encounter");
         _rewardClaimed = false;
         _pendingReward = 0;
         UpdateButtonState();
@@ -117,13 +135,5 @@ public class MoneyRewardButton : MonoBehaviour
     {
         if (rewardButton != null)
             rewardButton.onClick.RemoveListener(ClaimReward);
-    }
-
-    // Debug method to test if it's working
-    [ContextMenu("Test Reward Calculation")]
-    public void TestRewardCalculation()
-    {
-        CalculatePendingReward();
-        Debug.Log($"Pending reward: {_pendingReward}");
     }
 }

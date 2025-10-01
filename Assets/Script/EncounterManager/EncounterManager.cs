@@ -19,9 +19,6 @@ public class EncounterManager : MonoBehaviour
     [SerializeField] private RewardRange eliteReward = new RewardRange(20, 35);
     [SerializeField] private RewardRange bossReward = new RewardRange(45, 60);
 
-    [Header("Reward Button")]
-    [SerializeField] private MoneyRewardButton moneyRewardButton;
-
     [System.Serializable]
     public class RewardRange
     {
@@ -36,7 +33,7 @@ public class EncounterManager : MonoBehaviour
 
         public int GetRandomReward()
         {
-            return Random.Range(minReward, maxReward + 1); // +1 because Random.Range for int is exclusive max
+            return Random.Range(minReward, maxReward + 1);
         }
     }
 
@@ -49,10 +46,6 @@ public class EncounterManager : MonoBehaviour
         {
             Instance = this;
             InitializeEncounterParent();
-
-            // Auto-find if not set
-            if (moneyRewardButton == null)
-                moneyRewardButton = FindObjectOfType<MoneyRewardButton>();
         }
         else
         {
@@ -64,11 +57,14 @@ public class EncounterManager : MonoBehaviour
     {
         ClearEncounter();
         _currentEncounterType = type;
+
+        Debug.Log("[EncounterManager] Starting " + type + " encounter");
+
         EnemyGroup selectedGroup = GetEnemyGroup(type, specificGroup);
 
         if (selectedGroup == null || selectedGroup.enemyPrefabs.Count == 0)
         {
-            Debug.LogWarning($"No valid group found for {type} encounter");
+            Debug.LogWarning("No valid group found for " + type + " encounter");
             return;
         }
 
@@ -82,14 +78,12 @@ public class EncounterManager : MonoBehaviour
 
         _currentEnemies.Clear();
 
-        // Calculate all positions first
         Vector3[] positions = new Vector3[group.enemyPrefabs.Count];
         for (int i = 0; i < positions.Length; i++)
         {
             positions[i] = CalculateSpawnPosition(i, positions.Length);
         }
 
-        // Then instantiate
         for (int i = 0; i < group.enemyPrefabs.Count; i++)
         {
             if (group.enemyPrefabs[i] == null) continue;
@@ -98,7 +92,6 @@ public class EncounterManager : MonoBehaviour
             enemyInstance.transform.localPosition = positions[i];
             enemyInstance.name = $"{group.enemyPrefabs[i].name}_{i}";
 
-            // Add to current enemies list for tracking
             Unit enemyUnit = enemyInstance.GetComponent<Unit>();
             if (enemyUnit != null)
             {
@@ -107,30 +100,30 @@ public class EncounterManager : MonoBehaviour
         }
     }
 
-    // Calculate reward for current encounter using only the predefined ranges
     public int CalculateBattleReward()
     {
-        // Get base reward from encounter type range
-        int baseReward = GetRandomRewardForEncounterType(_currentEncounterType);
+        Debug.Log("[EncounterManager] CALCULATING BATTLE REWARD");
+        Debug.Log("[EncounterManager] Current encounter type: " + _currentEncounterType);
 
-        // Apply battle modifiers (completion bonus/penalty)
-        int finalReward = ApplyBattleModifiers(baseReward);
+        int reward = GetRandomRewardForEncounterType(_currentEncounterType);
+        Debug.Log("[EncounterManager] Final reward: " + reward);
 
-        return Mathf.Max(0, finalReward); // Ensure non-negative
+        return Mathf.Max(0, reward);
     }
 
     private int GetRandomRewardForEncounterType(EncounterType type)
     {
-        return type switch
-        {
-            EncounterType.Normal => normalReward.GetRandomReward(),
-            EncounterType.Elite => eliteReward.GetRandomReward(),
-            EncounterType.Boss => bossReward.GetRandomReward(),
-            _ => normalReward.GetRandomReward()
-        };
+        Debug.Log("[EncounterManager] Getting reward for encounter type: " + type);
+
+        RewardRange range = GetRewardRangeForEncounterType(type);
+        Debug.Log("[EncounterManager] Reward range: " + range.minReward + "-" + range.maxReward);
+
+        int reward = range.GetRandomReward();
+        Debug.Log("[EncounterManager] Random reward from range: " + reward);
+
+        return reward;
     }
 
-    // Get the reward range for UI display
     public RewardRange GetRewardRangeForEncounterType(EncounterType type)
     {
         return type switch
@@ -142,47 +135,11 @@ public class EncounterManager : MonoBehaviour
         };
     }
 
-    // Get minimum and maximum possible rewards
-    public int GetMinRewardForCurrentEncounter()
-    {
-        return GetRewardRangeForEncounterType(_currentEncounterType).minReward;
-    }
-
-    public int GetMaxRewardForCurrentEncounter()
-    {
-        return GetRewardRangeForEncounterType(_currentEncounterType).maxReward;
-    }
-
-    private int ApplyBattleModifiers(int baseReward)
-    {
-        int defeatedCount = GetDefeatedEnemyCount();
-        int totalEnemies = GetTotalEnemyCount();
-
-        // Bonus for defeating all enemies
-        if (defeatedCount == totalEnemies && totalEnemies > 1)
-        {
-            baseReward = Mathf.RoundToInt(baseReward * 1.2f); // 20% bonus for full clear
-            Debug.Log($"Full clear bonus applied: {baseReward}");
-        }
-
-        // Penalty if not all enemies defeated (optional)
-        else if (defeatedCount < totalEnemies)
-        {
-            float completionRatio = (float)defeatedCount / totalEnemies;
-            baseReward = Mathf.RoundToInt(baseReward * completionRatio);
-            Debug.Log($"Partial completion penalty applied: {baseReward} ({(completionRatio * 100):F0}% of reward)");
-        }
-
-        return baseReward;
-    }
-
-    // Get current encounter type for UI display
     public EncounterType GetCurrentEncounterType()
     {
         return _currentEncounterType;
     }
 
-    // Get enemy count for UI display and completion calculation
     public int GetDefeatedEnemyCount()
     {
         int count = 0;
@@ -193,31 +150,41 @@ public class EncounterManager : MonoBehaviour
                 count++;
             }
         }
+        Debug.Log("[EncounterManager] Defeated enemy count: " + count);
         return count;
     }
 
     public int GetTotalEnemyCount()
     {
-        return _currentEnemies.Count;
+        int count = _currentEnemies.Count;
+        Debug.Log("[EncounterManager] Total enemy count: " + count);
+        return count;
+    }
+
+    public int GetMinRewardForCurrentEncounter()
+    {
+        return GetRewardRangeForEncounterType(_currentEncounterType).minReward;
+    }
+
+    public int GetMaxRewardForCurrentEncounter()
+    {
+        return GetRewardRangeForEncounterType(_currentEncounterType).maxReward;
     }
 
     private Vector3 CalculateSpawnPosition(int index, int total)
     {
-        // Handle single enemy case
         if (total <= 1)
         {
             return new Vector3(3, 0, spawnArea.y / 2);
         }
 
-        // Prevent division by zero in Lerp
         float lerpValue = Mathf.Clamp01((float)index / (total - 1));
         float xPos = Mathf.Lerp(-spawnArea.x / 2, spawnArea.x / 2, lerpValue);
 
-        // Final NaN check just in case
         Vector3 position = new Vector3(xPos, 0, spawnArea.y / 2);
         if (float.IsNaN(position.x))
         {
-            Debug.LogWarning($"Invalid position calculated for enemy {index}, defaulting to center");
+            Debug.LogWarning("Invalid position calculated for enemy " + index + ", defaulting to center");
             return Vector3.zero;
         }
 
@@ -255,7 +222,6 @@ public class EncounterManager : MonoBehaviour
     {
         _currentEnemies.Clear();
 
-        // Safe destruction - unparent first
         while (encounterParent.childCount > 0)
         {
             Transform child = encounterParent.GetChild(0);
