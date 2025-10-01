@@ -1,5 +1,6 @@
-using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
@@ -37,45 +38,112 @@ public class MapGenerator : MonoBehaviour
             rows.Add(currentRow);
         }
 
-        // 2. Connect each node to at least one node above
-        for (int y = 0; y < rows.Count - 1; y++) // Skip last row (victory)
+        // 2. Create forward connections using actual x positions
+        for (int y = 0; y < rows.Count - 1; y++)
         {
             List<MapNode> currentRow = rows[y];
-            List<MapNode> rowAbove = rows[y + 1];
+            List<MapNode> nextRow = rows[y + 1];
 
-            foreach (var node in currentRow)
+            // Special case: row before boss - all nodes connect to boss
+            if (y == totalRows - 3)
             {
-                // Connect to closest node above
-                MapNode closestAbove = GetClosestNode(node, rowAbove);
-                node.AddConnection(closestAbove);
+                MapNode bossNode = nextRow[0];
+                foreach (var currentNode in currentRow)
+                {
+                    currentNode.AddConnection(bossNode);
+                }
+                continue;
             }
-        }
-
-        // 3. Connect each node to at least one node below (except start)
-        for (int y = 1; y < rows.Count; y++) // Skip first row
-        {
-            List<MapNode> currentRow = rows[y];
-            List<MapNode> rowBelow = rows[y - 1];
-
-            foreach (var node in currentRow)
+            // Special case: boss connects to victory
+            else if (y == totalRows - 2)
             {
-                // Connect to closest node below
-                MapNode closestBelow = GetClosestNode(node, rowBelow);
-                node.AddConnection(closestBelow); // Connect FROM current node TO node below
+                MapNode victoryNode = nextRow[0];
+                MapNode bossNode = currentRow[0];
+                bossNode.AddConnection(victoryNode);
+                continue;
+            }
+
+            // Normal connections based on x position
+            foreach (var currentNode in currentRow)
+            {
+                List<MapNode> connections = GetNearbyNodesByXPosition(currentNode, nextRow);
+
+                foreach (var connection in connections)
+                {
+                    currentNode.AddConnection(connection);
+                }
+            }
+
+            // Ensure every node in next row has incoming connections
+            foreach (var nextNode in nextRow)
+            {
+                bool hasIncoming = false;
+                foreach (var currentNode in currentRow)
+                {
+                    if (currentNode.ConnectedNodes.Contains(nextNode))
+                    {
+                        hasIncoming = true;
+                        break;
+                    }
+                }
+
+                if (!hasIncoming)
+                {
+                    // Find the closest node in current row by x position
+                    MapNode closestNode = GetClosestNodeByX(nextNode, currentRow);
+                    closestNode.AddConnection(nextNode);
+                }
             }
         }
 
         return nodes;
     }
 
-    private MapNode GetClosestNode(MapNode source, List<MapNode> targets)
+    private List<MapNode> GetNearbyNodesByXPosition(MapNode currentNode, List<MapNode> nextRow)
     {
-        MapNode closest = targets[0];
-        float minDist = Mathf.Abs(source.position.x - closest.position.x);
+        List<MapNode> connections = new List<MapNode>();
 
-        foreach (var node in targets)
+        if (nextRow.Count == 0) return connections;
+
+        // Get all nodes in next row sorted by x distance from current node
+        List<MapNode> sortedNextRow = new List<MapNode>(nextRow);
+        sortedNextRow.Sort((a, b) =>
         {
-            float dist = Mathf.Abs(source.position.x - node.position.x);
+            float distA = Mathf.Abs(currentNode.position.x - a.position.x);
+            float distB = Mathf.Abs(currentNode.position.x - b.position.x);
+            return distA.CompareTo(distB);
+        });
+
+        // Always connect to the closest node
+        if (sortedNextRow.Count > 0)
+        {
+            connections.Add(sortedNextRow[0]);
+        }
+
+        // Connect to additional nearby nodes (within ±1 x position)
+        foreach (var node in sortedNextRow)
+        {
+            if (!connections.Contains(node))
+            {
+                int xDiff = Mathf.Abs(currentNode.position.x - node.position.x);
+                if (xDiff <= 1) // Only connect to nodes within 1 x position
+                {
+                    connections.Add(node);
+                }
+            }
+        }
+
+        return connections;
+    }
+
+    private MapNode GetClosestNodeByX(MapNode targetNode, List<MapNode> nodes)
+    {
+        MapNode closest = nodes[0];
+        float minDist = Mathf.Abs(targetNode.position.x - closest.position.x);
+
+        foreach (var node in nodes)
+        {
+            float dist = Mathf.Abs(targetNode.position.x - node.position.x);
             if (dist < minDist)
             {
                 minDist = dist;
@@ -87,26 +155,34 @@ public class MapGenerator : MonoBehaviour
 
     private int GetNodeCountForRow(int row)
     {
-        // First three rows and last two rows always have 1 node
-        // Row 0 (start), Row 1 (store), Row 2 (one node), and last row (victory)
-        return (row == 0 || row == 1 || row == 2 || row >= totalRows - 1) ? 1 : Random.Range(1, maxColumns + 1);
+        return (row == 0 || row == 1 || row == 2 || row >= totalRows - 2) ? 1 : Random.Range(1, maxColumns + 1);
     }
 
     private int GetXPosition(int index, int nodeCount)
     {
-        // Center nodes in their row
-        return nodeCount > 1 ? index - (nodeCount - 1) / 2 : 0;
+        // Smaller spacing - nodes are closer together
+        // This creates positions like: 
+        // 1 node: [0]
+        // 2 nodes: [-1, 1]  
+        // 3 nodes: [-1, 0, 1]
+        // 4 nodes: [-2, -1, 1, 2]
+        // 5 nodes: [-2, -1, 0, 1, 2]
+        if (nodeCount == 1) return 0;
+
+        // Use smaller range for fewer nodes
+        int maxOffset = (nodeCount - 1) / 2;
+        return index - maxOffset;
     }
 
     private NodeType GetNodeTypeForRow(int row)
     {
-        if (row == 0) return NodeType.RestSite;       // Start node (rest site)
-        if (row == 1) return NodeType.MinorEnemy;     // First battle
-        if (row == 2) return NodeType.Store;          // First store
-        if (row == 3) return NodeType.MinorEnemy;     // Third row always minor enemy
-        if (row == totalRows - 3) return NodeType.Store; // Shop before boss (2 rows before boss)
-        if (row == totalRows - 2) return NodeType.Boss;    // Boss node
-        if (row == totalRows - 1) return NodeType.Victory; // NEW: Victory node after boss
+        if (row == 0) return NodeType.RestSite;
+        if (row == 1) return NodeType.MinorEnemy;
+        if (row == 2) return NodeType.Store;
+        if (row == 3) return NodeType.MinorEnemy;
+        if (row == totalRows - 3) return NodeType.Store;
+        if (row == totalRows - 2) return NodeType.Boss;
+        if (row == totalRows - 1) return NodeType.Victory;
         return GetRandomNodeType();
     }
 
@@ -127,7 +203,6 @@ public class MapGenerator : MonoBehaviour
             isActive = true
         };
 
-        // Set special flags based on node type
         if (type == NodeType.Boss)
             node.isBossNode = true;
         else if (type == NodeType.RestSite)
