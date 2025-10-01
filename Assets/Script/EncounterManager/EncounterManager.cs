@@ -58,8 +58,6 @@ public class EncounterManager : MonoBehaviour
         ClearEncounter();
         _currentEncounterType = type;
 
-        Debug.Log("[EncounterManager] Starting " + type + " encounter");
-
         EnemyGroup selectedGroup = GetEnemyGroup(type, specificGroup);
 
         if (selectedGroup == null || selectedGroup.enemyPrefabs.Count == 0)
@@ -102,26 +100,13 @@ public class EncounterManager : MonoBehaviour
 
     public int CalculateBattleReward()
     {
-        Debug.Log("[EncounterManager] CALCULATING BATTLE REWARD");
-        Debug.Log("[EncounterManager] Current encounter type: " + _currentEncounterType);
-
-        int reward = GetRandomRewardForEncounterType(_currentEncounterType);
-        Debug.Log("[EncounterManager] Final reward: " + reward);
-
-        return Mathf.Max(0, reward);
+        return GetRandomRewardForEncounterType(_currentEncounterType);
     }
 
     private int GetRandomRewardForEncounterType(EncounterType type)
     {
-        Debug.Log("[EncounterManager] Getting reward for encounter type: " + type);
-
         RewardRange range = GetRewardRangeForEncounterType(type);
-        Debug.Log("[EncounterManager] Reward range: " + range.minReward + "-" + range.maxReward);
-
-        int reward = range.GetRandomReward();
-        Debug.Log("[EncounterManager] Random reward from range: " + reward);
-
-        return reward;
+        return range.GetRandomReward();
     }
 
     public RewardRange GetRewardRangeForEncounterType(EncounterType type)
@@ -150,15 +135,12 @@ public class EncounterManager : MonoBehaviour
                 count++;
             }
         }
-        Debug.Log("[EncounterManager] Defeated enemy count: " + count);
         return count;
     }
 
     public int GetTotalEnemyCount()
     {
-        int count = _currentEnemies.Count;
-        Debug.Log("[EncounterManager] Total enemy count: " + count);
-        return count;
+        return _currentEnemies.Count;
     }
 
     public int GetMinRewardForCurrentEncounter()
@@ -184,7 +166,6 @@ public class EncounterManager : MonoBehaviour
         Vector3 position = new Vector3(xPos, 0, spawnArea.y / 2);
         if (float.IsNaN(position.x))
         {
-            Debug.LogWarning("Invalid position calculated for enemy " + index + ", defaulting to center");
             return Vector3.zero;
         }
 
