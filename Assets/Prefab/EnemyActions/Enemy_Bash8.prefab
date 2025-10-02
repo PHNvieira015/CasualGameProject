@@ -16,13 +16,21 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 6942781663999914498, guid: 2a5489c4761e3424495191dee5df5d06, type: 3}
+    - target: {fileID: 5064827533309735815, guid: 901933252d4c3c149bd556d63ae5ee0a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6827432885790424449, guid: 901933252d4c3c149bd556d63ae5ee0a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6922039733775766120, guid: 901933252d4c3c149bd556d63ae5ee0a, type: 3}
       propertyPath: m_text
       value: 8x
       objectReference: {fileID: 0}
     - target: {fileID: 8248958417020047267, guid: 901933252d4c3c149bd556d63ae5ee0a, type: 3}
       propertyPath: m_Name
-      value: Enemy_Bash1
+      value: Enemy_Bash
       objectReference: {fileID: 0}
     - target: {fileID: 8536224566791419861, guid: 901933252d4c3c149bd556d63ae5ee0a, type: 3}
       propertyPath: m_Pivot.x
